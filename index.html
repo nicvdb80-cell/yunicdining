@@ -1077,20 +1077,6 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
 
 
 
-<style>
-.bev-card { cursor: pointer; perspective: 800px; background: none !important; border: none !important; padding: 0 !important; }
-.bev-card-inner { position: relative; width: 100%; min-height: 220px; transition: transform 0.65s; transform-style: preserve-3d; }
-.bev-card.flipped .bev-card-inner { transform: rotateY(180deg); }
-.bev-face { position: absolute; width: 100%; min-height: 220px; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 4px; border: 1px solid rgba(140,104,72,0.2); }
-.bev-face-front { background: var(--parchment); padding: 1.8rem 1.4rem; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.bev-face-back { transform: rotateY(180deg); background: var(--parchment-mid); padding: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-.bev-back-title { font-family: var(--serif); font-size: 1rem; color: var(--brown); margin-bottom: 0.6rem; font-weight: 500; }
-.bev-back-text { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--brown-muted); }
-.bev-hint { font-size: 0.6rem; color: var(--brown-muted); font-style: italic; margin-top: 0.8rem; }
-</style>
-<script>
-function flipBevCard(el) { el.classList.toggle('flipped'); }
-</script>
 </head>
 <body>
 
@@ -1340,13 +1326,20 @@ function flipBevCard(el) { el.classList.toggle('flipped'); }
     </div>
 
     <div class="beverage-grid fade-in">
-      <div class="bev-card" onclick="flipBevCard(this)">
-        <div class="bev-card-inner">
-          <div class="bev-face bev-face-front">
-            <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+      <div class="bev-card">
+        <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 6 L12 26 H20 L24 6 Z"/>
             <path d="M6 12 H26"/>
-          </svg></div>
+          </svg>
+      <div class="bev-back-overlay">
+        <div class="bev-back-title"></div>
+        <div class="bev-back-text">Selection to be confirmed</div>
+        <div class="bev-hint">Tap to flip back</div>
+      </div>
+      </div>
+        <h4></h4>
+        <p></p>
+      </div>
             <h4></h4>
             <p></p>
             <div class="bev-hint">Tap to see selection →</div>
@@ -1361,13 +1354,20 @@ function flipBevCard(el) { el.classList.toggle('flipped'); }
         <h4>Wine Pairing<br>Curated Selection</h4>
         <p>A curated wine pairing designed to complement the spice, richness, and rhythm of the Yunic menu. Balance, elegance, and surprise.</p>
       </div>
-      <div class="bev-card" onclick="flipBevCard(this)">
-        <div class="bev-card-inner">
-          <div class="bev-face bev-face-front">
-            <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+      <div class="bev-card">
+        <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 6 C10 6 8 14 12 18 L12 26 H20 L20 18 C24 14 22 6 22 6 Z"/>
             <path d="M8 10 H24"/>
-          </svg></div>
+          </svg>
+      <div class="bev-back-overlay">
+        <div class="bev-back-title"></div>
+        <div class="bev-back-text">Selection to be confirmed</div>
+        <div class="bev-hint">Tap to flip back</div>
+      </div>
+      </div>
+        <h4></h4>
+        <p></p>
+      </div>
             <h4></h4>
             <p></p>
             <div class="bev-hint">Tap to see selection →</div>
@@ -1382,14 +1382,21 @@ function flipBevCard(el) { el.classList.toggle('flipped'); }
         <h4>Cocktails &amp; Aperitif</h4>
         <p>Signature aperitif options and cocktails to begin the evening with warmth and celebration. Perfect with the opening Indonesian bites.</p>
       </div>
-      <div class="bev-card" onclick="flipBevCard(this)">
-        <div class="bev-card-inner">
-          <div class="bev-face bev-face-front">
-            <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+      <div class="bev-card">
+        <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
             <rect x="10" y="6" width="12" height="20" rx="2"/>
             <path d="M13 10 H19"/>
             <path d="M13 14 H19"/>
-          </svg></div>
+          </svg>
+      <div class="bev-back-overlay">
+        <div class="bev-back-title"></div>
+        <div class="bev-back-text">Selection to be confirmed</div>
+        <div class="bev-hint">Tap to flip back</div>
+      </div>
+      </div>
+        <h4></h4>
+        <p></p>
+      </div>
             <h4></h4>
             <p></p>
             <div class="bev-hint">Tap to see selection →</div>
@@ -1404,13 +1411,20 @@ function flipBevCard(el) { el.classList.toggle('flipped'); }
         <h4>Bottles</h4>
         <p>Wine bottles, sparkling options, and selected beverages available on request for the full table.</p>
       </div>
-      <div class="bev-card" onclick="flipBevCard(this)">
-        <div class="bev-card-inner">
-          <div class="bev-face bev-face-front">
-            <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+      <div class="bev-card">
+        <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 6 H20 L22 26 H10 Z"/>
             <path d="M14 6 C14 6 13 10 16 12 C19 14 18 18 18 18"/>
-          </svg></div>
+          </svg>
+      <div class="bev-back-overlay">
+        <div class="bev-back-title"></div>
+        <div class="bev-back-text">Selection to be confirmed</div>
+        <div class="bev-hint">Tap to flip back</div>
+      </div>
+      </div>
+        <h4></h4>
+        <p></p>
+      </div>
             <h4></h4>
             <p></p>
             <div class="bev-hint">Tap to see selection →</div>
@@ -1425,14 +1439,21 @@ function flipBevCard(el) { el.classList.toggle('flipped'); }
         <h4>Soft Drinks</h4>
         <p>Fresh, elegant non-alcoholic options including house-made drinks, juices, infused waters, and premium soft drinks.</p>
       </div>
-      <div class="bev-card" onclick="flipBevCard(this)">
-        <div class="bev-card-inner">
-          <div class="bev-face bev-face-front">
-            <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+      <div class="bev-card">
+        <div class="bev-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 8 H22 L24 24 H8 Z"/>
             <path d="M10 8 C10 8 12 4 16 4 C20 4 22 8 22 8"/>
             <path d="M12 14 H20"/>
-          </svg></div>
+          </svg>
+      <div class="bev-back-overlay">
+        <div class="bev-back-title"></div>
+        <div class="bev-back-text">Selection to be confirmed</div>
+        <div class="bev-hint">Tap to flip back</div>
+      </div>
+      </div>
+        <h4></h4>
+        <p></p>
+      </div>
             <h4></h4>
             <p></p>
             <div class="bev-hint">Tap to see selection →</div>
@@ -2289,5 +2310,33 @@ function orderViaEmail() {
 }
 </script>
 
+<style>
+.bev-card { cursor: pointer; position: relative; }
+.bev-card .bev-back-overlay {
+  position: absolute; inset: 0;
+  background: var(--parchment-mid);
+  border: 1px solid rgba(140,104,72,0.25);
+  border-radius: 4px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 1.5rem;
+  opacity: 0; pointer-events: none;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: opacity 0.05s;
+}
+.bev-card.flipped .bev-back-overlay { opacity: 1; pointer-events: auto; }
+.bev-card.flipped > .bev-icon,
+.bev-card.flipped > h4,
+.bev-card.flipped > p { opacity: 0; }
+.bev-back-overlay .bev-back-title { font-family: var(--serif); font-size: 1rem; color: var(--brown); font-weight: 500; margin-bottom: 0.6rem; }
+.bev-back-overlay .bev-back-text { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--brown-muted); }
+.bev-back-overlay .bev-hint { font-size: 0.6rem; color: var(--brown-muted); font-style: italic; margin-top: 0.8rem; }
+</style>
+<script>
+document.querySelectorAll('.bev-card').forEach(function(card) {
+  card.addEventListener('click', function() { card.classList.toggle('flipped'); });
+});
+</script>
 </body>
 </html>
