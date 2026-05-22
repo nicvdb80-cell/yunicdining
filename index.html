@@ -771,9 +771,10 @@ section { padding: 6rem 6vw; position: relative; }
 
 .specials-journal {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.5rem;
   margin-top: 3rem;
+  align-items: start;
 }
 
 .special-card {
@@ -1020,6 +1021,31 @@ footer {
   .hero h1 { font-size: 2.8rem; }
 }
 </style>
+
+<style>
+.flip-card { perspective: 900px; cursor: pointer; }
+.flip-card-inner { position: relative; width: 100%; min-height: 320px; transition: transform 0.65s; transform-style: preserve-3d; }
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back { position: absolute; width: 100%; min-height: 320px; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid rgba(140,104,72,0.2); border-radius: 3px; overflow: hidden; }
+.flip-card-back { transform: rotateY(180deg); background: var(--parchment); padding: 1.8rem; display: flex; flex-direction: column; justify-content: space-between; }
+.fc-back-eyebrow { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--saffron); font-weight:700; margin-bottom:0.4rem; }
+.fc-back-title { font-family:var(--serif); font-size:1.2rem; color:var(--brown); margin-bottom:0.8rem; }
+.fc-back-desc { font-size:0.82rem; color:var(--brown-muted); line-height:1.7; flex:1; }
+.fc-back-meta { margin-top:1rem; }
+.fc-meta-row { display:flex; justify-content:space-between; font-size:0.75rem; color:var(--brown-muted); padding:0.3rem 0; border-bottom:1px solid rgba(140,104,72,0.12); }
+.fc-meta-row span:first-child { font-weight:700; color:var(--brown); }
+.fc-reserve-btns { display:flex; gap:0.5rem; margin-top:1rem; }
+.fc-reserve-btns a { flex:1; text-align:center; padding:0.6rem 0.5rem; font-family:var(--sans); font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border-radius:2px; }
+.fc-btn-wa { background:#25D366; color:#fff; }
+.fc-btn-email { background:transparent; color:var(--terracotta); border:1px solid rgba(184,82,42,0.35); }
+.fc-hint { font-size:0.62rem; color:rgba(140,104,72,0.5); text-align:center; margin-top:0.5rem; font-style:italic; }
+.flip-card-front .special-card { border:none; border-radius:0; height:100%; }
+.flip-card-front .special-card-body { padding-bottom:1.5rem; }
+</style>
+<script>
+function flipCard(el) { el.classList.toggle('flipped'); }
+</script>
+
 </head>
 <body>
 
@@ -1306,7 +1332,12 @@ footer {
             <strong>Best for</strong>
             Guests who want the full Yunic experience — the complete culinary voyage across the islands.
           </div>
-        </div>
+        
+<div style="display:flex;gap:0.6rem;margin-top:1.2rem;flex-wrap:wrap;">
+  <a href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20book%20The%20Authentic%20Yunic%20Journey.%20Please%20share%20availability%20and%20details." target="_blank" style="flex:1;min-width:120px;background:#25D366;color:#fff;padding:0.7rem 1rem;font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;text-align:center;display:block;">WhatsApp ↗</a>
+  <a href="mailto:hello@yunicdining.com?subject=Booking: The Authentic Yunic Journey&body=Hello Yunic Dining, I would like to book The Authentic Yunic Journey. Please share availability and details." style="flex:1;min-width:120px;background:transparent;color:var(--terracotta);padding:0.7rem 1rem;font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;text-align:center;display:block;border:1px solid rgba(184,82,42,0.35);">Email ↗</a>
+</div>
+</div>
       </div>
 
       <!-- Menu 2 -->
@@ -1327,7 +1358,12 @@ footer {
             <strong>Best for</strong>
             Guests who love seafood, freshness, and aromatic coastal Indonesian flavors.
           </div>
-        </div>
+        
+<div style="display:flex;gap:0.6rem;margin-top:1.2rem;flex-wrap:wrap;">
+  <a href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20book%20The%20Yunic%20Ocean%20Journey.%20Please%20share%20availability%20and%20details." target="_blank" style="flex:1;min-width:120px;background:#25D366;color:#fff;padding:0.7rem 1rem;font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;text-align:center;display:block;">WhatsApp ↗</a>
+  <a href="mailto:hello@yunicdining.com?subject=Booking: The Yunic Ocean Journey&body=Hello Yunic Dining, I would like to book The Yunic Ocean Journey. Please share availability and details." style="flex:1;min-width:120px;background:transparent;color:var(--terracotta);padding:0.7rem 1rem;font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;text-align:center;display:block;border:1px solid rgba(184,82,42,0.35);">Email ↗</a>
+</div>
+</div>
       </div>
 
       <!-- Menu 3 -->
@@ -1348,7 +1384,12 @@ footer {
             <strong>Best for</strong>
             Guests who want a plant-based Indonesian experience without losing richness, spice, or soul.
           </div>
-        </div>
+        
+<div style="display:flex;gap:0.6rem;margin-top:1.2rem;flex-wrap:wrap;">
+  <a href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20book%20The%20Yunic%20Garden%20Journey.%20Please%20share%20availability%20and%20details." target="_blank" style="flex:1;min-width:120px;background:#25D366;color:#fff;padding:0.7rem 1rem;font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;text-align:center;display:block;">WhatsApp ↗</a>
+  <a href="mailto:hello@yunicdining.com?subject=Booking: The Yunic Garden Journey&body=Hello Yunic Dining, I would like to book The Yunic Garden Journey. Please share availability and details." style="flex:1;min-width:120px;background:transparent;color:var(--terracotta);padding:0.7rem 1rem;font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;text-align:center;display:block;border:1px solid rgba(184,82,42,0.35);">Email ↗</a>
+</div>
+</div>
       </div>
     </div>
 
@@ -1562,47 +1603,297 @@ footer {
 
 <!-- ============ À LA CARTE ============ -->
 <section class="alacarte-section" id="alacarte">
-  <div class="inner alacarte-inner">
-    <div class="fade-in">
+  <div class="inner">
+    <div class="fade-in" style="text-align:center; margin-bottom: 3rem;">
       <span class="section-eyebrow">À La Carte</span>
       <h2 class="section-title">Yunic flavors<br>at <em>home</em></h2>
-      <p style="color: var(--brown-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem;">Selected Yunic dishes available à la carte for delivery only. Designed for guests who want to enjoy Yunic flavors at home without the full private dining experience.</p>
-      <div class="alacarte-note">Available for delivery only. Menu and availability may change. Contact us to enquire about current offerings.</div>
+      <p style="color: var(--brown-muted); font-size: 1rem; line-height: 1.8; max-width: 52ch; margin: 0 auto 1.2rem;">Selected Yunic dishes available à la carte. Click any category to explore the selection.</p>
+      <div class="alacarte-note" style="max-width: 52ch; margin: 0 auto;">Available for delivery only. Menu and availability may change. Contact us to enquire about current offerings.</div>
     </div>
 
-    <div class="fade-in">
-      <div class="alacarte-cats">
-        <div class="alacarte-cat">
-          <h5>Signature Dishes</h5>
-          <span>Our most celebrated recipes</span>
-        </div>
-        <div class="alacarte-cat">
-          <h5>Rice Dishes</h5>
-          <span>From the heartland</span>
-        </div>
-        <div class="alacarte-cat">
-          <h5>Sambals &amp; Condiments</h5>
-          <span>Handmade, spiced with care</span>
-        </div>
-        <div class="alacarte-cat">
-          <h5>Indonesian Snacks</h5>
-          <span>Small bites, big stories</span>
-        </div>
-        <div class="alacarte-cat">
-          <h5>Desserts</h5>
-          <span>Sweet archipelago farewells</span>
-        </div>
-        <div class="alacarte-cat">
-          <h5>Family Sharing Dishes</h5>
-          <span>Made to be passed around</span>
+    <div class="accordion-wrap fade-in">
+
+      <!-- APERITIF & SNACKS -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-title-wrap">
+            <span class="acc-eyebrow">Before the table</span>
+            <span class="acc-title">Aperitif &amp; Snacks</span>
+          </div>
+          <span class="acc-count">15 items</span>
+          <span class="acc-arrow">↓</span>
+        </button>
+        <div class="acc-body">
+          <div class="dish-grid">
+            <div class="dish-item"><div class="dish-name">Beef Tongue Skewer <span class="dish-nickname">"Nic's Favourite"</span>
+<button onclick="addToCart(\'Beef Tongue Skewer\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">North Sumatra-inspired</div><div class="dish-desc">Slow-cooked beef tongue skewer glazed with kecap manis, rawit chili, lime and andaliman. Rich, tender and deeply aromatic.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Otak-Otak
+<button onclick="addToCart(\'Otak-Otak\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sumatra / Java</div><div class="dish-desc">Grilled fish cake wrapped in banana leaf with coconut milk, lemongrass and turmeric. Smoky, soft and fragrant.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Mini Pempek <span class="dish-nickname">"Aunty Yuli Style"</span>
+<button onclick="addToCart(\'Mini Pempek\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Palembang, South Sumatra</div><div class="dish-desc">Classic fish-tapioca canapé served with cuko — the sweet-sour-spicy vinegar sauce that defines pempek.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Cassava Chip with Tuna Gohu
+<button onclick="addToCart(\'Cassava Chip with Tuna Gohu\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Ternate, North Maluku</div><div class="dish-desc">Crispy cassava chip topped with Indonesian-style tuna ceviche — fresh, citrusy, spicy and aromatic with kenari nut.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Fish Gulai Croquette
+<button onclick="addToCart(\'Fish Gulai Croquette\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sumatra-inspired</div><div class="dish-desc">Refined fried bite using gulai spices — turmeric, coconut and fish — finished with sambal emulsion.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Karedok Roll
+<button onclick="addToCart(\'Karedok Roll\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sunda, West Java</div><div class="dish-desc">Raw vegetables with peanut-kencur dressing, neatly rolled in spinach for a fresh, crunchy hand-held bite.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Botok Tempe
+<button onclick="addToCart(\'Botok Tempe\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java</div><div class="dish-desc">Steamed banana-leaf parcel of tempeh, grated coconut, herbs and spices. Humble, village-style flavour.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Gudeg Jackfruit Croquette
+<button onclick="addToCart(\'Gudeg Jackfruit Croquette\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Yogyakarta, Java</div><div class="dish-desc">Young jackfruit slow-cooked in coconut and palm sugar, turned into a small crispy croquette. Sweet, savoury and nostalgic.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Betel Leaf Tempura
+<button onclick="addToCart(\'Betel Leaf Tempura\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Indonesian tradition</div><div class="dish-desc">Crisp daun sirih in light tempura batter, served with sambal matah. Elegant, aromatic and culturally rooted.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Smoked Beef Tartare Se'i Sapi
+<button onclick="addToCart(\'Smoked Beef Tartare Sei Sapi\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Nusa Tenggara Timur</div><div class="dish-desc">Cold-smoked beef tartare inspired by NTT tradition, served on a rice cracker with sambal lu'at.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Cakalang Fufu Tartlet
+<button onclick="addToCart(\'Cakalang Fufu Tartlet\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">North Sulawesi</div><div class="dish-desc">Smoked skipjack tuna in a tartlet with rica-rica flavours — smoke, chili, citrus and fresh kemangi.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Sago &amp; Rice Crackers
+<button onclick="addToCart(\'Sago &amp; Rice Crackers\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Eastern Indonesia</div><div class="dish-desc">Crispy table snacks representing Eastern Indonesia's sago culture and the archipelago's rice heritage.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Sago Tuile with Yellow Fish Dipping
+<button onclick="addToCart(\'Sago Tuile with Yellow Fish Dipping\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Maluku / Papua</div><div class="dish-desc">Sago crisp inspired by papeda, served with turmeric-fish dip — bright, coastal and unexpected.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Grilled Fish Colo-Colo
+<button onclick="addToCart(\'Grilled Fish Colo-Colo\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Maluku</div><div class="dish-desc">Grilled fish bite topped with sambal colo-colo — fresh tomato, chili, shallot and lime. Smoky and bright.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Rempeyek Kacang
+<button onclick="addToCart(\'Rempeyek Kacang\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Indonesia-wide</div><div class="dish-desc">Traditional crispy peanut crackers in spiced rice flour batter. The perfect knibble with drinks.</div><div class="dish-price">Price on request</div></div>
+          </div>
         </div>
       </div>
-      <div style="margin-top: 1.8rem;">
-        <a href="#contact" class="btn-terra" style="display: inline-block;">Ask About Delivery →</a>
+
+      <!-- DIPPINGS & SAMBALS -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-title-wrap">
+            <span class="acc-eyebrow">Handmade with care</span>
+            <span class="acc-title">Dippings &amp; Sambals</span>
+          </div>
+          <span class="acc-count">7 items</span>
+          <span class="acc-arrow">↓</span>
+        </button>
+        <div class="acc-body">
+          <div class="dish-grid">
+            <div class="dish-item"><div class="dish-name">Cuko Palembang
+<button onclick="addToCart(\'Cuko Palembang\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Palembang, South Sumatra</div><div class="dish-desc">Essential sauce for pempek: sweet, sour, spicy, garlicky and slightly smoky from palm sugar.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Sambal Kecap Rawit
+<button onclick="addToCart(\'Sambal Kecap Rawit\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Indonesia-wide</div><div class="dish-desc">Sweet kecap balancing rawit chili, shallot and lime. Perfect for grilled skewers and fried snacks.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Peanut Kencur Sauce
+<button onclick="addToCart(\'Peanut Kencur Sauce\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sunda, West Java</div><div class="dish-desc">The soul of karedok: roasted peanut sauce with the aromatic sharpness of kencur. Fresh, nutty and very Sundanese.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Sambal Lu'at
+<button onclick="addToCart(\'Sambal Luat\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Nusa Tenggara Timur</div><div class="dish-desc">Spicy fresh sambal from NTT with chili, lime, shallot and kemangi. Made to accompany smoked meats.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Kenari Kemangi Dressing
+<button onclick="addToCart(\'Kenari Kemangi Dressing\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Maluku / North Maluku</div><div class="dish-desc">Rich, fragrant dressing of kenari nut, kemangi, lime, chili and coconut oil from the eastern islands.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Melinjo / Emping
+<button onclick="addToCart(\'Melinjo / Emping\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Indonesia-wide</div><div class="dish-desc">Bitter, nutty crackers made from melinjo seed. A very Indonesian accompaniment to spicy or sweet sauces.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Keripik Tempe
+<button onclick="addToCart(\'Keripik Tempe\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java</div><div class="dish-desc">Thin crispy tempeh chips — a classic Indonesian snack and strong vegetarian crunch element.</div><div class="dish-price">Price on request</div></div>
+          </div>
+        </div>
       </div>
+
+      <!-- INDIVIDUAL STARTERS -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-title-wrap">
+            <span class="acc-eyebrow">Opening the journey</span>
+            <span class="acc-title">Individual Starter Plate</span>
+          </div>
+          <span class="acc-count">5 dishes</span>
+          <span class="acc-arrow">↓</span>
+        </button>
+        <div class="acc-body">
+          <div class="dish-grid">
+            <div class="dish-item"><div class="dish-name">Tuna Gohu
+<button onclick="addToCart(\'Tuna Gohu\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Maluku / Ternate, North Maluku</div><div class="dish-desc">Raw or lightly cured tuna with calamansi, shallot, chili, kemangi and kenari nut. Indonesia's answer to ceviche — fresh, acidic and aromatic. Served on a sago cracker or tartlet.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Mini Gado-Gado
+<button onclick="addToCart(\'Mini Gado-Gado\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java / Betawi</div><div class="dish-desc">Blanched long beans, cabbage, bean sprouts, cucumber, crispy tempeh and quail egg with peanut-kencur dressing and fried shallot. Neat, crunchy and easy to eat.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Beef Carpaccio with Sambal Ijo
+<button onclick="addToCart(\'Beef Carpaccio with Sambal Ijo\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">West Sumatra / Minangkabau</div><div class="dish-desc">Thin-sliced seared beef tenderloin with green chili sambal, crispy shallot, toasted coconut and a coconut-lime dressing. Rich, spiced and refined.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Karedok Lettuce Cup
+<button onclick="addToCart(\'Karedok Lettuce Cup\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">West Java / Sunda</div><div class="dish-desc">Baby gem lettuce cup filled with cucumber, long bean, bean sprout, cabbage and kemangi, dressed in kencur-peanut sauce. Raw, crisp and served cold.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Smoked Fish Rica-Rica
+<button onclick="addToCart(\'Smoked Fish Rica-Rica\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">North Sulawesi / Manado</div><div class="dish-desc">Smoked skipjack or tuna with bold rica-rica paste of red chili, ginger, lemongrass, lime leaf and kemangi. Smoky, spicy and deeply aromatic.</div><div class="dish-price">Price on request</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WARM BROTHS -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-title-wrap">
+            <span class="acc-eyebrow">A comforting pause</span>
+            <span class="acc-title">Warm Broths</span>
+          </div>
+          <span class="acc-count">8 options</span>
+          <span class="acc-arrow">↓</span>
+        </button>
+        <div class="acc-body">
+          <p style="font-size:0.82rem; color:var(--brown-muted); font-style:italic; margin-bottom:1.5rem;">Light aromatic broths served in a small bowl — around 70–100 ml — to refresh the palate between courses.</p>
+          <div class="dish-grid">
+            <div class="dish-item"><div class="dish-name">Soto Ayam Consommé
+<button onclick="addToCart(\'Soto Ayam Consommé\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java / Indonesia-wide</div><div class="dish-desc">Clear chicken broth infused with turmeric, lemongrass, galangal and kaffir lime leaf. Shredded chicken, glass noodle and quail egg. Warm, fragrant and nostalgic.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Ikan Kuah Kuning
+<button onclick="addToCart(\'Ikan Kuah Kuning\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Maluku / Papua / Eastern Indonesia</div><div class="dish-desc">Bright yellow fish broth with turmeric, citrus leaves, kemangi and fresh snapper. Coastal, fresh and aromatic — a palate-cleanser from the eastern islands.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Pindang Ikan Broth
+<button onclick="addToCart(\'Pindang Ikan Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">South Sumatra / Palembang</div><div class="dish-desc">Sour, aromatic broth with tamarind, pineapple, tomato and poached fish. Fruity and fresh — one of the best palate cleansers in an Indonesian menu.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Sayur Asem Consommé
+<button onclick="addToCart(\'Sayur Asem Consommé\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sunda / West Java</div><div class="dish-desc">Clean vegetarian broth of tamarind, young corn, long beans, melinjo and chayote. Bright, sour and gently sweet. Served with melinjo cracker.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Light Sayur Lodeh Broth
+<button onclick="addToCart(\'Light Sayur Lodeh Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java</div><div class="dish-desc">Delicate coconut vegetable bouillon with galangal, turmeric, baby vegetables and a kemangi or coriander oil finish. Soft and comforting before richer dishes.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Keluwak Mushroom Broth
+<button onclick="addToCart(\'Keluwak Mushroom Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">East Java / Rawon-inspired</div><div class="dish-desc">Dark, earthy vegetarian broth of roasted mushroom stock and keluwak, inspired by rawon. Mysterious, deep and refined in a small portion.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Moringa &amp; Sweet Corn Broth
+<button onclick="addToCart(\'Moringa &amp; Sweet Corn Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">East Indonesia / Nusa Tenggara</div><div class="dish-desc">Gentle green vegetable broth of moringa leaves, sweet corn, ginger and coconut oil. Clean, healthy and slightly sweet — inspired by eastern home cooking.</div><div class="dish-price">Price on request</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN COURSES -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-title-wrap">
+            <span class="acc-eyebrow">The heart of the islands</span>
+            <span class="acc-title">Main Courses</span>
+          </div>
+          <span class="acc-count">14 dishes</span>
+          <span class="acc-arrow">↓</span>
+        </button>
+        <div class="acc-body">
+          <div class="dish-grid">
+            <div class="dish-item"><div class="dish-name">Rendang Sapi
+<button onclick="addToCart(\'Rendang Sapi\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">West Sumatra / Minangkabau</div><div class="dish-desc">The anchor of the table. Beef cheek or short rib slowly braised in coconut milk and spice paste until dark, glossy and intensely caramelised. A family recipe.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Ayam Betutu
+<button onclick="addToCart(\'Ayam Betutu\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Bali</div><div class="dish-desc">Chicken leg rubbed generously with base genep spices, wrapped and steam-braised until tender. Fragrant, earthy and distinctly Balinese.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Mushroom Rendang
+<button onclick="addToCart(\'Mushroom Rendang\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sumatra-inspired vegetarian</div><div class="dish-desc">King oyster and shiitake mushrooms seared, then folded into a deep coconut-spice rendang sauce. Rich umami with the same patience as the original.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Fish Woku
+<button onclick="addToCart(\'Fish Woku\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">North Sulawesi / Manado</div><div class="dish-desc">White fish in a vibrant sauce of turmeric, tomato, lemongrass, kemangi and calamansi. Bright, herbal and spicy — the fresh counterpoint of the menu.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Ayam Opor
+<button onclick="addToCart(\'Ayam Opor\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Central Java</div><div class="dish-desc">Chicken gently simmered in pale coconut sauce with candlenut, coriander and aromatics. Elegant, aromatic and comfortingly soft.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Gulai Ikan
+<button onclick="addToCart(\'Gulai Ikan\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sumatra / Malay-influenced</div><div class="dish-desc">Fragrant fish curry in turmeric-coconut sauce with tamarind and warm spices. Rich but clean enough for seafood.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Fish Sambal Matah
+<button onclick="addToCart(\'Fish Sambal Matah\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Bali</div><div class="dish-desc">Simply grilled or steamed fish topped with fresh Balinese sambal matah — raw shallot, lemongrass, chili, lime and coconut oil. Light and vivid.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Semur
+<button onclick="addToCart(\'Semur\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java / Dutch-Indonesian heritage</div><div class="dish-desc">Beef, chicken or egg braised in kecap manis with nutmeg, clove and cinnamon. A sweet-spiced braise where two culinary worlds meet.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Duck Leg Confit — Indonesian Spices
+<button onclick="addToCart(\'Duck Leg Confit — Indonesian Spices\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Borderless / French-Indonesian</div><div class="dish-desc">Duck leg confited in Indonesian aromatics — galangal, lemongrass, star anise — then crisped and glazed with tamarind-kecap. Technique meets tradition.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Ikan Arsik
+<button onclick="addToCart(\'Ikan Arsik\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">North Sumatra / Batak</div><div class="dish-desc">Distinctive Batak fish dish with andaliman pepper, torch ginger and turmeric. Unique regional identity — not coconut-heavy, full of citrus and spice.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Bebek Madura Hitam
+<button onclick="addToCart(\'Bebek Madura Hitam\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Madura / East Java</div><div class="dish-desc">Duck leg in dark Madurese spice paste — intense, slightly sweet and bold. Slow-cooked then glazed until caramelised and rich.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Udang Balado
+<button onclick="addToCart(\'Udang Balado\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">West Sumatra / Minang</div><div class="dish-desc">Grilled prawns tossed through a punchy balado of red chili, tomato, shallot and lime. Heat, colour and clean seafood spice.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Nangka Muda Kalio
+<button onclick="addToCart(\'Nangka Muda Kalio\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Sumatra / vegetarian</div><div class="dish-desc">Young jackfruit simmered in a lighter rendang-style coconut sauce until meaty and satisfying. Richness and depth without meat.</div><div class="dish-price">Price on request</div></div>
+            <div class="dish-item"><div class="dish-name">Iga Bakar Kecap Kemangi
+<button onclick="addToCart(\'Iga Bakar Kecap Kemangi\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+</div><div class="dish-region">Java / Sulawesi-inspired</div><div class="dish-desc">Beef short rib braised until tender, glazed with kecap-tamarind reduction, grilled for char and finished with fresh kemangi. A strong crowd-pleaser.</div><div class="dish-price">Price on request</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-title-wrap">
+            <span class="acc-eyebrow">Sweet farewells</span>
+            <span class="acc-title">Desserts</span>
+          </div>
+          <span class="acc-count">Coming soon</span>
+          <span class="acc-arrow">↓</span>
+        </button>
+        <div class="acc-body">
+          <p style="font-size:0.95rem; color:var(--brown-muted); font-style:italic; padding: 1rem 0;">Our dessert selection is coming soon. In the meantime, ask us about our current sweet offerings.</p>
+          <a href="#contact" class="btn-terra" style="display:inline-block; margin-top:0.5rem;">Ask About Desserts →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top: 2.5rem;" class="fade-in">
+      <a href="#contact" class="btn-terra" style="display: inline-block;">Ask About Delivery →</a>
     </div>
   </div>
 </section>
+
+<style>
+.accordion-wrap { display: flex; flex-direction: column; gap: 0; border: 1px solid rgba(140,104,72,0.2); border-radius: 4px; overflow: hidden; }
+.acc-item { border-bottom: 1px solid rgba(140,104,72,0.15); }
+.acc-item:last-child { border-bottom: none; }
+.acc-header { width: 100%; background: var(--parchment); border: none; padding: 1.4rem 1.8rem; display: flex; align-items: center; gap: 1rem; cursor: pointer; text-align: left; transition: background 0.2s; }
+.acc-header:hover { background: var(--parchment-mid); }
+.acc-header.open { background: var(--parchment-mid); }
+.acc-title-wrap { flex: 1; }
+.acc-eyebrow { display: block; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--saffron); font-weight: 700; margin-bottom: 0.2rem; font-family: var(--sans); }
+.acc-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--brown); }
+.acc-count { font-size: 0.72rem; color: var(--brown-muted); white-space: nowrap; font-family: var(--sans); }
+.acc-arrow { font-size: 1rem; color: var(--terracotta); transition: transform 0.3s; flex-shrink: 0; }
+.acc-header.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding: 0 1.8rem; background: var(--parchment); }
+.acc-body.open { max-height: 3000px; padding: 1.5rem 1.8rem; }
+.dish-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.dish-item { background: var(--parchment-mid); border: 1px solid rgba(140,104,72,0.15); border-radius: 3px; padding: 1.1rem 1.2rem; }
+.dish-name { font-family: var(--serif); font-size: 1rem; font-weight: 500; color: var(--brown); margin-bottom: 0.15rem; line-height: 1.3; }
+.dish-nickname { font-style: italic; font-weight: 400; color: var(--terracotta); }
+.dish-region { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--saffron); text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; font-family: var(--sans); }
+.dish-desc { font-size: 0.8rem; color: var(--brown-muted); line-height: 1.65; margin-bottom: 0.6rem; }
+.dish-price { font-size: 0.72rem; color: var(--terracotta); font-family: var(--sans); font-weight: 700; }
+</style>
+
+<script>
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.acc-header').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+</script>
 
 <!-- ============ SPECIALS ============ -->
 <section class="specials-section" id="specials">
@@ -1614,7 +1905,10 @@ footer {
     </div>
 
     <div class="specials-journal fade-in">
-      <div class="special-card">
+      <div class="flip-card" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="special-card" style="cursor:pointer;">
         <div class="special-card-img sc-saffron">
           <svg width="38" height="38" fill="none" stroke="#c49015" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M2 12 H22"/></svg>
         </div>
@@ -1622,10 +1916,33 @@ footer {
           <span class="special-status">Seasonal Event</span>
           <h4>Full Moon Dinner</h4>
           <p>An outdoor evening under Bali's full moon. Intimate, luminous, and full of the archipelago's spirit.</p>
+          <div class="fc-hint">Tap to see details →</div>
         </div>
       </div>
+    </div>
+    <div class="flip-card-back">
+      <div>
+        <div class="fc-back-eyebrow">Seasonal Event</div>
+        <div class="fc-back-title">Full Moon Dinner</div>
+        <div class="fc-back-desc">An outdoor evening under Bali's full moon. Intimate, luminous, and full of the archipelago's spirit.</div>
+      </div>
+      <div class="fc-back-meta">
+        <div class="fc-meta-row"><span>Date</span><span>To be announced</span></div>
+        <div class="fc-meta-row"><span>Price</span><span>Price on request</span></div>
+        <div class="fc-reserve-btns">
+          <a class="fc-btn-wa" href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20reserve%20Full%20Moon%20Dinner.%20Please%20share%20details%20and%20availability." target="_blank" onclick="event.stopPropagation()">WhatsApp ↗</a>
+          <a class="fc-btn-email" href="mailto:hello@yunicdining.com?subject=Reserve: Full Moon Dinner&body=Hello Yunic Dining! I would like to reserve Full Moon Dinner. Please share details and availability." onclick="event.stopPropagation()">Email ↗</a>
+        </div>
+        <div class="fc-hint">Tap card to flip back</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="special-card">
+      <div class="flip-card" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="special-card" style="cursor:pointer;">
         <div class="special-card-img sc-terra">
           <svg width="38" height="38" fill="none" stroke="#b8522a" stroke-width="1.2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
         </div>
@@ -1633,10 +1950,33 @@ footer {
           <span class="special-status">Heritage Series</span>
           <h4>Rijsttafel at Home</h4>
           <p>The great Indonesian colonial feast, reimagined with authentic family recipes and regional pride.</p>
+          <div class="fc-hint">Tap to see details →</div>
         </div>
       </div>
+    </div>
+    <div class="flip-card-back">
+      <div>
+        <div class="fc-back-eyebrow">Heritage Series</div>
+        <div class="fc-back-title">Rijsttafel at Home</div>
+        <div class="fc-back-desc">The great Indonesian colonial feast, reimagined with authentic family recipes and regional pride.</div>
+      </div>
+      <div class="fc-back-meta">
+        <div class="fc-meta-row"><span>Date</span><span>To be announced</span></div>
+        <div class="fc-meta-row"><span>Price</span><span>Price on request</span></div>
+        <div class="fc-reserve-btns">
+          <a class="fc-btn-wa" href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20reserve%20Rijsttafel%20at%20Home.%20Please%20share%20details%20and%20availability." target="_blank" onclick="event.stopPropagation()">WhatsApp ↗</a>
+          <a class="fc-btn-email" href="mailto:hello@yunicdining.com?subject=Reserve: Rijsttafel at Home&body=Hello Yunic Dining! I would like to reserve Rijsttafel at Home. Please share details and availability." onclick="event.stopPropagation()">Email ↗</a>
+        </div>
+        <div class="fc-hint">Tap card to flip back</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="special-card">
+      <div class="flip-card" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="special-card" style="cursor:pointer;">
         <div class="special-card-img sc-green">
           <svg width="38" height="38" fill="none" stroke="#637a55" stroke-width="1.2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
@@ -1644,10 +1984,33 @@ footer {
           <span class="special-status">Cultural Night</span>
           <h4>Archipelago Night</h4>
           <p>A culinary and cultural celebration spanning the islands — music, stories, and the full Yunic journey.</p>
+          <div class="fc-hint">Tap to see details →</div>
         </div>
       </div>
+    </div>
+    <div class="flip-card-back">
+      <div>
+        <div class="fc-back-eyebrow">Cultural Night</div>
+        <div class="fc-back-title">Archipelago Night</div>
+        <div class="fc-back-desc">A culinary and cultural celebration spanning the islands — music, stories, and the full Yunic journey.</div>
+      </div>
+      <div class="fc-back-meta">
+        <div class="fc-meta-row"><span>Date</span><span>To be announced</span></div>
+        <div class="fc-meta-row"><span>Price</span><span>Price on request</span></div>
+        <div class="fc-reserve-btns">
+          <a class="fc-btn-wa" href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20reserve%20Archipelago%20Night.%20Please%20share%20details%20and%20availability." target="_blank" onclick="event.stopPropagation()">WhatsApp ↗</a>
+          <a class="fc-btn-email" href="mailto:hello@yunicdining.com?subject=Reserve: Archipelago Night&body=Hello Yunic Dining! I would like to reserve Archipelago Night. Please share details and availability." onclick="event.stopPropagation()">Email ↗</a>
+        </div>
+        <div class="fc-hint">Tap card to flip back</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="special-card">
+      <div class="flip-card" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="special-card" style="cursor:pointer;">
         <div class="special-card-img sc-saffron">
           <svg width="38" height="38" fill="none" stroke="#c49015" stroke-width="1.2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
@@ -1655,10 +2018,33 @@ footer {
           <span class="special-status">Private Event</span>
           <h4>Private Villa Celebration</h4>
           <p>Your villa. Your occasion. Our food, service, and stories — entirely at your disposal.</p>
+          <div class="fc-hint">Tap to see details →</div>
         </div>
       </div>
+    </div>
+    <div class="flip-card-back">
+      <div>
+        <div class="fc-back-eyebrow">Private Event</div>
+        <div class="fc-back-title">Private Villa Celebration</div>
+        <div class="fc-back-desc">Your villa. Your occasion. Our food, service, and stories — entirely at your disposal.</div>
+      </div>
+      <div class="fc-back-meta">
+        <div class="fc-meta-row"><span>Date</span><span>To be announced</span></div>
+        <div class="fc-meta-row"><span>Price</span><span>Price on request</span></div>
+        <div class="fc-reserve-btns">
+          <a class="fc-btn-wa" href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20reserve%20Private%20Villa%20Celebration.%20Please%20share%20details%20and%20availability." target="_blank" onclick="event.stopPropagation()">WhatsApp ↗</a>
+          <a class="fc-btn-email" href="mailto:hello@yunicdining.com?subject=Reserve: Private Villa Celebration&body=Hello Yunic Dining! I would like to reserve Private Villa Celebration. Please share details and availability." onclick="event.stopPropagation()">Email ↗</a>
+        </div>
+        <div class="fc-hint">Tap card to flip back</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="special-card">
+      <div class="flip-card" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="special-card" style="cursor:pointer;">
         <div class="special-card-img sc-terra">
           <svg width="38" height="38" fill="none" stroke="#b8522a" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         </div>
@@ -1666,10 +2052,33 @@ footer {
           <span class="special-status">Heritage Dinner</span>
           <h4>Indonesian Heritage Dinner</h4>
           <p>A deep dive into the oldest and most ceremonial recipes of the archipelago — a celebration of culinary memory.</p>
+          <div class="fc-hint">Tap to see details →</div>
         </div>
       </div>
+    </div>
+    <div class="flip-card-back">
+      <div>
+        <div class="fc-back-eyebrow">Heritage Dinner</div>
+        <div class="fc-back-title">Indonesian Heritage Dinner</div>
+        <div class="fc-back-desc">A deep dive into the oldest and most ceremonial recipes of the archipelago — a celebration of culinary memory.</div>
+      </div>
+      <div class="fc-back-meta">
+        <div class="fc-meta-row"><span>Date</span><span>To be announced</span></div>
+        <div class="fc-meta-row"><span>Price</span><span>Price on request</span></div>
+        <div class="fc-reserve-btns">
+          <a class="fc-btn-wa" href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20reserve%20Indonesian%20Heritage%20Dinner.%20Please%20share%20details%20and%20availability." target="_blank" onclick="event.stopPropagation()">WhatsApp ↗</a>
+          <a class="fc-btn-email" href="mailto:hello@yunicdining.com?subject=Reserve: Indonesian Heritage Dinner&body=Hello Yunic Dining! I would like to reserve Indonesian Heritage Dinner. Please share details and availability." onclick="event.stopPropagation()">Email ↗</a>
+        </div>
+        <div class="fc-hint">Tap card to flip back</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="special-card">
+      <div class="flip-card" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <div class="special-card" style="cursor:pointer;">
         <div class="special-card-img sc-green">
           <svg width="38" height="38" fill="none" stroke="#637a55" stroke-width="1.2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
         </div>
@@ -1677,8 +2086,28 @@ footer {
           <span class="special-status">Collaboration</span>
           <h4>Collaboration Events</h4>
           <p>Pop-ups, chef partnerships, and unique location dining. Let's create something together that doesn't exist yet.</p>
+          <div class="fc-hint">Tap to see details →</div>
         </div>
       </div>
+    </div>
+    <div class="flip-card-back">
+      <div>
+        <div class="fc-back-eyebrow">Collaboration</div>
+        <div class="fc-back-title">Collaboration Events</div>
+        <div class="fc-back-desc">Pop-ups, chef partnerships, and unique location dining. Let's create something together that doesn't exist yet.</div>
+      </div>
+      <div class="fc-back-meta">
+        <div class="fc-meta-row"><span>Date</span><span>To be announced</span></div>
+        <div class="fc-meta-row"><span>Price</span><span>Price on request</span></div>
+        <div class="fc-reserve-btns">
+          <a class="fc-btn-wa" href="https://wa.me/62XXXXXXXXXX?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20reserve%20Collaboration%20Events.%20Please%20share%20details%20and%20availability." target="_blank" onclick="event.stopPropagation()">WhatsApp ↗</a>
+          <a class="fc-btn-email" href="mailto:hello@yunicdining.com?subject=Reserve: Collaboration Events&body=Hello Yunic Dining! I would like to reserve Collaboration Events. Please share details and availability." onclick="event.stopPropagation()">Email ↗</a>
+        </div>
+        <div class="fc-hint">Tap card to flip back</div>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 
     <div style="text-align:center; margin-top: 2.5rem;" class="fade-in">
@@ -1848,5 +2277,88 @@ footer {
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
+
+<!-- ============ FLOATING BUTTONS ============ -->
+<div style="position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; display:flex; flex-direction:column; gap:0.7rem; align-items:flex-end;">
+  <div id="cart-bubble" style="display:none; background:var(--brown); color:var(--parchment); border-radius:4px; padding:0.9rem 1.2rem; font-family:var(--sans); font-size:0.82rem; box-shadow:0 8px 24px rgba(46,26,8,0.25); min-width:220px;">
+    <div style="font-family:var(--serif); font-size:1rem; color:var(--parchment); margin-bottom:0.6rem;">Your Basket</div>
+    <div id="cart-lines" style="max-height:200px; overflow-y:auto; margin-bottom:0.8rem;"></div>
+    <div style="border-top:1px solid rgba(244,232,204,0.2); padding-top:0.6rem; display:flex; justify-content:space-between; align-items:center;">
+      <span style="color:rgba(244,232,204,0.7); font-size:0.75rem;">Total</span>
+      <span id="cart-total" style="color:var(--saffron-light); font-weight:700;">Price on request</span>
+    </div>
+    <button onclick="orderViaWA()" style="margin-top:0.8rem; width:100%; background:#25D366; color:#fff; border:none; padding:0.7rem; border-radius:3px; font-family:var(--sans); font-size:0.8rem; font-weight:700; letter-spacing:0.1em; cursor:pointer;">Send Order via WhatsApp ↗</button>
+    <button onclick="orderViaEmail()" style="margin-top:0.4rem; width:100%; background:transparent; color:rgba(244,232,204,0.6); border:1px solid rgba(244,232,204,0.2); padding:0.6rem; border-radius:3px; font-family:var(--sans); font-size:0.78rem; cursor:pointer;">Order via Email ↗</button>
+    <button onclick="clearCart()" style="margin-top:0.4rem; width:100%; background:transparent; color:rgba(244,232,204,0.35); border:none; padding:0.3rem; font-family:var(--sans); font-size:0.72rem; cursor:pointer;">Clear basket</button>
+  </div>
+  <div style="display:flex; gap:0.6rem;">
+    <button id="cart-btn" onclick="toggleCart()" title="Your basket" style="width:52px; height:52px; border-radius:50%; background:var(--terracotta); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(46,26,8,0.25); position:relative;">
+      <svg width="22" height="22" fill="none" stroke="#f4e8cc" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span id="cart-badge" style="display:none; position:absolute; top:-4px; right:-4px; background:var(--saffron); color:var(--brown); width:18px; height:18px; border-radius:50%; font-size:0.65rem; font-weight:700; line-height:18px; text-align:center;">0</span>
+    </button>
+    <a href="https://wa.me/62XXXXXXXXXX" target="_blank" title="WhatsApp" style="width:52px; height:52px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,0.2); text-decoration:none;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+  </div>
+</div>
+
+<script>
+var cart = {};
+function addToCart(name) {
+  cart[name] = (cart[name] || 0) + 1;
+  updateCart();
+  var btn = event.currentTarget;
+  btn.textContent = 'Added ✓';
+  btn.style.background = 'var(--green)';
+  btn.style.color = '#fff';
+  setTimeout(function(){ btn.textContent = '+ Add to basket'; btn.style.background = ''; btn.style.color = ''; }, 1200);
+}
+function removeFromCart(name) {
+  if (cart[name] > 1) cart[name]--;
+  else delete cart[name];
+  updateCart();
+}
+function clearCart() { cart = {}; updateCart(); document.getElementById('cart-bubble').style.display = 'none'; }
+function updateCart() {
+  var total = Object.keys(cart).length;
+  var badge = document.getElementById('cart-badge');
+  var btn = document.getElementById('cart-btn');
+  badge.textContent = Object.values(cart).reduce(function(a,b){return a+b;}, 0);
+  badge.style.display = total > 0 ? 'block' : 'none';
+  var lines = document.getElementById('cart-lines');
+  lines.innerHTML = '';
+  Object.entries(cart).forEach(function(e){
+    var div = document.createElement('div');
+    div.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0;border-bottom:1px solid rgba(244,232,204,0.1);gap:0.5rem;';
+    div.innerHTML = '<span style="font-size:0.75rem;color:rgba(244,232,204,0.8);flex:1;">' + e[0] + '</span>' +
+      '<div style="display:flex;align-items:center;gap:0.4rem;">' +
+      '<button onclick="removeFromCart(\'' + e[0].replace(/'/g,"\'") + '\')" style="width:20px;height:20px;background:rgba(244,232,204,0.1);border:none;color:var(--parchment);border-radius:2px;cursor:pointer;font-size:0.9rem;line-height:1;">−</button>' +
+      '<span style="font-size:0.78rem;font-weight:700;color:var(--parchment);min-width:16px;text-align:center;">' + e[1] + '</span>' +
+      '<button onclick="addToCartByName(\'' + e[0].replace(/'/g,"\'") + '\')" style="width:20px;height:20px;background:rgba(244,232,204,0.1);border:none;color:var(--parchment);border-radius:2px;cursor:pointer;font-size:0.9rem;line-height:1;">+</button>' +
+      '</div>';
+    lines.appendChild(div);
+  });
+  if (total === 0) lines.innerHTML = '<div style="font-size:0.78rem;color:rgba(244,232,204,0.4);text-align:center;padding:0.5rem;">Basket is empty</div>';
+}
+function addToCartByName(name) { cart[name] = (cart[name] || 0) + 1; updateCart(); }
+function toggleCart() {
+  var bubble = document.getElementById('cart-bubble');
+  bubble.style.display = bubble.style.display === 'none' ? 'block' : 'none';
+  updateCart();
+}
+function orderViaWA() {
+  var msg = 'Hello Yunic Dining! I would like to order:\n\n';
+  Object.entries(cart).forEach(function(e){ msg += '• ' + e[1] + 'x ' + e[0] + '\n'; });
+  msg += '\nPlease let me know the total and delivery details. Thank you!';
+  window.open('https://wa.me/62XXXXXXXXXX?text=' + encodeURIComponent(msg), '_blank');
+}
+function orderViaEmail() {
+  var msg = 'Hello Yunic Dining,\n\nI would like to order:\n\n';
+  Object.entries(cart).forEach(function(e){ msg += '• ' + e[1] + 'x ' + e[0] + '\n'; });
+  msg += '\nPlease let me know the total and delivery details.\n\nThank you!';
+  window.location.href = 'mailto:hello@yunicdining.com?subject=À La Carte Order&body=' + encodeURIComponent(msg);
+}
+</script>
+
 </body>
 </html>
