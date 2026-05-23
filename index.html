@@ -2154,8 +2154,7 @@ function toggleAcc(btn) {
 
 <!-- ============ FLOATING BUTTONS ============ -->
 <div style="position:fixed; bottom:1.5rem; right:1.5rem; z-index:999; display:flex; flex-direction:column; gap:0.7rem; align-items:flex-end;">
-  <div id="cart-bubble" style="display:none; background:var(--brown); color:var(--parchment); border-radius:4px; padding:0.9rem 1.2rem; font-family:var(--sans); font-size:0.82rem; box-shadow:0 8px 24px rgba(46,26,8,0.25); min-width:220px;">
-    <div style="font-family:var(--serif); font-size:1rem; color:var(--parchment); margin-bottom:0.6rem;">Your Basket</div>
+  </div>
     <div id="cart-lines" style="max-height:200px; overflow-y:auto; margin-bottom:0.8rem;"></div>
     <div style="border-top:1px solid rgba(244,232,204,0.2); padding-top:0.6rem; display:flex; justify-content:space-between; align-items:center;">
       <span style="color:rgba(244,232,204,0.7); font-size:0.75rem;">Total</span>
@@ -2175,60 +2174,7 @@ function toggleAcc(btn) {
   </div>
 </div>
 
-<script>
-var cart = {};
-function addToCart(name) {
-  cart[name] = (cart[name] || 0) + 1;
-  updateCart();
-  var btn = event.currentTarget;
-  btn.textContent = 'Added ✓';
-  btn.style.background = 'var(--green)';
-  btn.style.color = '#fff';
-  setTimeout(function(){ btn.textContent = '+ Add to basket'; btn.style.background = ''; btn.style.color = ''; }, 1200);
-}
-function removeFromCart(name) {
-  if (cart[name] > 1) cart[name]--;
-  else delete cart[name];
-  updateCart();
-}
-function clearCart() { cart = {}; updateCart(); document.getElementById('cart-bubble').style.display = 'none'; }
-function updateCart() {
-  var total = Object.keys(cart).length;
-  var badge = document.getElementById('cart-badge');
-  var btn = document.getElementById('cart-btn');
-  badge.textContent = Object.values(cart).reduce(function(a,b){return a+b;}, 0);
-  badge.style.display = total > 0 ? 'block' : 'none';
-  var lines = document.getElementById('cart-lines');
-  lines.innerHTML = '';
-  Object.entries(cart).forEach(function(e){
-    var div = document.createElement('div');
-    div.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0;border-bottom:1px solid rgba(244,232,204,0.1);gap:0.5rem;';
-    div.innerHTML = '<span style="font-size:0.75rem;color:rgba(244,232,204,0.8);flex:1;">' + e[0] + '</span>' +
-      '<div style="display:flex;align-items:center;gap:0.4rem;">' +
-      '<button onclick="removeFromCart(\'' + e[0].replace(/'/g,"\'") + '\')" style="width:20px;height:20px;background:rgba(244,232,204,0.1);border:none;color:var(--parchment);border-radius:2px;cursor:pointer;font-size:0.9rem;line-height:1;">−</button>' +
-      '<span style="font-size:0.78rem;font-weight:700;color:var(--parchment);min-width:16px;text-align:center;">' + e[1] + '</span>' +
-      '<button onclick="addToCartByName(\'' + e[0].replace(/'/g,"\'") + '\')" style="width:20px;height:20px;background:rgba(244,232,204,0.1);border:none;color:var(--parchment);border-radius:2px;cursor:pointer;font-size:0.9rem;line-height:1;">+</button>' +
-      '</div>';
-    lines.appendChild(div);
-  });
-  if (total === 0) lines.innerHTML = '<div style="font-size:0.78rem;color:rgba(244,232,204,0.4);text-align:center;padding:0.5rem;">Basket is empty</div>';
-}
-function addToCartByName(name) { cart[name] = (cart[name] || 0) + 1; updateCart(); }
-function toggleCart() {
-  var bubble = document.getElementById('cart-bubble');
-  bubble.style.display = bubble.style.display === 'none' ? 'block' : 'none';
-  updateCart();
-}
-function orderViaWA() {
-  var msg = 'Hello Yunic Dining! I would like to order:\n\n';
-  Object.entries(cart).forEach(function(e){ msg += '• ' + e[1] + 'x ' + e[0] + '\n'; });
-  msg += '\nPlease let me know the total and delivery details. Thank you!';
-  window.open('https://wa.me/6281994807407?text=' + encodeURIComponent(msg), '_blank');
-});
-  msg += '\nPlease let me know the total and delivery details.\n\nThank you!';
-  // email removed
-}
-</script>
+
 
 <style>
 .bev-flip { perspective: 900px; }
