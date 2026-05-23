@@ -666,7 +666,7 @@ section { padding: 6rem 6vw; position: relative; }
 @media (max-width: 900px) { .package-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .package-grid { grid-template-columns: 1fr; } }
 
-.pkg-flip { perspective: 900px; cursor: pointer; height: 320px; }
+.pkg-flip { perspective: 900px; cursor: pointer; height: 400px; }
 .pkg-flip-inner {
   position: relative; width: 100%; height: 100%;
   transition: transform 0.65s cubic-bezier(.4,0,.2,1);
@@ -686,7 +686,7 @@ section { padding: 6rem 6vw; position: relative; }
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .pkg-face.pkg-front {
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: space-between;
   padding: 1.5rem 1.3rem 1.3rem;
 }
 .pkg-flip.featured .pkg-face { border-color: var(--terracotta); border-width: 2px; }
@@ -708,6 +708,7 @@ section { padding: 6rem 6vw; position: relative; }
   font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
   color: var(--brown); line-height: 1.25; margin-bottom: 0.8rem;
 }
+.pkg-front-desc { font-size: 0.78rem; color: var(--brown-muted); line-height: 1.65; margin-bottom: 0.8rem; flex: 1; }
 .pkg-front-hint {
   font-family: var(--sans); font-size: 0.62rem; color: var(--brown-muted);
   font-style: italic; opacity: 0.75;
@@ -1049,6 +1050,36 @@ footer {
   .form-row { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2.8rem; }
 }
+
+/* ── À La Carte Cart ── */
+.cart-qty-row { display:flex; align-items:center; gap:0.4rem; margin-top:0.5rem; }
+.qty-btn { width:24px; height:24px; border-radius:50%; border:1px solid rgba(140,104,72,0.4); background:transparent; color:var(--terracotta); font-size:1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.qty-val { font-family:var(--sans); font-size:0.8rem; font-weight:700; color:var(--brown); min-width:16px; text-align:center; }
+.qty-add { font-family:var(--sans); font-size:0.65rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--terracotta); border-bottom:1px solid rgba(184,82,42,0.3); padding-bottom:1px; margin-left:0.3rem; }
+.qty-add:hover { border-color:var(--terracotta); }
+
+/* Floating basket */
+#cart-float { position:fixed; bottom:5rem; left:1.2rem; z-index:9000; background:var(--terracotta); color:var(--parchment); border-radius:50px; padding:0.7rem 1.2rem; display:none; align-items:center; gap:0.5rem; cursor:pointer; box-shadow:0 4px 18px rgba(46,26,8,0.25); font-family:var(--sans); font-size:0.75rem; font-weight:700; letter-spacing:0.08em; }
+#cart-float.visible { display:flex; }
+#cart-float .cart-count { background:var(--parchment); color:var(--terracotta); border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:900; }
+
+/* Cart modal */
+#cart-modal { display:none; position:fixed; inset:0; z-index:9100; background:rgba(46,26,8,0.55); align-items:flex-end; justify-content:center; }
+#cart-modal.open { display:flex; }
+#cart-inner { background:var(--parchment); width:100%; max-width:480px; border-radius:16px 16px 0 0; padding:1.8rem 1.6rem 2rem; max-height:80vh; overflow-y:auto; position:relative; }
+#cart-inner h3 { font-family:var(--serif); font-size:1.25rem; color:var(--brown); margin-bottom:1.2rem; }
+#cart-lines { margin-bottom:1rem; }
+.cart-line { display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(140,104,72,0.12); font-size:0.82rem; }
+.cart-line-name { color:var(--brown); flex:1; }
+.cart-line-qty { display:flex; align-items:center; gap:0.3rem; }
+.cart-line-qty button { width:20px; height:20px; border-radius:50%; border:1px solid rgba(140,104,72,0.35); background:transparent; color:var(--terracotta); cursor:pointer; font-size:0.85rem; line-height:1; }
+.cart-line-price { color:var(--brown-muted); font-size:0.78rem; min-width:80px; text-align:right; }
+.cart-note { font-size:0.72rem; color:var(--brown-muted); font-style:italic; margin-bottom:0.4rem; }
+#cart-total-line { display:flex; justify-content:space-between; font-weight:700; font-size:0.9rem; color:var(--brown); padding-top:0.6rem; border-top:1px solid rgba(140,104,72,0.25); margin-bottom:1.2rem; }
+.cart-close { position:absolute; top:1rem; right:1.2rem; background:none; border:none; font-size:1.4rem; color:var(--brown-muted); cursor:pointer; }
+.btn-send-wa { display:block; width:100%; background:#25D366; color:#fff; border:none; border-radius:4px; padding:0.85rem; font-family:var(--sans); font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; margin-bottom:0.5rem; }
+#cart-empty-msg { text-align:center; color:var(--brown-muted); font-size:0.88rem; padding:1rem 0; }
+
 </style>
 
 <style>
@@ -1465,10 +1496,13 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         <div class="pkg-flip-inner">
           <div class="pkg-face pkg-front">
             <span class="pkg-badge">Most Popular</span>
-            <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <div class="pkg-front-eyebrow">Private Dining</div>
-            <h3 class="pkg-front">Full Yunic Experience</h3>
-            <div class="pkg-front-hint">Tap to see what's included →</div>
+            <div>
+              <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="pkg-front-eyebrow">Private Dining</div>
+              <h3 class="pkg-front">Full Yunic Experience</h3>
+              <p class="pkg-front-desc">A complete Indonesian dining journey brought to your home. We take care of the full evening: aperitif bites, a curated menu, service, storytelling, and a warm table experience inspired by Yuli's family recipes and Chef Nic's fine-dining touch.</p>
+            </div>
+            <div class="pkg-front-hint">Tap to discover what's included →</div>
           </div>
           <div class="pkg-face pkg-back">
             <div>
@@ -1484,7 +1518,10 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
               </ul>
             </div>
             <div>
-              <a href="#contact" class="pkg-cta" onclick="event.stopPropagation()">Book This Journey →</a>
+              <div style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
+                <a href="https://wa.me/6281994807407?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20book%20the%20Full%20Yunic%20Experience." target="_blank" class="pkg-wa-cta" style="flex:1;font-size:0.6rem;padding:0.5rem 0.4rem;" onclick="event.stopPropagation()">WhatsApp ↗</a>
+                <a href="mailto:yunicdining@gmail.com?subject=Full%20Yunic%20Experience%20Booking" class="pkg-wa-cta" style="flex:1;font-size:0.6rem;padding:0.5rem 0.4rem;background:var(--terracotta);" onclick="event.stopPropagation()">Email ↗</a>
+              </div>
               <div class="pkg-back-hint">Tap to flip back</div>
             </div>
           </div>
@@ -1495,10 +1532,13 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
       <div class="pkg-flip" onclick="this.classList.toggle('flipped')">
         <div class="pkg-flip-inner">
           <div class="pkg-face pkg-front">
-            <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-            <div class="pkg-front-eyebrow">Delivery</div>
-            <h3 class="pkg-front">Food Only</h3>
-            <div class="pkg-front-hint">Tap to see what's included →</div>
+            <div>
+              <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+              <div class="pkg-front-eyebrow">Delivery</div>
+              <h3 class="pkg-front">Food Only</h3>
+              <p class="pkg-front-desc">For those who want the Yunic flavours without full service. Carefully prepared dishes delivered to your villa or home, ready to share and enjoy with family or friends. Authentic Indonesian comfort, refined for a special occasion.</p>
+            </div>
+            <div class="pkg-front-hint">Tap to discover what's included →</div>
           </div>
           <div class="pkg-face pkg-back">
             <div>
@@ -1513,7 +1553,7 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
               </ul>
             </div>
             <div>
-              <a href="#contact" class="pkg-cta" onclick="event.stopPropagation()">Enquire →</a>
+              <a href="https://wa.me/6281994807407?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20order%20Food%20Only%20delivery." target="_blank" class="pkg-wa-cta" onclick="event.stopPropagation()">ORDER VIA WHATSAPP ↗</a>
               <div class="pkg-back-hint">Tap to flip back</div>
             </div>
           </div>
@@ -1524,10 +1564,13 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
       <div class="pkg-flip" onclick="this.classList.toggle('flipped')">
         <div class="pkg-flip-inner">
           <div class="pkg-face pkg-front">
-            <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
-            <div class="pkg-front-eyebrow">Celebration</div>
-            <h3 class="pkg-front">Celebration Package</h3>
-            <div class="pkg-front-hint">Tap to see what's included →</div>
+            <div>
+              <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+              <div class="pkg-front-eyebrow">Celebration</div>
+              <h3 class="pkg-front">Celebration Package</h3>
+              <p class="pkg-front-desc">Created for birthdays, family gatherings, anniversaries, or intimate events. This package combines a generous Indonesian feast with thoughtful details, optional drinks, and a relaxed service style so you can enjoy the moment with your guests.</p>
+            </div>
+            <div class="pkg-front-hint">Tap to discover what's included →</div>
           </div>
           <div class="pkg-face pkg-back">
             <div>
@@ -1542,7 +1585,10 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
               </ul>
             </div>
             <div>
-              <a href="#contact" class="pkg-cta" onclick="event.stopPropagation()">Plan Your Celebration →</a>
+              <div style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
+                <a href="https://wa.me/6281994807407?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20book%20the%20Celebration%20Package." target="_blank" class="pkg-wa-cta" style="flex:1;font-size:0.6rem;padding:0.5rem 0.4rem;" onclick="event.stopPropagation()">WhatsApp ↗</a>
+                <a href="mailto:yunicdining@gmail.com?subject=Celebration%20Package%20Booking" class="pkg-wa-cta" style="flex:1;font-size:0.6rem;padding:0.5rem 0.4rem;background:var(--terracotta);" onclick="event.stopPropagation()">Email ↗</a>
+              </div>
               <div class="pkg-back-hint">Tap to flip back</div>
             </div>
           </div>
@@ -1553,10 +1599,13 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
       <div class="pkg-flip" onclick="this.classList.toggle('flipped')">
         <div class="pkg-flip-inner">
           <div class="pkg-face pkg-front" style="border-color: rgba(184,82,42,0.4);">
-            <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-            <div class="pkg-front-eyebrow">Romantic Experience</div>
-            <h3 class="pkg-front">Romantic Authentic Dinner</h3>
-            <div class="pkg-front-hint">Tap to see what's included →</div>
+            <div>
+              <div class="pkg-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+              <div class="pkg-front-eyebrow">Romantic Experience</div>
+              <h3 class="pkg-front">Romantic Authentic Dinner</h3>
+              <p class="pkg-front-desc">An intimate dinner for two, built around authentic Indonesian flavours, soft service, and a warm romantic setting. Perfect for anniversaries, proposals, honeymoons, or simply a quiet evening with someone special.</p>
+            </div>
+            <div class="pkg-front-hint">Tap to discover what's included →</div>
           </div>
           <div class="pkg-face pkg-back">
             <div>
@@ -1571,7 +1620,10 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
               </ul>
             </div>
             <div>
-              <a href="https://wa.me/6281994807407?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20enquire%20about%20the%20Romantic%20Authentic%20Dinner." target="_blank" class="pkg-wa-cta" onclick="event.stopPropagation()">BOOK VIA WHATSAPP ↗</a>
+              <div style="display:flex;gap:0.5rem;margin-bottom:0.4rem;">
+                <a href="https://wa.me/6281994807407?text=Hello%20Yunic%20Dining!%20I%20would%20like%20to%20book%20the%20Romantic%20Authentic%20Dinner." target="_blank" class="pkg-wa-cta" style="flex:1;font-size:0.6rem;padding:0.5rem 0.4rem;" onclick="event.stopPropagation()">WhatsApp ↗</a>
+                <a href="mailto:yunicdining@gmail.com?subject=Romantic%20Authentic%20Dinner%20Booking" class="pkg-wa-cta" style="flex:1;font-size:0.6rem;padding:0.5rem 0.4rem;background:var(--terracotta);" onclick="event.stopPropagation()">Email ↗</a>
+              </div>
               <div class="pkg-back-hint">Tap to flip back</div>
             </div>
           </div>
@@ -1615,49 +1667,49 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         <div class="acc-body">
           <div class="dish-grid">
             <div class="dish-item"><div class="dish-name">Beef Tongue Skewer <span class="dish-nickname">"Nic's Favourite"</span>
-<button onclick="addToCart(\'Beef Tongue Skewer\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Beef Tongue Skewer"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">North Sumatra-inspired</div><div class="dish-desc">Slow-cooked beef tongue skewer glazed with kecap manis, rawit chili, lime and andaliman. Rich, tender and deeply aromatic.</div><div class="dish-price">IDR 65,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Otak-Otak
-<button onclick="addToCart(\'Otak-Otak\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Otak-Otak"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sumatra / Java</div><div class="dish-desc">Grilled fish cake wrapped in banana leaf with coconut milk, lemongrass and turmeric. Smoky, soft and fragrant.</div><div class="dish-price">IDR 45,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Mini Pempek <span class="dish-nickname">"Aunty Yuli Style"</span>
-<button onclick="addToCart(\'Mini Pempek\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Mini Pempek"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Palembang, South Sumatra</div><div class="dish-desc">Classic fish-tapioca canapé served with cuko, the sweet-sour-spicy vinegar sauce that defines pempek.</div><div class="dish-price">IDR 45,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Cassava Chip with Tuna Gohu
-<button onclick="addToCart(\'Cassava Chip with Tuna Gohu\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Cassava Chip with Tuna Gohu"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Ternate, North Maluku</div><div class="dish-desc">Crispy cassava chip topped with Indonesian-style tuna ceviche, fresh, citrusy, spicy and aromatic with kenari nut.</div><div class="dish-price">IDR 50,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Fish Gulai Croquette
-<button onclick="addToCart(\'Fish Gulai Croquette\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Fish Gulai Croquette"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sumatra-inspired</div><div class="dish-desc">Refined fried bite using gulai spices, turmeric, coconut and fish, finished with sambal emulsion.</div><div class="dish-price">IDR 45,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Karedok Roll
-<button onclick="addToCart(\'Karedok Roll\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Karedok Roll"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sunda, West Java</div><div class="dish-desc">Raw vegetables with peanut-kencur dressing, neatly rolled in spinach for a fresh, crunchy hand-held bite.</div><div class="dish-price">IDR 38,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Botok Tempe
-<button onclick="addToCart(\'Botok Tempe\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Botok Tempe"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java</div><div class="dish-desc">Steamed banana-leaf parcel of tempeh, grated coconut, herbs and spices. Humble, village-style flavour.</div><div class="dish-price">IDR 35,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Gudeg Jackfruit Croquette
-<button onclick="addToCart(\'Gudeg Jackfruit Croquette\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Gudeg Jackfruit Croquette"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Yogyakarta, Java</div><div class="dish-desc">Young jackfruit slow-cooked in coconut and palm sugar, turned into a small crispy croquette. Sweet, savoury and nostalgic.</div><div class="dish-price">IDR 38,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Betel Leaf Tempura
-<button onclick="addToCart(\'Betel Leaf Tempura\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Betel Leaf Tempura"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Indonesian tradition</div><div class="dish-desc">Crisp daun sirih in light tempura batter, served with sambal matah. Elegant, aromatic and culturally rooted.</div><div class="dish-price">IDR 35,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Smoked Beef Tartare Se'i Sapi
-<button onclick="addToCart(\'Smoked Beef Tartare Sei Sapi\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Smoked Beef Tartare Sei Sapi"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Nusa Tenggara Timur</div><div class="dish-desc">Cold-smoked beef tartare inspired by NTT tradition, served on a rice cracker with sambal lu'at.</div><div class="dish-price">IDR 75,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Cakalang Fufu Tartlet
-<button onclick="addToCart(\'Cakalang Fufu Tartlet\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Cakalang Fufu Tartlet"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">North Sulawesi</div><div class="dish-desc">Smoked skipjack tuna in a tartlet with rica-rica flavours, smoke, chili, citrus and fresh kemangi.</div><div class="dish-price">IDR 55,000 per piece</div></div>
             <div class="dish-item"><div class="dish-name">Sago &amp; Rice Crackers
-<button onclick="addToCart(\'Sago &amp; Rice Crackers\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Sago &amp; Rice Crackers"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Eastern Indonesia</div><div class="dish-desc">Crispy table snacks representing Eastern Indonesia's sago culture and the archipelago's rice heritage.</div><div class="dish-price">IDR 35,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Sago Tuile with Yellow Fish Dipping
-<button onclick="addToCart(\'Sago Tuile with Yellow Fish Dipping\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Sago Tuile with Yellow Fish Dipping"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Maluku / Papua</div><div class="dish-desc">Sago crisp inspired by papeda, served with turmeric-fish dip, bright, coastal and unexpected.</div><div class="dish-price">IDR 50,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Grilled Fish Colo-Colo
-<button onclick="addToCart(\'Grilled Fish Colo-Colo\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Grilled Fish Colo-Colo"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Maluku</div><div class="dish-desc">Grilled fish bite topped with sambal colo-colo, fresh tomato, chili, shallot and lime. Smoky and bright.</div><div class="dish-price">IDR 65,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Rempeyek Kacang
-<button onclick="addToCart(\'Rempeyek Kacang\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Rempeyek Kacang"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Indonesia-wide</div><div class="dish-desc">Traditional crispy peanut crackers in spiced rice flour batter. The perfect knibble with drinks.</div><div class="dish-price">IDR 30,000 per portion</div></div>
           </div>
         </div>
@@ -1676,25 +1728,25 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         <div class="acc-body">
           <div class="dish-grid">
             <div class="dish-item"><div class="dish-name">Cuko Palembang
-<button onclick="addToCart(\'Cuko Palembang\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Cuko Palembang"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Palembang, South Sumatra</div><div class="dish-desc">Essential sauce for pempek: sweet, sour, spicy, garlicky and slightly smoky from palm sugar.</div><div class="dish-price">IDR 25,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Sambal Kecap Rawit
-<button onclick="addToCart(\'Sambal Kecap Rawit\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Sambal Kecap Rawit"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Indonesia-wide</div><div class="dish-desc">Sweet kecap balancing rawit chili, shallot and lime. Perfect for grilled skewers and fried snacks.</div><div class="dish-price">IDR 25,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Peanut Kencur Sauce
-<button onclick="addToCart(\'Peanut Kencur Sauce\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Peanut Kencur Sauce"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sunda, West Java</div><div class="dish-desc">The soul of karedok: roasted peanut sauce with the aromatic sharpness of kencur. Fresh, nutty and very Sundanese.</div><div class="dish-price">IDR 30,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Sambal Lu'at
-<button onclick="addToCart(\'Sambal Luat\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Sambal Luat"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Nusa Tenggara Timur</div><div class="dish-desc">Spicy fresh sambal from NTT with chili, lime, shallot and kemangi. Made to accompany smoked meats.</div><div class="dish-price">IDR 30,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Kenari Kemangi Dressing
-<button onclick="addToCart(\'Kenari Kemangi Dressing\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Kenari Kemangi Dressing"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Maluku / North Maluku</div><div class="dish-desc">Rich, fragrant dressing of kenari nut, kemangi, lime, chili and coconut oil from the eastern islands.</div><div class="dish-price">IDR 35,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Melinjo / Emping
-<button onclick="addToCart(\'Melinjo / Emping\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Melinjo / Emping"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Indonesia-wide</div><div class="dish-desc">Bitter, nutty crackers made from melinjo seed. A very Indonesian accompaniment to spicy or sweet sauces.</div><div class="dish-price">IDR 30,000 per portion</div></div>
             <div class="dish-item"><div class="dish-name">Keripik Tempe
-<button onclick="addToCart(\'Keripik Tempe\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Keripik Tempe"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java</div><div class="dish-desc">Thin crispy tempeh chips, a classic Indonesian snack and strong vegetarian crunch element.</div><div class="dish-price">IDR 30,000 per portion</div></div>
           </div>
         </div>
@@ -1713,19 +1765,19 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         <div class="acc-body">
           <div class="dish-grid">
             <div class="dish-item"><div class="dish-name">Tuna Gohu
-<button onclick="addToCart(\'Tuna Gohu\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Tuna Gohu"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Maluku / Ternate, North Maluku</div><div class="dish-desc">Raw or lightly cured tuna with calamansi, shallot, chili, kemangi and kenari nut. Indonesia's answer to ceviche, fresh, acidic and aromatic. Served on a sago cracker or tartlet.</div><div class="dish-price">IDR 135,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Mini Gado-Gado
-<button onclick="addToCart(\'Mini Gado-Gado\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Mini Gado-Gado"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java / Betawi</div><div class="dish-desc">Blanched long beans, cabbage, bean sprouts, cucumber, crispy tempeh and quail egg with peanut-kencur dressing and fried shallot. Neat, crunchy and easy to eat.</div><div class="dish-price">IDR 95,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Beef Carpaccio with Sambal Ijo
-<button onclick="addToCart(\'Beef Carpaccio with Sambal Ijo\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Beef Carpaccio with Sambal Ijo"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">West Sumatra / Minangkabau</div><div class="dish-desc">Thin-sliced seared beef tenderloin with green chili sambal, crispy shallot, toasted coconut and a coconut-lime dressing. Rich, spiced and refined.</div><div class="dish-price">IDR 165,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Karedok Lettuce Cup
-<button onclick="addToCart(\'Karedok Lettuce Cup\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Karedok Lettuce Cup"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">West Java / Sunda</div><div class="dish-desc">Baby gem lettuce cup filled with cucumber, long bean, bean sprout, cabbage and kemangi, dressed in kencur-peanut sauce. Raw, crisp and served cold.</div><div class="dish-price">IDR 85,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Smoked Fish Rica-Rica
-<button onclick="addToCart(\'Smoked Fish Rica-Rica\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Smoked Fish Rica-Rica"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">North Sulawesi / Manado</div><div class="dish-desc">Smoked skipjack or tuna with bold rica-rica paste of red chili, ginger, lemongrass, lime leaf and kemangi. Smoky, spicy and deeply aromatic.</div><div class="dish-price">IDR 125,000 per person</div></div>
           </div>
         </div>
@@ -1745,25 +1797,25 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
           <p style="font-size:0.82rem; color:var(--brown-muted); font-style:italic; margin-bottom:1.5rem;">Light aromatic broths served in a small bowl, around 70–100 ml, to refresh the palate between courses.</p>
           <div class="dish-grid">
             <div class="dish-item"><div class="dish-name">Soto Ayam Consommé
-<button onclick="addToCart(\'Soto Ayam Consommé\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Soto Ayam Consommé"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java / Indonesia-wide</div><div class="dish-desc">Clear chicken broth infused with turmeric, lemongrass, galangal and kaffir lime leaf. Shredded chicken, glass noodle and quail egg. Warm, fragrant and nostalgic.</div><div class="dish-price">IDR 95,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Ikan Kuah Kuning
-<button onclick="addToCart(\'Ikan Kuah Kuning\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Ikan Kuah Kuning"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Maluku / Papua / Eastern Indonesia</div><div class="dish-desc">Bright yellow fish broth with turmeric, citrus leaves, kemangi and fresh snapper. Coastal, fresh and aromatic, a palate-cleanser from the eastern islands.</div><div class="dish-price">IDR 125,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Pindang Ikan Broth
-<button onclick="addToCart(\'Pindang Ikan Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Pindang Ikan Broth"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">South Sumatra / Palembang</div><div class="dish-desc">Sour, aromatic broth with tamarind, pineapple, tomato and poached fish. Fruity and fresh, one of the best palate cleansers in an Indonesian menu.</div><div class="dish-price">IDR 115,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Sayur Asem Consommé
-<button onclick="addToCart(\'Sayur Asem Consommé\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Sayur Asem Consommé"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sunda / West Java</div><div class="dish-desc">Clean vegetarian broth of tamarind, young corn, long beans, melinjo and chayote. Bright, sour and gently sweet. Served with melinjo cracker.</div><div class="dish-price">IDR 85,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Light Sayur Lodeh Broth
-<button onclick="addToCart(\'Light Sayur Lodeh Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Light Sayur Lodeh Broth"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java</div><div class="dish-desc">Delicate coconut vegetable bouillon with galangal, turmeric, baby vegetables and a kemangi or coriander oil finish. Soft and comforting before richer dishes.</div><div class="dish-price">IDR 90,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Keluwak Mushroom Broth
-<button onclick="addToCart(\'Keluwak Mushroom Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Keluwak Mushroom Broth"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">East Java / Rawon-inspired</div><div class="dish-desc">Dark, earthy vegetarian broth of roasted mushroom stock and keluwak, inspired by rawon. Mysterious, deep and refined in a small portion.</div><div class="dish-price">IDR 105,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Moringa &amp; Sweet Corn Broth
-<button onclick="addToCart(\'Moringa &amp; Sweet Corn Broth\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Moringa &amp; Sweet Corn Broth"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">East Indonesia / Nusa Tenggara</div><div class="dish-desc">Gentle green vegetable broth of moringa leaves, sweet corn, ginger and coconut oil. Clean, healthy and slightly sweet, inspired by eastern home cooking.</div><div class="dish-price">IDR 85,000 per person</div></div>
           </div>
         </div>
@@ -1782,46 +1834,46 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         <div class="acc-body">
           <div class="dish-grid">
             <div class="dish-item"><div class="dish-name">Rendang Sapi
-<button onclick="addToCart(\'Rendang Sapi\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Rendang Sapi"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">West Sumatra / Minangkabau</div><div class="dish-desc">The anchor of the table. Beef cheek or short rib slowly braised in coconut milk and spice paste until dark, glossy and intensely caramelised. A family recipe.</div><div class="dish-price">IDR 285,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Ayam Betutu
-<button onclick="addToCart(\'Ayam Betutu\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Ayam Betutu"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Bali</div><div class="dish-desc">Chicken leg rubbed generously with base genep spices, wrapped and steam-braised until tender. Fragrant, earthy and distinctly Balinese.</div><div class="dish-price">IDR 225,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Mushroom Rendang
-<button onclick="addToCart(\'Mushroom Rendang\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Mushroom Rendang"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sumatra-inspired vegetarian</div><div class="dish-desc">King oyster and shiitake mushrooms seared, then folded into a deep coconut-spice rendang sauce. Rich umami with the same patience as the original.</div><div class="dish-price">IDR 195,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Fish Woku
-<button onclick="addToCart(\'Fish Woku\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Fish Woku"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">North Sulawesi / Manado</div><div class="dish-desc">White fish in a vibrant sauce of turmeric, tomato, lemongrass, kemangi and calamansi. Bright, herbal and spicy, the fresh counterpoint of the menu.</div><div class="dish-price">IDR 245,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Ayam Opor
-<button onclick="addToCart(\'Ayam Opor\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Ayam Opor"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Central Java</div><div class="dish-desc">Chicken gently simmered in pale coconut sauce with candlenut, coriander and aromatics. Elegant, aromatic and comfortingly soft.</div><div class="dish-price">IDR 215,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Gulai Ikan
-<button onclick="addToCart(\'Gulai Ikan\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Gulai Ikan"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sumatra / Malay-influenced</div><div class="dish-desc">Fragrant fish curry in turmeric-coconut sauce with tamarind and warm spices. Rich but clean enough for seafood.</div><div class="dish-price">IDR 245,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Fish Sambal Matah
-<button onclick="addToCart(\'Fish Sambal Matah\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Fish Sambal Matah"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Bali</div><div class="dish-desc">Simply grilled or steamed fish topped with fresh Balinese sambal matah, raw shallot, lemongrass, chili, lime and coconut oil. Light and vivid.</div><div class="dish-price">IDR 245,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Semur
-<button onclick="addToCart(\'Semur\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Semur"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java / Dutch-Indonesian heritage</div><div class="dish-desc">Beef, chicken or egg braised in kecap manis with nutmeg, clove and cinnamon. A sweet-spiced braise where two culinary worlds meet.</div><div class="dish-price">IDR 240,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Duck Leg Confit, Indonesian Spices
-<button onclick="addToCart(\'Duck Leg Confit, Indonesian Spices\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Duck Leg Confit, Indonesian Spices"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Borderless / French-Indonesian</div><div class="dish-desc">Duck leg confited in Indonesian aromatics, galangal, lemongrass, star anise, then crisped and glazed with tamarind-kecap. Technique meets tradition.</div><div class="dish-price">IDR 295,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Ikan Arsik
-<button onclick="addToCart(\'Ikan Arsik\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Ikan Arsik"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">North Sumatra / Batak</div><div class="dish-desc">Distinctive Batak fish dish with andaliman pepper, torch ginger and turmeric. Unique regional identity, not coconut-heavy, full of citrus and spice.</div><div class="dish-price">IDR 245,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Bebek Madura Hitam
-<button onclick="addToCart(\'Bebek Madura Hitam\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Bebek Madura Hitam"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Madura / East Java</div><div class="dish-desc">Duck leg in dark Madurese spice paste, intense, slightly sweet and bold. Slow-cooked then glazed until caramelised and rich.</div><div class="dish-price">IDR 295,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Udang Balado
-<button onclick="addToCart(\'Udang Balado\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Udang Balado"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">West Sumatra / Minang</div><div class="dish-desc">Grilled prawns tossed through a punchy balado of red chili, tomato, shallot and lime. Heat, colour and clean seafood spice.</div><div class="dish-price">IDR 275,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Nangka Muda Kalio
-<button onclick="addToCart(\'Nangka Muda Kalio\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Nangka Muda Kalio"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Sumatra / vegetarian</div><div class="dish-desc">Young jackfruit simmered in a lighter rendang-style coconut sauce until meaty and satisfying. Richness and depth without meat.</div><div class="dish-price">IDR 175,000 per person</div></div>
             <div class="dish-item"><div class="dish-name">Iga Bakar Kecap Kemangi
-<button onclick="addToCart(\'Iga Bakar Kecap Kemangi\')" style="margin-top:0.5rem;background:transparent;border:1px solid rgba(140,104,72,0.35);color:var(--terracotta);padding:0.35rem 0.8rem;font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;border-radius:2px;width:100%;text-align:center;transition:all 0.2s;">+ Add to basket</button>
+<div class="cart-qty-row" data-dish="Iga Bakar Kecap Kemangi"><button class="qty-btn" onclick="changeQty(this,-1)" type="button">−</button><span class="qty-val">0</span><button class="qty-btn" onclick="changeQty(this,1)" type="button">+</button><span class="qty-add" onclick="addQtyToCart(this)">Add to basket</span></div>
 </div><div class="dish-region">Java / Sulawesi-inspired</div><div class="dish-desc">Beef short rib braised until tender, glazed with kecap-tamarind reduction, grilled for char and finished with fresh kemangi. A strong crowd-pleaser.</div><div class="dish-price">IDR 325,000 per person</div></div>
           </div>
         </div>
@@ -1884,7 +1936,7 @@ function toggleAcc(btn) {
 }
 </script>
 
-<!-- =========== SPECIALS ============ -->
+<!-- ============ SPECIALS ============ -->
 <section class="specials-section" id="specials">
   <div class="inner">
     <div class="fade-in" style="text-align:center; margin-bottom:3rem;">
@@ -2000,14 +2052,20 @@ function toggleAcc(btn) {
         </div>
         <div class="form-group">
           <label>Number of Guests</label>
-          <select>
+          <select id="guests-select" onchange="checkGuestCount(this)">
             <option value="">Select...</option>
-            <option>2–6 guests</option>
-            <option>6–12 guests</option>
-            <option>12–20 guests</option>
-            <option>20–40 guests</option>
-            <option>40+ guests</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6">6 guests</option>
+            <option value="7">7 guests</option>
+            <option value="8">8 guests</option>
+            <option value="9">9 guests</option>
+            <option value="10">10 guests</option>
+            <option value="more">More than 10 guests</option>
           </select>
+          <p id="guests-note" style="display:none;margin-top:0.5rem;font-size:0.78rem;color:var(--terracotta);font-family:var(--sans);line-height:1.5;">For groups larger than 10 guests, please contact us directly via <a href="https://wa.me/6281994807407?text=Hello%20Yunic!%20We%20are%20a%20group%20of%20more%20than%2010%20guests%20and%20would%20like%20to%20enquire." target="_blank" style="color:var(--terracotta);font-weight:700;">WhatsApp</a> or <a href="mailto:yunicdining@gmail.com?subject=Large%20Group%20Enquiry" style="color:var(--terracotta);font-weight:700;">email</a> so we can create something special for you.</p>
         </div>
       </div>
       <div class="form-group">
@@ -2207,5 +2265,146 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<!-- ── Floating Cart Button ── -->
+<div id="cart-float" onclick="openCart()">
+  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  BASKET
+  <span class="cart-count" id="cart-count">0</span>
+</div>
+
+<!-- ── Cart Modal ── -->
+<div id="cart-modal" onclick="if(event.target===this)closeCart()">
+  <div id="cart-inner">
+    <button class="cart-close" onclick="closeCart()">×</button>
+    <h3>Your Basket</h3>
+    <div id="cart-lines"></div>
+    <p class="cart-note" id="cart-empty-msg">Your basket is empty. Add dishes from the à la carte menu above.</p>
+    <div id="cart-total-line" style="display:none;">
+      <span>Total (before tax &amp; service)</span>
+      <span id="cart-total-val">IDR 0</span>
+    </div>
+    <button class="btn-send-wa" id="cart-wa-btn" onclick="sendCartToWA()" style="display:none;">SEND ORDER VIA WHATSAPP ↗</button>
+  </div>
+</div>
+
+<script>
+// ── À La Carte Cart ──────────────────────────────────
+const cart = {}; // { dishName: { qty, price, unit } }
+
+// Price map built from the page (populated on load)
+const priceMap = {};
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.dish-item').forEach(item => {
+    const nameEl = item.querySelector('.dish-name');
+    const priceEl = item.querySelector('.dish-price');
+    if (!nameEl || !priceEl) return;
+    const name = nameEl.childNodes[0]?.textContent?.trim() || nameEl.textContent.trim().split('\n')[0].trim();
+    const priceText = priceEl.textContent.trim();
+    const match = priceText.match(/IDR ([\d,]+)/);
+    if (match) priceMap[name] = parseInt(match[1].replace(/,/g, ''));
+  });
+});
+
+function changeQty(btn, delta) {
+  const row = btn.closest('.cart-qty-row');
+  const val = row.querySelector('.qty-val');
+  let n = parseInt(val.textContent) + delta;
+  if (n < 0) n = 0;
+  val.textContent = n;
+}
+
+function addQtyToCart(el) {
+  const row = el.closest('.cart-qty-row');
+  const dish = row.dataset.dish;
+  const qty = parseInt(row.querySelector('.qty-val').textContent);
+  if (qty === 0) return;
+  const item = row.closest('.dish-item');
+  const priceEl = item?.querySelector('.dish-price');
+  const priceText = priceEl?.textContent || '';
+  const match = priceText.match(/IDR ([\d,]+)/);
+  const price = match ? parseInt(match[1].replace(/,/g, '')) : 0;
+  const unit = priceText.includes('person') ? 'person' : 'piece';
+  if (!cart[dish]) cart[dish] = { qty: 0, price, unit };
+  cart[dish].qty += qty;
+  row.querySelector('.qty-val').textContent = 0;
+  updateCartUI();
+  // flash feedback
+  el.textContent = '✓ Added';
+  setTimeout(() => el.textContent = 'Add to basket', 1200);
+}
+
+function updateCartUI() {
+  const items = Object.entries(cart).filter(([,v]) => v.qty > 0);
+  const count = items.reduce((s,[,v]) => s + v.qty, 0);
+  const total = items.reduce((s,[,v]) => s + v.qty * v.price, 0);
+
+  // Floating button
+  const floatBtn = document.getElementById('cart-float');
+  floatBtn.classList.toggle('visible', count > 0);
+  document.getElementById('cart-count').textContent = count;
+
+  // Modal lines
+  const linesEl = document.getElementById('cart-lines');
+  const emptyMsg = document.getElementById('cart-empty-msg');
+  const totalLine = document.getElementById('cart-total-line');
+  const waBtn = document.getElementById('cart-wa-btn');
+
+  linesEl.innerHTML = '';
+  if (items.length === 0) {
+    emptyMsg.style.display = 'block';
+    totalLine.style.display = 'none';
+    waBtn.style.display = 'none';
+  } else {
+    emptyMsg.style.display = 'none';
+    totalLine.style.display = 'flex';
+    waBtn.style.display = 'block';
+    items.forEach(([name, v]) => {
+      const line = document.createElement('div');
+      line.className = 'cart-line';
+      line.innerHTML = \`
+        <span class="cart-line-name">\${name}</span>
+        <span class="cart-line-qty">
+          <button onclick="adjustCart('\${name.replace(/'/g,"\\'")}', -1)">−</button>
+          <span>\${v.qty}</span>
+          <button onclick="adjustCart('\${name.replace(/'/g,"\\'")}', 1)">+</button>
+        </span>
+        <span class="cart-line-price">IDR \${(v.qty*v.price).toLocaleString()}</span>\`;
+      linesEl.appendChild(line);
+    });
+    document.getElementById('cart-total-val').textContent =
+      'IDR ' + total.toLocaleString();
+  }
+}
+
+function adjustCart(name, delta) {
+  if (!cart[name]) return;
+  cart[name].qty = Math.max(0, cart[name].qty + delta);
+  if (cart[name].qty === 0) delete cart[name];
+  updateCartUI();
+}
+
+function openCart() { document.getElementById('cart-modal').classList.add('open'); }
+function closeCart() { document.getElementById('cart-modal').classList.remove('open'); }
+
+function sendCartToWA() {
+  const items = Object.entries(cart).filter(([,v]) => v.qty > 0);
+  if (!items.length) return;
+  const total = items.reduce((s,[,v]) => s + v.qty*v.price, 0);
+  let msg = 'Hello Yunic Dining! I would like to place an à la carte order:%0A%0A';
+  items.forEach(([name,v]) => {
+    msg += \`• \${v.qty}x \${name} — IDR \${(v.qty*v.price).toLocaleString()}%0A\`;
+  });
+  msg += \`%0ATotal: IDR \${total.toLocaleString()} (before tax & service)%0A%0APlease confirm availability and delivery details. Thank you!\`;
+  window.open('https://wa.me/6281994807407?text=' + msg, '_blank');
+}
+</script>
+
+<script>
+function checkGuestCount(sel) {
+  const note = document.getElementById('guests-note');
+  note.style.display = sel.value === 'more' ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
