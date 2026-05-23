@@ -2288,93 +2288,41 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
-<script>
-// ── À La Carte Cart ──────────────────────────────────
-const cart = {}; // { dishName: { qty, price, unit } }
 
-// Price map built from the page (populated on load)
-const priceMap = {};
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.dish-item').forEach(item => {
-    const nameEl = item.querySelector('.dish-name');
-    const priceEl = item.querySelector('.dish-price');
-    if (!nameEl || !priceEl) return;
-    const name = nameEl.childNodes[0]?.textContent?.trim() || nameEl.textContent.trim().split('\n')[0].trim();
-    const priceText = priceEl.textContent.trim();
-    const match = priceText.match(/IDR ([\d,]+)/);
-    if (match) priceMap[name] = parseInt(match[1].replace(/,/g, ''));
-  });
-});
+
+
+
+<script>
+const cart = {};
 
 function changeQty(btn, delta) {
-  const row = btn.closest('.cart-qty-row');
-  const val = row.querySelector('.qty-val');
-  let n = parseInt(val.textContent) + delta;
+  var val = btn.parentElement.querySelector('.qty-val');
+  var n = parseInt(val.textContent) + delta;
   if (n < 0) n = 0;
   val.textContent = n;
 }
 
 function addQtyToCart(el) {
-  const row = el.closest('.cart-qty-row');
-  const dish = row.dataset.dish;
-  const qty = parseInt(row.querySelector('.qty-val').textContent);
-  if (qty === 0) return;
-  const item = row.closest('.dish-item');
-  const priceEl = item?.querySelector('.dish-price');
-  const priceText = priceEl?.textContent || '';
-  const match = priceText.match(/IDR ([\d,]+)/);
-  const price = match ? parseInt(match[1].replace(/,/g, '')) : 0;
-  const unit = priceText.includes('person') ? 'person' : 'piece';
-  if (!cart[dish]) cart[dish] = { qty: 0, price, unit };
+  var row = el.parentElement;
+  var dish = row.getAttribute('data-dish');
+  var qty = parseInt(row.querySelector('.qty-val').textContent);
+  if (qty === 0) {
+    el.textContent = 'Pick qty first';
+    setTimeout(function(){ el.textContent = 'Add to basket'; }, 1400);
+    return;
+  }
+  var item = row.parentElement.parentElement;
+  var priceEl = item.querySelector('.dish-price');
+  var priceText = priceEl ? priceEl.textContent : '';
+  var m = priceText.match(/IDR ([0-9,]+)/);
+  var price = m ? parseInt(m[1].replace(/,/g,'')) : 0;
+  var unit = priceText.indexOf('person') >= 0 ? 'person' : 'piece';
+  if (!cart[dish]) cart[dish] = { qty: 0, price: price, unit: unit };
   cart[dish].qty += qty;
   row.querySelector('.qty-val').textContent = 0;
   updateCartUI();
-  // flash feedback
-  el.textContent = '✓ Added';
-  setTimeout(() => el.textContent = 'Add to basket', 1200);
-}
-
-function updateCartUI() {
-  const items = Object.entries(cart).filter(([,v]) => v.qty > 0);
-  const count = items.reduce((s,[,v]) => s + v.qty, 0);
-  const total = items.reduce((s,[,v]) => s + v.qty * v.price, 0);
-
-  // Floating button
-  const floatBtn = document.getElementById('cart-float');
-  floatBtn.classList.toggle('visible', count > 0);
-  document.getElementById('cart-count').textContent = count;
-
-  // Modal lines
-  const linesEl = document.getElementById('cart-lines');
-  const emptyMsg = document.getElementById('cart-empty-msg');
-  const totalLine = document.getElementById('cart-total-line');
-  const waBtn = document.getElementById('cart-wa-btn');
-
-  linesEl.innerHTML = '';
-  if (items.length === 0) {
-    emptyMsg.style.display = 'block';
-    totalLine.style.display = 'none';
-    waBtn.style.display = 'none';
-  } else {
-    emptyMsg.style.display = 'none';
-    totalLine.style.display = 'flex';
-    waBtn.style.display = 'block';
-    items.forEach(([name, v]) => {
-      const line = document.createElement('div');
-      line.className = 'cart-line';
-      line.innerHTML = \`
-        <span class="cart-line-name">\${name}</span>
-        <span class="cart-line-qty">
-          <button onclick="adjustCart('\${name.replace(/'/g,"\\'")}', -1)">−</button>
-          <span>\${v.qty}</span>
-          <button onclick="adjustCart('\${name.replace(/'/g,"\\'")}', 1)">+</button>
-        </span>
-        <span class="cart-line-price">IDR \${(v.qty*v.price).toLocaleString()}</span>\`;
-      linesEl.appendChild(line);
-    });
-    document.getElementById('cart-total-val').textContent =
-      'IDR ' + total.toLocaleString();
-  }
+  el.textContent = 'Added!';
+  setTimeout(function(){ el.textContent = 'Add to basket'; }, 1400);
 }
 
 function adjustCart(name, delta) {
@@ -2384,27 +2332,70 @@ function adjustCart(name, delta) {
   updateCartUI();
 }
 
-function openCart() { document.getElementById('cart-modal').classList.add('open'); }
+function updateCartUI() {
+  var keys = Object.keys(cart).filter(function(k){ return cart[k].qty > 0; });
+  var count = 0, total = 0;
+  keys.forEach(function(k){ count += cart[k].qty; total += cart[k].qty * cart[k].price; });
+
+  var floatBtn = document.getElementById('cart-float');
+  if (count > 0) floatBtn.classList.add('visible');
+  else floatBtn.classList.remove('visible');
+  document.getElementById('cart-count').textContent = count;
+
+  var linesEl = document.getElementById('cart-lines');
+  var emptyMsg = document.getElementById('cart-empty-msg');
+  var totalLine = document.getElementById('cart-total-line');
+  var waBtn = document.getElementById('cart-wa-btn');
+  linesEl.innerHTML = '';
+
+  if (keys.length === 0) {
+    emptyMsg.style.display = 'block';
+    totalLine.style.display = 'none';
+    waBtn.style.display = 'none';
+  } else {
+    emptyMsg.style.display = 'none';
+    totalLine.style.display = 'flex';
+    waBtn.style.display = 'block';
+    keys.forEach(function(name) {
+      var v = cart[name];
+      var subtotal = (v.qty * v.price).toLocaleString();
+      var line = document.createElement('div');
+      line.className = 'cart-line';
+      line.innerHTML = '<span class="cart-line-name">' + name + '</span>'
+        + '<span class="cart-line-qty">'
+        + '<button onclick="adjustCart(\'' + name.replace(/'/g,"\\'") + '\',-1)">-</button>'
+        + '<span>' + v.qty + '</span>'
+        + '<button onclick="adjustCart(\'' + name.replace(/'/g,"\\'") + '\',1)">+</button>'
+        + '</span>'
+        + '<span class="cart-line-price">IDR ' + subtotal + '</span>';
+      linesEl.appendChild(line);
+    });
+    document.getElementById('cart-total-val').textContent = 'IDR ' + total.toLocaleString();
+  }
+}
+
+function openCart()  { document.getElementById('cart-modal').classList.add('open'); }
 function closeCart() { document.getElementById('cart-modal').classList.remove('open'); }
 
 function sendCartToWA() {
-  const items = Object.entries(cart).filter(([,v]) => v.qty > 0);
-  if (!items.length) return;
-  const total = items.reduce((s,[,v]) => s + v.qty*v.price, 0);
-  let msg = 'Hello Yunic Dining! I would like to place an à la carte order:%0A%0A';
-  items.forEach(([name,v]) => {
-    msg += \`• \${v.qty}x \${name} — IDR \${(v.qty*v.price).toLocaleString()}%0A\`;
+  var keys = Object.keys(cart).filter(function(k){ return cart[k].qty > 0; });
+  if (!keys.length) return;
+  var total = 0;
+  var msg = 'Hello Yunic Dining! I would like to place an a la carte order:\n\n';
+  keys.forEach(function(name) {
+    var v = cart[name];
+    total += v.qty * v.price;
+    msg += v.qty + 'x ' + name + ' - IDR ' + (v.qty * v.price).toLocaleString() + '\n';
   });
-  msg += \`%0ATotal: IDR \${total.toLocaleString()} (before tax & service)%0A%0APlease confirm availability and delivery details. Thank you!\`;
-  window.open('https://wa.me/6281994807407?text=' + msg, '_blank');
+  msg += '\nTotal: IDR ' + total.toLocaleString() + ' (before tax & service)\n\nPlease confirm availability and delivery details. Thank you!';
+  window.open('https://wa.me/6281994807407?text=' + encodeURIComponent(msg), '_blank');
 }
-</script>
 
-<script>
 function checkGuestCount(sel) {
-  const note = document.getElementById('guests-note');
-  note.style.display = sel.value === 'more' ? 'block' : 'none';
+  var note = document.getElementById('guests-note');
+  if (note) note.style.display = sel.value === 'more' ? 'block' : 'none';
 }
+
 </script>
 </body>
 </html>
