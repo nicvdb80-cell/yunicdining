@@ -2250,29 +2250,27 @@ function cartChange(btn, delta) {
   var countEl = row.querySelector('.cr-count');
   var current = cart[dish] ? cart[dish].qty : 0;
   var next = Math.max(0, current + delta);
-  if (next === 0) {
-    delete cart[dish];
-  } else {
-    cart[dish] = { qty: next, price: price };
-  }
+  if (next === 0) { delete cart[dish]; }
+  else { cart[dish] = { qty: next, price: price }; }
   countEl.textContent = next;
   countEl.style.color = next > 0 ? 'var(--terracotta)' : 'var(--brown)';
-  countEl.style.fontWeight = next > 0 ? '900' : '700';
   updateCartUI();
 }
 
 function updateCartUI() {
-  var keys = Object.keys(cart).filter(function(k){ return cart[k].qty > 0; });
+  var keys = Object.keys(cart).filter(function(k) { return cart[k].qty > 0; });
   var count = 0, total = 0;
-  keys.forEach(function(k){ count += cart[k].qty; total += cart[k].qty * cart[k].price; });
-  var floatBtn = document.getElementById('cart-float');
-  floatBtn.style.display = count > 0 ? 'flex' : 'none';
+  keys.forEach(function(k) { count += cart[k].qty; total += cart[k].qty * cart[k].price; });
+
+  document.getElementById('cart-float').style.display = count > 0 ? 'flex' : 'none';
   document.getElementById('cart-count').textContent = count;
+
   var linesEl = document.getElementById('cart-lines');
   var emptyMsg = document.getElementById('cart-empty-msg');
   var totalLine = document.getElementById('cart-total-line');
   var waBtn = document.getElementById('cart-wa-btn');
   linesEl.innerHTML = '';
+
   if (keys.length === 0) {
     emptyMsg.style.display = 'block';
     totalLine.style.display = 'none';
@@ -2285,14 +2283,36 @@ function updateCartUI() {
       var v = cart[k];
       var line = document.createElement('div');
       line.className = 'cart-line';
-      line.innerHTML =
-        '<span class="cart-line-name">' + k + '</span>' +
-        '<span class="cart-line-qty">' +
-          '<button onclick="modalAdj('' + k.replace(/'/g,"\'") + '',-1)">−</button>' +
-          '<span>' + v.qty + '</span>' +
-          '<button onclick="modalAdj('' + k.replace(/'/g,"\'") + '',1)">+</button>' +
-        '</span>' +
-        '<span class="cart-line-price">IDR ' + (v.qty * v.price).toLocaleString() + '</span>';
+
+      var nameSpan = document.createElement('span');
+      nameSpan.className = 'cart-line-name';
+      nameSpan.textContent = k;
+
+      var qtyWrap = document.createElement('span');
+      qtyWrap.className = 'cart-line-qty';
+
+      var minusBtn = document.createElement('button');
+      minusBtn.textContent = '-';
+      minusBtn.onclick = (function(name) { return function() { modalAdj(name, -1); }; })(k);
+
+      var qtyNum = document.createElement('span');
+      qtyNum.textContent = v.qty;
+
+      var plusBtn = document.createElement('button');
+      plusBtn.textContent = '+';
+      plusBtn.onclick = (function(name) { return function() { modalAdj(name, 1); }; })(k);
+
+      qtyWrap.appendChild(minusBtn);
+      qtyWrap.appendChild(qtyNum);
+      qtyWrap.appendChild(plusBtn);
+
+      var priceSpan = document.createElement('span');
+      priceSpan.className = 'cart-line-price';
+      priceSpan.textContent = 'IDR ' + (v.qty * v.price).toLocaleString();
+
+      line.appendChild(nameSpan);
+      line.appendChild(qtyWrap);
+      line.appendChild(priceSpan);
       linesEl.appendChild(line);
     });
     document.getElementById('cart-total-val').textContent = 'IDR ' + total.toLocaleString();
@@ -2300,13 +2320,9 @@ function updateCartUI() {
 }
 
 function modalAdj(name, delta) {
-  if (!cart[name] && delta < 0) return;
-  var current = cart[name] ? cart[name].qty : 0;
   var price = cart[name] ? cart[name].price : 0;
-  var next = Math.max(0, current + delta);
-  if (next === 0) { delete cart[name]; }
-  else { cart[name] = { qty: next, price: price }; }
-  // Sync the on-page counter too
+  var next = Math.max(0, (cart[name] ? cart[name].qty : 0) + delta);
+  if (next === 0) { delete cart[name]; } else { cart[name] = { qty: next, price: price }; }
   document.querySelectorAll('.cart-row').forEach(function(row) {
     if (row.getAttribute('data-dish') === name) {
       var el = row.querySelector('.cr-count');
@@ -2321,23 +2337,17 @@ function openCart() { document.getElementById('cart-modal').style.display = 'fle
 function closeCart() { document.getElementById('cart-modal').style.display = 'none'; }
 
 function sendCartToWA() {
-  var keys = Object.keys(cart).filter(function(k){ return cart[k].qty > 0; });
+  var keys = Object.keys(cart).filter(function(k) { return cart[k].qty > 0; });
   if (!keys.length) return;
   var total = 0;
-  var msg = 'Hello Yunic Dining! I would like to place an a la carte order:
-
-';
+  var msg = 'Hello Yunic Dining! A la carte order:\n\n';
   keys.forEach(function(k) {
     var v = cart[k];
     var sub = v.qty * v.price;
     total += sub;
-    msg += '• ' + v.qty + 'x ' + k + ' — IDR ' + sub.toLocaleString() + '
-';
+    msg += '- ' + v.qty + 'x ' + k + ' : IDR ' + sub.toLocaleString() + '\n';
   });
-  msg += '
-Total: IDR ' + total.toLocaleString() + ' (before tax & service)
-
-Please confirm availability and delivery details. Thank you!';
+  msg += '\nTotal: IDR ' + total.toLocaleString() + ' (before tax & service)\n\nThank you!';
   window.open('https://wa.me/6281994807407?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
