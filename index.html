@@ -667,9 +667,10 @@ section { padding: 6rem 6vw; position: relative; }
   margin-right: auto;
 }
 @media (max-width: 900px) { .package-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .pkg-flip { height: 460px; } }
 @media (max-width: 520px) { .package-grid { grid-template-columns: 1fr; } }
 
-.pkg-flip { perspective: 900px; cursor: pointer; height: 400px; }
+.pkg-flip { perspective: 900px; cursor: pointer; height: 420px; }
 .pkg-flip-inner {
   position: relative; width: 100%; height: 100%;
   transition: transform 0.65s cubic-bezier(.4,0,.2,1);
@@ -689,7 +690,7 @@ section { padding: 6rem 6vw; position: relative; }
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .pkg-face.pkg-front {
-  display: flex; flex-direction: column; justify-content: space-between;
+  display: flex; flex-direction: column;
   padding: 1.5rem 1.3rem 1.3rem;
 }
 .pkg-flip.featured .pkg-face { border-color: var(--terracotta); border-width: 2px; }
@@ -708,19 +709,19 @@ section { padding: 6rem 6vw; position: relative; }
   color: var(--saffron); margin-bottom: 0.4rem;
 }
 .pkg-front h3 {
-  font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
-  color: var(--brown); line-height: 1.25; margin-bottom: 0.8rem;
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+  color: var(--brown); line-height: 1.25; margin-bottom: 0.4rem;
 }
-.pkg-front-desc { font-size: 0.78rem; color: var(--brown-muted); line-height: 1.65; margin-bottom: 0.8rem; flex: 1; }
+.pkg-front-desc { font-size: 0.76rem; color: var(--brown-muted); line-height: 1.6; margin: 0.5rem 0 0; flex: 1; overflow: hidden; }
 .pkg-front-hint {
   font-family: var(--sans); font-size: 0.62rem; color: var(--brown-muted);
-  font-style: italic; opacity: 0.75;
+  font-style: italic; opacity: 0.75; margin-top: 0.8rem; flex-shrink: 0;
 }
 .pkg-icon {
-  width: 44px; height: 44px; border-radius: 50%;
+  width: 36px; height: 36px; border-radius: 50%;
   border: 1px solid rgba(140,104,72,0.35);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .pkg-back-title {
