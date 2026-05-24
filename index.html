@@ -3,221 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yunic Dining — Coming Soon</title>
-  <meta name="description" content="Yunic Dining — A private Indonesian dining experience in Bali. Coming soon.">
+  <title>Yunic Dining</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --brown: #2e1a08;
-      --terracotta: #b8522a;
-      --saffron: #c8922a;
-      --parchment: #f5f0e8;
-      --brown-muted: #8c6848;
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Jost', sans-serif;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
     body {
-      background: var(--brown);
-      color: var(--parchment);
-      font-family: var(--sans);
+      background: #2e1a08;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 2rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    /* Subtle background texture */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(184,82,42,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 30%, rgba(200,146,42,0.06) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 540px;
-      width: 100%;
-    }
-
-    /* Logo */
-    .logo-wrap {
-      margin-bottom: 2.5rem;
-    }
-    .logo-wordmark {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--saffron);
-      font-weight: 400;
-    }
-    .logo-sub {
-      font-family: var(--sans);
-      font-size: 0.55rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--brown-muted);
-      margin-top: 0.2rem;
-    }
-    .logo-rule {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin: 0.4rem 0;
-    }
-    .logo-rule span {
-      height: 1px;
-      width: 28px;
-      background: var(--saffron);
-      opacity: 0.5;
-      display: block;
-    }
-    .logo-rule i {
-      color: var(--saffron);
-      font-style: normal;
-      font-size: 0.45rem;
-      opacity: 0.6;
-    }
-
-    /* Divider */
-    .divider {
-      width: 40px;
-      height: 1px;
-      background: rgba(200,146,42,0.4);
-      margin: 2rem auto;
-    }
-
-    /* Heading */
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.8rem, 8vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--parchment);
-      letter-spacing: 0.02em;
-      margin-bottom: 1.2rem;
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--saffron);
-    }
-
-    p {
-      font-family: var(--sans);
-      font-size: 0.88rem;
-      color: rgba(245,240,232,0.65);
-      line-height: 1.8;
-      letter-spacing: 0.04em;
-      margin-bottom: 2.5rem;
-    }
-
-    /* Contact links */
-    .contact-links {
+    .wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.8rem;
+      gap: 2.4rem;
     }
-    .contact-label {
-      font-family: var(--sans);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--brown-muted);
-      margin-bottom: 0.4rem;
-    }
-    .contact-links a {
-      font-family: var(--sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      color: var(--parchment);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(245,240,232,0.2);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .contact-links a:hover {
-      color: var(--saffron);
-      border-color: var(--saffron);
-    }
-    .wa-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #25D366;
-      color: #fff !important;
-      border: none !important;
-      border-radius: 3px;
-      padding: 0.65rem 1.4rem;
-      font-size: 0.72rem !important;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 0.4rem;
-    }
-    .wa-btn:hover { opacity: 0.9; }
 
-    footer {
-      position: fixed;
-      bottom: 1.5rem;
-      font-size: 0.55rem;
-      letter-spacing: 0.15em;
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.6rem, 9vw, 4.2rem);
+      font-weight: 300;
+      color: #f5f0e8;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: #c8922a;
+    }
+
+    p {
+      font-family: 'Jost', sans-serif;
+      font-size: clamp(0.78rem, 2.5vw, 0.9rem);
+      font-weight: 300;
+      color: rgba(245,240,232,0.45);
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(140,104,72,0.5);
+    }
+
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .rule span {
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: rgba(200,146,42,0.35);
+    }
+    .rule i {
+      color: #c8922a;
+      font-style: normal;
+      font-size: 0.4rem;
+      opacity: 0.5;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <div class="logo-wrap">
-      <div class="logo-wordmark">Yunic</div>
-      <div class="logo-rule">
-        <span></span><i>◆</i><span></span>
-      </div>
-      <div class="logo-sub">Dining</div>
-    </div>
-
-    <div class="divider"></div>
-
-    <h1>Something<br><em>beautiful</em><br>is coming</h1>
-
-    <p>
-      A private Indonesian dining experience,<br>
-      brought to your home in Bali.<br>
-      We'll be ready soon.
-    </p>
-
-    <div class="contact-links">
-      <div class="contact-label">In the meantime, reach us at</div>
-      <a href="mailto:yunicdining@gmail.com">yunicdining@gmail.com</a>
-      <a href="https://wa.me/6281994807407" target="_blank" class="wa-btn">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp Us
-      </a>
-    </div>
-
+  <div class="wrap">
+    <h1>Something <em>beautiful</em><br>is coming</h1>
+    <div class="rule"><span></span><i>◆</i><span></span></div>
+    <p>Every thing amazing takes time</p>
   </div>
-
-  <footer>© Yunic Dining · Bali, Indonesia</footer>
 </body>
 </html>
