@@ -1809,8 +1809,9 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
 </section>
 
 <!-- ============ MEDIA ROOM ============ -->
-<section id="media" style="background: var(--brown); padding: 5rem 1.5rem;">
-  <div style="max-width:1100px; margin:0 auto;">
+<section id="media" style="background: var(--brown) url('https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/media/media-bg.png') center/cover no-repeat; padding: 5rem 1.5rem; position:relative;">
+  <div style="position:absolute;inset:0;background:rgba(20,10,2,0.78);pointer-events:none;z-index:0;"></div>
+  <div style="max-width:1100px; margin:0 auto; position:relative; z-index:1;">
 
     <div style="text-align:center; margin-bottom:3rem;" class="fade-in">
       <div style="font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:0.6rem;">Behind The Scenes</div>
@@ -1829,7 +1830,7 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
     <!-- Media grid — add your items here -->
     <div class="media-grid fade-in" id="media-grid">
 
-            <!-- Rendang video -->
+      <!-- Rendang video -->
       <div class="media-item" data-cat="behind" data-type="video"
            data-src="https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/media/rendang-behind-scenes.mp4"
            data-caption="How Yuli's Family Padang Rendang is Made"
@@ -1842,80 +1843,15 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         </div>
         <div class="media-caption"><small>Behind the Scenes</small><span>The Authentic Padang Rendang · Yuli's Family Recipe</span></div>
       </div>
-
-<!-- TEMPLATE — duplicate & fill in your own src, label, caption, category -->
       <!-- category: "events" | "behind" | "cities" -->
-
-      <div class="media-item" data-cat="events" data-type="image"
-           data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800"
-           data-caption="Yunic Private Dinner · Seminyak Villa"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600" alt="Private dinner event" loading="lazy">
-        <div class="media-caption"><small>Events</small><span>Yunic Private Dinner · Seminyak Villa</span></div>
       </div>
-
-      <div class="media-item" data-cat="behind" data-type="image"
-           data-src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800"
-           data-caption="Prep Day · Spice Selection"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600" alt="Kitchen prep" loading="lazy" style="height:280px;object-fit:cover;">
-        <div class="media-caption"><small>Behind the Scenes</small><span>Prep Day · Spice Selection</span></div>
       </div>
-
-      <div class="media-item" data-cat="cities" data-type="image"
-           data-src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800"
-           data-caption="Jakarta · Market Visit"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600" alt="Jakarta market" loading="lazy" style="height:200px;object-fit:cover;">
-        <div class="media-caption"><small>Cities</small><span>Jakarta · Market Visit</span></div>
       </div>
-
-      <div class="media-item" data-cat="events" data-type="image"
-           data-src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800"
-           data-caption="Full Moon Dinner · Canggu"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600" alt="Full moon dinner" loading="lazy" style="height:240px;object-fit:cover;">
-        <div class="media-caption"><small>Events</small><span>Full Moon Dinner · Canggu</span></div>
       </div>
-
-      <div class="media-item" data-cat="behind" data-type="image"
-           data-src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=800"
-           data-caption="Chef Nic · Plating Day"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=600" alt="Chef plating" loading="lazy">
-        <div class="media-caption"><small>Behind the Scenes</small><span>Chef Nic · Plating Day</span></div>
       </div>
-
-      <div class="media-item" data-cat="cities" data-type="image"
-           data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800"
-           data-caption="Bali · Morning Ritual"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600" alt="Bali morning" loading="lazy" style="height:320px;object-fit:cover;">
-        <div class="media-caption"><small>Cities</small><span>Bali · Morning Ritual</span></div>
       </div>
-
-      <div class="media-item" data-cat="events" data-type="image"
-           data-src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800"
-           data-caption="Collaboration Dinner · Chef Nic &amp; Guest Chef"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600" alt="Collaboration dinner" loading="lazy" style="height:260px;object-fit:cover;">
-        <div class="media-caption"><small>Events</small><span>Collaboration Dinner</span></div>
       </div>
-
-      <div class="media-item" data-cat="behind" data-type="image"
-           data-src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800"
-           data-caption="Yuli · Table Styling"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600" alt="Table styling" loading="lazy" style="height:220px;object-fit:cover;">
-        <div class="media-caption"><small>Behind the Scenes</small><span>Yuli · Table Styling</span></div>
       </div>
-
-      <div class="media-item" data-cat="cities" data-type="image"
-           data-src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800"
-           data-caption="Makassar · Harbour Market"
-           onclick="openLightbox(this)">
-        <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600" alt="Makassar harbour" loading="lazy" style="height:200px;object-fit:cover;">
-        <div class="media-caption"><small>Cities</small><span>Makassar · Harbour Market</span></div>
       </div>
 
     </div>
