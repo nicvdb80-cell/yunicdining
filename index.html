@@ -1148,13 +1148,20 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
 </section>
 
 <!-- ============ A WORD FROM YULI ============ -->
-<div class="journey-strip" style="padding: 4rem 6vw; background: url('images/img_07_9e7b676a.png') center center / cover no-repeat;">
+<div style="
+  background: url('images/img_01_abd87c3d.png') center center / cover no-repeat;
+  border-top: 1px solid rgba(140,104,72,0.2);
+  border-bottom: 1px solid rgba(140,104,72,0.2);
+  padding: 4rem 6vw;
+  position: relative;
+  overflow: hidden;
+">
   <div style="
     max-width: 960px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 3.5rem;
     flex-wrap: wrap;
   ">
 
@@ -1162,7 +1169,7 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
     <div style="flex: 0 0 auto;">
       <div class="polaroid" style="
         transform: rotate(-1.5deg);
-        width: 220px;
+        width: 210px;
         box-shadow: 4px 8px 24px rgba(46,26,8,0.28);
       ">
         <div class="polaroid-img" style="aspect-ratio: 3/4; overflow: hidden;">
@@ -1177,24 +1184,26 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
     </div>
 
     <!-- Quote text -->
-    <div style="flex: 1 1 300px; text-align: center;">
-      <span class="section-eyebrow" style="display:block; margin-bottom:1rem;">A Word From Yuli</span>
-      <div style="
+    <div style="flex: 1 1 280px; text-align: center;">
+      <span class="section-eyebrow" style="display:block; margin-bottom:1.2rem;">A Word From Yuli</span>
+      <p style="
         font-family: var(--serif);
-        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        font-size: clamp(0.95rem, 2vw, 1.2rem);
         font-style: italic;
         color: var(--brown);
-        line-height: 1.85;
-        font-weight: 600;
-        text-shadow: 1px 1px 0 rgba(244,232,204,0.95), -1px -1px 0 rgba(244,232,204,0.95), 0 0 12px rgba(244,232,204,1);
+        line-height: 1.9;
+        font-weight: 400;
         margin-bottom: 1.5rem;
+        max-width: 56ch;
+        margin-left: auto;
+        margin-right: auto;
       ">
-        <span style="font-size:2em; line-height:0; vertical-align:-0.25em; margin-right:0.1em;">&ldquo;</span>When I cook, I am not just preparing food. I am sharing the stories of my family, the warmth of our home, and the flavors of the islands I grew up with. Every dish carries a memory, a grandmother's hand, a village market at sunrise, the smell of spices on a slow afternoon. I want every guest who sits at our table to feel exactly that. Not a restaurant. Not a performance. Just real Indonesian food, made with love, served in the comfort of your own home.<span style="font-size:2em; line-height:0; vertical-align:-0.25em; margin-left:0.1em;">&rdquo;</span>
-      </div>
+        &ldquo;When I cook, I am not just preparing food. I am sharing the stories of my family, the warmth of our home, and the flavors of the islands I grew up with. Every dish carries a memory, a grandmother&rsquo;s hand, a village market at sunrise, the smell of spices on a slow afternoon. I want every guest who sits at our table to feel exactly that. Not a restaurant. Not a performance. Just real Indonesian food, made with love, served in the comfort of your own home.&rdquo;
+      </p>
       <p style="
         font-family: var(--serif);
         font-style: italic;
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         color: var(--terracotta);
         letter-spacing: 0.02em;
       ">— Yuli —</p>
@@ -2352,3 +2361,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
