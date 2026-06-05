@@ -1147,9 +1147,60 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
   </div>
 </section>
 
-<!-- ============ JOURNEY STRIP ============ -->
-<div class="journey-strip" style="padding:0; background:none; border:none;">
-  <img src="images/img_07_9e7b676a.png" alt="A word from Yuli" style="width:100%; display:block;" />
+<!-- ============ A WORD FROM YULI ============ -->
+<div class="journey-strip" style="padding: 4rem 6vw; background: url('images/img_07_9e7b676a.png') center center / cover no-repeat;">
+  <div style="
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  ">
+
+    <!-- Yuli Portrait – polaroid style -->
+    <div style="flex: 0 0 auto;">
+      <div class="polaroid" style="
+        transform: rotate(-1.5deg);
+        width: 220px;
+        box-shadow: 4px 8px 24px rgba(46,26,8,0.28);
+      ">
+        <div class="polaroid-img" style="aspect-ratio: 3/4; overflow: hidden;">
+          <img
+            src="images/img_yuli_portrait.png"
+            alt="Chef Yuli"
+            style="width:100%; height:100%; object-fit:cover; object-position: center top; display:block;"
+          />
+        </div>
+        <p class="polaroid-caption" style="font-size:0.85rem;">Chef Yuli</p>
+      </div>
+    </div>
+
+    <!-- Quote text -->
+    <div style="flex: 1 1 300px; text-align: center;">
+      <span class="section-eyebrow" style="display:block; margin-bottom:1rem;">A Word From Yuli</span>
+      <div style="
+        font-family: var(--serif);
+        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        font-style: italic;
+        color: var(--brown);
+        line-height: 1.85;
+        font-weight: 600;
+        text-shadow: 1px 1px 0 rgba(244,232,204,0.95), -1px -1px 0 rgba(244,232,204,0.95), 0 0 12px rgba(244,232,204,1);
+        margin-bottom: 1.5rem;
+      ">
+        <span style="font-size:2em; line-height:0; vertical-align:-0.25em; margin-right:0.1em;">&ldquo;</span>When I cook, I am not just preparing food. I am sharing the stories of my family, the warmth of our home, and the flavors of the islands I grew up with. Every dish carries a memory, a grandmother's hand, a village market at sunrise, the smell of spices on a slow afternoon. I want every guest who sits at our table to feel exactly that. Not a restaurant. Not a performance. Just real Indonesian food, made with love, served in the comfort of your own home.<span style="font-size:2em; line-height:0; vertical-align:-0.25em; margin-left:0.1em;">&rdquo;</span>
+      </div>
+      <p style="
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.4rem;
+        color: var(--terracotta);
+        letter-spacing: 0.02em;
+      ">— Yuli —</p>
+    </div>
+
+  </div>
 </div>
 
 <!-- ============ OUR STORY ============ -->
