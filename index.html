@@ -1379,7 +1379,33 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
   <div class="inner story-grid">
     <div class="story-visual fade-in" style="display:flex; align-items:flex-start; justify-content:center; padding-top:1rem; gap:1.2rem; flex-wrap:wrap;">
 
-      <!-- Chef Nic polaroid -->
+      <!-- Yuli polaroid — left, tilted left -->
+      <div style="
+        background:#fff;
+        padding: 0.9rem 0.9rem 3.8rem;
+        box-shadow: 6px 12px 36px rgba(46,26,8,0.22);
+        transform: rotate(-1.8deg);
+        max-width: 220px;
+        width: 100%;
+        position: relative;
+        flex-shrink: 0;
+      ">
+        <img src="https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/img13.jpg" alt="Yuli, founder and owner of Yunic Dining Bali, Indonesian culinary guide" style="width:100%; display:block; object-fit:cover; aspect-ratio:3/4; border-radius:1px;" />
+        <div style="
+          font-family: var(--serif);
+          font-style: italic;
+          font-size: 1.05rem;
+          color: var(--brown-muted);
+          text-align: center;
+          position: absolute;
+          bottom: 1.6rem;
+          left: 0; right: 0;
+          letter-spacing: 0.04em;
+          line-height: 1.4;
+        ">Yuli<br><span style="font-size:0.65rem; font-family:var(--sans); font-style:normal; letter-spacing:0.12em; text-transform:uppercase; color:var(--saffron);">Founder &amp; Owner</span></div>
+      </div>
+
+      <!-- Chef Nic polaroid — right, tilted right -->
       <div style="
         background:#fff;
         padding: 0.9rem 0.9rem 3.8rem;
@@ -1389,8 +1415,9 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
         width: 100%;
         position: relative;
         flex-shrink: 0;
+        margin-top: 2rem;
       ">
-        <img src="https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/chef-nic.png" alt="Chef Nic, Executive Chef and co-founder of Yunic Dining Bali" style="width:100%; display:block; object-fit:cover; aspect-ratio:3/4; border-radius:1px;" />
+        <img src="https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/chef-nic.png" alt="Chef Nic, Executive Chef of Yunic Dining Bali" style="width:100%; display:block; object-fit:cover; aspect-ratio:3/4; border-radius:1px;" />
         <div style="
           font-family: var(--serif);
           font-style: italic;
@@ -1402,32 +1429,6 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
           left: 0; right: 0;
           letter-spacing: 0.04em;
         ">Chef Nic</div>
-      </div>
-
-      <!-- Chef Yuli polaroid -->
-      <div style="
-        background:#fff;
-        padding: 0.9rem 0.9rem 3.8rem;
-        box-shadow: 6px 12px 36px rgba(46,26,8,0.22);
-        transform: rotate(-1.8deg);
-        max-width: 220px;
-        width: 100%;
-        position: relative;
-        flex-shrink: 0;
-        margin-top: 2rem;
-      ">
-        <img src="https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/img13.jpg" alt="Chef Yuli, co-founder of Yunic Dining and Indonesian culinary guide" style="width:100%; display:block; object-fit:cover; aspect-ratio:3/4; border-radius:1px;" />
-        <div style="
-          font-family: var(--serif);
-          font-style: italic;
-          font-size: 1.05rem;
-          color: var(--brown-muted);
-          text-align: center;
-          position: absolute;
-          bottom: 0.9rem;
-          left: 0; right: 0;
-          letter-spacing: 0.04em;
-        ">Chef Yuli</div>
       </div>
 
     </div>
