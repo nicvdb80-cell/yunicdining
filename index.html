@@ -78,10 +78,41 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(13,44,34,0.1); }
 }
 .nav-logo span { color: var(--terracotta); font-style: italic; }
 
+/* ── Hamburger button ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 300;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--brown);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Nav links — desktop ── */
 .nav-links {
   display: flex;
   list-style: none;
   gap: 0;
+  align-items: center;
 }
 .nav-links a {
   display: block;
@@ -106,6 +137,62 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(13,44,34,0.1); }
   transition: background 0.2s !important;
 }
 .nav-cta:hover { background: var(--terra-light) !important; color: var(--parchment) !important; }
+
+/* ── Mobile drawer ── */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(320px, 85vw);
+    height: 100vh;
+    background: rgba(244, 232, 204, 0.98);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    padding: 5rem 2.5rem 3rem;
+    box-shadow: -4px 0 40px rgba(13,44,34,0.15);
+    transform: translateX(100%);
+    transition: transform 0.38s cubic-bezier(.4,0,.2,1);
+    z-index: 250;
+    list-style: none;
+  }
+  .nav-links.open { transform: translateX(0); }
+
+  .nav-links li { width: 100%; border-bottom: 1px solid rgba(74,122,102,0.12); }
+  .nav-links li:last-child { border-bottom: none; margin-top: 1.5rem; }
+
+  .nav-links a {
+    padding: 0.9rem 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: var(--brown);
+    display: block;
+    width: 100%;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-cta {
+    display: block;
+    text-align: center;
+    padding: 0.85rem 1.5rem !important;
+    border-radius: 2px;
+    font-size: 0.75rem !important;
+  }
+
+  /* overlay behind drawer */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,44,34,0.25);
+    z-index: 240;
+  }
+  .nav-overlay.open { display: block; }
+}
 
 /* ========== BATIK DIVIDER PATTERN (SVG) ========== */
 .batik-divider {
@@ -1044,7 +1131,7 @@ footer {
   .journey-acts::before { display: none; }
 }
 @media (max-width: 650px) {
-  .nav-links { display: none; }
+  /* nav-links mobile handled by hamburger drawer */
   .form-row { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2.8rem; }
 }
@@ -1329,21 +1416,68 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
 <body>
 
 <!-- ============ NAV ============ -->
+<!-- overlay for mobile drawer -->
+<div class="nav-overlay" id="nav-overlay" onclick="closeNavDrawer()"></div>
+
 <nav id="main-nav">
   <a href="#" class="nav-logo"><img src="https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/img11.png" alt="Yunic Dining" style="height:48px; width:auto; display:block;" /></a>
-  <ul class="nav-links">
-    <li><a href="#story">Our Story</a></li>
-    <li><a href="#offer">What We Offer</a></li>
-    <li><a href="#food">Food</a></li>
-    <li><a href="#beverages">Beverages</a></li>
-    <li><a href="#packages">Packages</a></li>
-    <li><a href="#alacarte">À La Carte</a></li>
-    <li><a href="#specials">Specials</a></li>
-    <li><a href="#media">Media</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#food" class="nav-cta">See The Menu</a></li>
+
+  <!-- hamburger — top right, shown on ≤900px -->
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleNavDrawer()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#story"    onclick="closeNavDrawer()">Our Story</a></li>
+    <li><a href="#offer"    onclick="closeNavDrawer()">What We Offer</a></li>
+    <li><a href="#food"     onclick="closeNavDrawer()">Food</a></li>
+    <li><a href="#beverages" onclick="closeNavDrawer()">Beverages</a></li>
+    <li><a href="#packages" onclick="closeNavDrawer()">Packages</a></li>
+    <li><a href="#alacarte" onclick="closeNavDrawer()">À La Carte</a></li>
+    <li><a href="#specials" onclick="closeNavDrawer()">Specials</a></li>
+    <li><a href="#media"    onclick="closeNavDrawer()">Media</a></li>
+    <li><a href="#contact"  onclick="closeNavDrawer()">Contact</a></li>
+    <li><a href="#food" class="nav-cta" onclick="closeNavDrawer()">See The Menu</a></li>
   </ul>
 </nav>
+
+<script>
+function toggleNavDrawer() {
+  var links   = document.getElementById('nav-links');
+  var burger  = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  var isOpen  = links.classList.contains('open');
+  if (isOpen) {
+    links.classList.remove('open');
+    burger.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  } else {
+    links.classList.add('open');
+    burger.classList.add('open');
+    overlay.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeNavDrawer() {
+  var links   = document.getElementById('nav-links');
+  var burger  = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  links.classList.remove('open');
+  burger.classList.remove('open');
+  overlay.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeNavDrawer();
+});
+</script>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
