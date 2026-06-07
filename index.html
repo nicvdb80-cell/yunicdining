@@ -1390,8 +1390,109 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
 </div>
 
 <!-- ============ OUR STORY ============ -->
-<section class="story-section" id="story">
-  <div class="inner story-grid">
+<section class="story-section" id="story" style="position:relative; overflow:hidden;">
+
+  <!-- Indonesian archipelago silhouette — ghost watermark -->
+  <div aria-hidden="true" style="
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+  ">
+    <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg"
+         style="width:95%; max-width:900px; opacity:0.07; mix-blend-mode:multiply;"
+         aria-hidden="true">
+
+      <!-- Sumatra -->
+      <path d="M 30 200 C 40 185 55 170 75 165 C 95 160 110 155 130 148
+               C 150 141 165 132 180 125 C 195 118 205 112 215 108
+               C 225 104 235 102 245 105 C 255 108 260 115 258 122
+               C 256 129 248 134 240 138 C 232 142 222 145 215 150
+               C 208 155 205 162 200 168 C 195 174 188 180 178 185
+               C 168 190 155 193 142 195 C 129 197 116 198 104 200
+               C 92 202 80 205 68 208 C 56 211 44 212 35 210 Z"
+            fill="#0D2C22"/>
+
+      <!-- Java -->
+      <path d="M 270 190 C 285 182 302 178 322 176 C 342 174 360 174 378 176
+               C 396 178 412 182 428 186 C 444 190 458 194 470 196
+               C 482 198 492 198 500 196 C 508 194 514 190 516 185
+               C 518 180 515 175 510 172 C 505 169 498 168 490 168
+               C 482 168 473 170 463 172 C 453 174 442 177 430 178
+               C 418 179 405 178 392 176 C 379 174 366 170 353 168
+               C 340 166 327 165 315 167 C 303 169 292 174 283 180
+               C 274 186 268 193 270 198 Z"
+            fill="#0D2C22"/>
+
+      <!-- Bali (small) -->
+      <path d="M 525 180 C 532 176 540 174 548 175 C 556 176 562 180 564 185
+               C 566 190 563 195 557 198 C 551 201 543 201 536 199
+               C 529 197 524 192 524 186 Z"
+            fill="#0D2C22"/>
+
+      <!-- Lombok + Sumbawa -->
+      <path d="M 572 178 C 580 174 590 172 600 173 C 610 174 620 178 628 183
+               C 636 188 640 194 638 199 C 636 204 629 207 620 207
+               C 611 207 601 204 592 200 C 583 196 576 190 574 184 Z"
+            fill="#0D2C22"/>
+      <path d="M 642 176 C 652 172 664 170 676 172 C 688 174 698 180 704 187
+               C 710 194 710 202 705 207 C 700 212 691 214 681 213
+               C 671 212 661 208 653 202 C 645 196 640 188 642 180 Z"
+            fill="#0D2C22"/>
+
+      <!-- Flores + Timor -->
+      <path d="M 712 182 C 722 178 734 176 746 178 C 758 180 768 186 772 193
+               C 776 200 773 207 766 211 C 759 215 749 215 739 212
+               C 729 209 720 203 715 196 C 710 189 710 185 714 182 Z"
+            fill="#0D2C22"/>
+      <path d="M 778 188 C 786 184 796 182 806 185 C 816 188 822 195 820 202
+               C 818 209 810 214 800 215 C 790 216 781 212 776 206
+               C 771 200 772 192 778 188 Z"
+            fill="#0D2C22"/>
+
+      <!-- Kalimantan -->
+      <path d="M 480 80 C 495 62 515 50 540 45 C 565 40 590 42 612 50
+               C 634 58 652 72 664 88 C 676 104 682 122 680 140
+               C 678 158 668 174 654 184 C 640 194 622 198 604 196
+               C 586 194 568 186 554 174 C 540 162 530 146 522 130
+               C 514 114 506 98 498 88 C 490 78 482 82 480 88 Z"
+            fill="#0D2C22"/>
+
+      <!-- Sulawesi (distinctive K-shape) -->
+      <path d="M 680 85 C 690 78 702 74 714 76 C 726 78 734 86 736 96
+               C 738 106 733 116 724 122 C 715 128 703 130 694 126
+               L 690 145 C 692 158 698 170 698 180 C 698 188 694 194 688 196
+               C 682 198 675 195 671 189 C 667 183 666 175 668 167
+               L 664 148 C 658 142 650 138 646 130 C 642 122 644 112 650 106
+               C 656 100 665 98 674 99 Z"
+            fill="#0D2C22"/>
+      <!-- Sulawesi north arm -->
+      <path d="M 736 96 C 748 88 762 84 774 88 C 786 92 792 102 788 112
+               C 784 122 772 128 760 126 C 748 124 738 116 736 106 Z"
+            fill="#0D2C22"/>
+
+      <!-- Maluku / Halmahera (small blobs) -->
+      <path d="M 796 75 C 802 70 810 68 817 71 C 824 74 828 81 826 88
+               C 824 95 817 99 810 98 C 803 97 798 91 798 84 Z"
+            fill="#0D2C22"/>
+      <path d="M 820 100 C 826 96 833 95 839 98 C 845 101 847 108 844 114
+               C 841 120 834 123 828 121 C 822 119 818 113 820 107 Z"
+            fill="#0D2C22"/>
+
+      <!-- Papua (New Guinea western half) -->
+      <path d="M 808 148 C 822 136 840 128 860 126 C 880 124 898 130 910 142
+               C 922 154 924 170 916 182 C 908 194 893 200 877 200
+               C 861 200 845 193 832 182 C 819 171 812 158 812 148 Z"
+            fill="#0D2C22"/>
+
+    </svg>
+  </div>
+
+  <div class="inner story-grid" style="position:relative; z-index:1;">
     <div class="story-visual fade-in" style="display:flex; align-items:flex-start; justify-content:center; padding-top:1rem; gap:1.2rem; flex-wrap:wrap;">
 
       <!-- Yuli polaroid — left, tilted left -->
