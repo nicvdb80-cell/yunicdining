@@ -1589,16 +1589,16 @@ function flipMenuCard(el) { el.classList.toggle('flipped'); }
   </button>
 
   <ul class="nav-links" id="nav-links">
-    <li><a href="#story"    onclick="closeNavDrawer()">Our Story</a></li>
-    <li><a href="#offer"    onclick="closeNavDrawer()">What We Offer</a></li>
-    <li><a href="#food"     onclick="closeNavDrawer()">Food</a></li>
-    <li><a href="#beverages" onclick="closeNavDrawer()">Beverages</a></li>
-    <li><a href="#packages" onclick="closeNavDrawer()">Packages</a></li>
-    <li><a href="#alacarte" onclick="closeNavDrawer()">À La Carte</a></li>
-    <li><a href="#specials" onclick="closeNavDrawer()">Specials</a></li>
-    <li><a href="#media"    onclick="closeNavDrawer()">Media</a></li>
-    <li><a href="#contact"  onclick="closeNavDrawer()">Contact</a></li>
-    <li><a href="#food" class="nav-cta" onclick="closeNavDrawer()">See The Menu</a></li>
+    <li><a href="#story"     class="nav-drawer-link">Our Story</a></li>
+    <li><a href="#offer"     class="nav-drawer-link">What We Offer</a></li>
+    <li><a href="#food"      class="nav-drawer-link">Food</a></li>
+    <li><a href="#beverages" class="nav-drawer-link">Beverages</a></li>
+    <li><a href="#packages"  class="nav-drawer-link">Packages</a></li>
+    <li><a href="#alacarte"  class="nav-drawer-link">À La Carte</a></li>
+    <li><a href="#specials"  class="nav-drawer-link">Specials</a></li>
+    <li><a href="#media"     class="nav-drawer-link">Media</a></li>
+    <li><a href="#contact"   class="nav-drawer-link">Contact</a></li>
+    <li><a href="#food"      class="nav-cta nav-drawer-link">See The Menu</a></li>
   </ul>
 </nav>
 
@@ -1609,11 +1609,7 @@ function toggleNavDrawer() {
   var overlay = document.getElementById('nav-overlay');
   var isOpen  = links.classList.contains('open');
   if (isOpen) {
-    links.classList.remove('open');
-    burger.classList.remove('open');
-    overlay.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    _closeDrawer(links, burger, overlay);
   } else {
     links.classList.add('open');
     burger.classList.add('open');
@@ -1622,19 +1618,46 @@ function toggleNavDrawer() {
     document.body.style.overflow = 'hidden';
   }
 }
-function closeNavDrawer() {
-  var links   = document.getElementById('nav-links');
-  var burger  = document.getElementById('nav-hamburger');
-  var overlay = document.getElementById('nav-overlay');
+
+function _closeDrawer(links, burger, overlay) {
+  links   = links   || document.getElementById('nav-links');
+  burger  = burger  || document.getElementById('nav-hamburger');
+  overlay = overlay || document.getElementById('nav-overlay');
   links.classList.remove('open');
   burger.classList.remove('open');
   overlay.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
+
+// Drawer nav links — close drawer, wait for slide animation, then scroll to section
+document.addEventListener('DOMContentLoaded', function () {
+  var drawerLinks = document.querySelectorAll('.nav-drawer-link');
+  drawerLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      e.preventDefault();
+
+      var targetId = href.replace('#', '');
+      _closeDrawer();
+
+      // Wait for drawer CSS transition (380ms) then scroll
+      setTimeout(function() {
+        var target = document.getElementById(targetId);
+        if (target) {
+          var navH = document.getElementById('main-nav').offsetHeight || 70;
+          var top  = target.getBoundingClientRect().top + window.pageYOffset - navH;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      }, 400);
+    });
+  });
+});
+
 // Close on Escape
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeNavDrawer();
+  if (e.key === 'Escape') _closeDrawer();
 });
 </script>
 
