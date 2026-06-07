@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://yunicdining.com/sitemap.xml
+
+# Block common junk paths
+Disallow: /cdn-cgi/
+Disallow: /.git/
