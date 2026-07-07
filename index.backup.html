@@ -626,7 +626,45 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(13,44,34,0.1); }
 }
 
 /* ========== SECTIONS COMMONS ========== */
-section { padding: 6rem 6vw; position: relative; }
+section {
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+section > .inner,
+section > div[style] {
+  width: 100%;
+  max-width: 1200px;
+  padding: 7rem 6vw;
+}
+
+/* ── Content-heavy sections: taller than viewport but not locked ── */
+#alacarte, #contact {
+  min-height: auto;
+  align-items: flex-start;
+}
+#alacarte > .inner,
+#contact > .inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 6vw;
+}
+
+/* ── Alternating background tints for visual page separation ── */
+#story    { background-color: #F0EAD8; }
+#offer    { background-color: #EDE6D3; }
+#food     { background-color: #F0EAD8; }
+#beverages{ background-color: #EDE6D3; }
+#packages { background-color: #F0EAD8; }
+#media    { background-color: #EDE6D3; }
+#alacarte { background-color: #F0EAD8; }
+#specials { background-color: #EDE6D3; }
+#contact  { background-color: #F0EAD8; }
 
 .section-eyebrow {
   font-size: 0.68rem;
@@ -728,7 +766,7 @@ section { padding: 6rem 6vw; position: relative; }
 }
 
 /* ========== WHAT WE OFFER ========== */
-.offer-section { padding: 6rem 12vw !important; background: url("https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/img04.png") center center / 100% 100% no-repeat; }
+.offer-section { background: url("https://raw.githubusercontent.com/nicvdb80-cell/yunicdining/main/assets/img04.png") center center / cover no-repeat; }
 
 .offer-grid {
   display: grid;
