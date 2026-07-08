@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>À La Carte — Yunic Dining</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{--jade:#0D2C22;--bronze:#A3704C;--cream:#E4E1DB;--parchment:#DAD7D0;--ink:#183028;--muted:#6F6254;--line:rgba(163,112,76,.3)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:15px;line-height:1.65;padding-bottom:120px}
+h1,h2,h3{font-family:"Italiana",serif;font-weight:400;color:var(--jade)}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;height:64px;padding:0 clamp(16px,4vw,48px);display:flex;align-items:center;justify-content:space-between;background:rgba(228,225,219,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font-family:"Italiana",serif;font-size:24px;letter-spacing:.12em;color:var(--jade)}
+.back{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze)}
+
+/* HEADER */
+.header{padding:clamp(88px,10vw,120px) clamp(16px,5vw,64px) clamp(32px,4vw,52px);max-width:1100px;margin:0 auto}
+.eyebrow{color:var(--bronze);font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-family:"DM Sans",sans-serif;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.eyebrow:after{content:"";flex:0 0 36px;height:1px;background:var(--bronze);opacity:.5}
+.header h1{font-size:clamp(32px,4.5vw,58px);line-height:1;margin-bottom:14px}
+.header p{font-size:14px;color:var(--muted);max-width:56ch}
+.tax-note{display:inline-block;margin-top:12px;font-size:12px;color:var(--muted);font-style:italic}
+
+/* CATEGORIES */
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:0 clamp(16px,5vw,64px);margin-bottom:32px}
+.cat-btn{font-family:"DM Sans",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .25s}
+.cat-btn:hover,.cat-btn.active{background:var(--jade);color:var(--cream);border-color:var(--jade)}
+
+/* SECTIONS */
+.menu-section{display:none;max-width:1100px;margin:0 auto;padding:0 clamp(16px,5vw,64px)}
+.menu-section.active{display:block}
+.section-intro{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:28px;max-width:56ch}
+.section-title{font-size:clamp(22px,2.5vw,34px);margin-bottom:6px}
+.section-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);font-family:"DM Sans",sans-serif;margin-bottom:8px;display:block}
+
+/* DISH GRID */
+.dish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px}
+.dish-card{background:rgba(255,255,255,.3);border:1px solid var(--line);padding:20px;transition:border-color .25s,box-shadow .25s}
+.dish-card:hover{border-color:rgba(163,112,76,.5);box-shadow:0 4px 20px rgba(13,44,34,.07)}
+.dish-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.dish-name{font-family:"Italiana",serif;font-size:17px;color:var(--jade);line-height:1.15}
+.dish-price{font-family:"DM Sans",sans-serif;font-size:12px;font-weight:500;color:var(--bronze);white-space:nowrap;margin-top:2px}
+.dish-region{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);opacity:.7;margin-bottom:8px;font-family:"DM Sans",sans-serif}
+.dish-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.dish-nickname{font-size:13px;color:var(--bronze);font-style:italic}
+
+/* COUNTER */
+.counter{display:flex;align-items:center;gap:0;border:1px solid var(--line);width:fit-content}
+.counter-btn{width:36px;height:36px;border:none;background:transparent;cursor:pointer;font-size:18px;color:var(--jade);font-family:"DM Sans",sans-serif;transition:background .2s;display:flex;align-items:center;justify-content:center}
+.counter-btn:hover{background:rgba(13,44,34,.08)}
+.counter-num{min-width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--jade);font-family:"DM Sans",sans-serif;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.add-btn{width:auto;padding:0 14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1px solid var(--bronze);color:var(--bronze);height:36px;cursor:pointer;font-family:"DM Sans",sans-serif;transition:all .25s;white-space:nowrap}
+.add-btn:hover{background:var(--bronze);color:#fff}
+.add-btn.in-cart{background:var(--jade);border-color:var(--jade);color:#fff}
+
+/* BASKET FLOAT */
+.basket-float{position:fixed;bottom:24px;right:24px;z-index:100;display:none}
+.basket-float.visible{display:block}
+.basket-btn{display:flex;align-items:center;gap:10px;background:var(--jade);color:var(--cream);border:none;padding:14px 22px;cursor:pointer;font-family:"DM Sans",sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 6px 24px rgba(13,44,34,.3);transition:transform .2s}
+.basket-btn:hover{transform:translateY(-2px)}
+.basket-count{background:var(--bronze);color:#fff;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center}
+
+/* BASKET PANEL */
+.basket-overlay{position:fixed;inset:0;background:rgba(13,44,34,.4);z-index:200;display:none;opacity:0;transition:opacity .3s}
+.basket-overlay.open{display:flex;justify-content:flex-end}
+.basket-panel{width:min(440px,100vw);background:var(--cream);height:100%;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.basket-overlay.open .basket-panel{transform:translateX(0)}
+.basket-head{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.basket-head h2{font-size:22px}
+.basket-close{background:transparent;border:1px solid var(--line);width:36px;height:36px;cursor:pointer;font-size:20px;color:var(--jade);display:flex;align-items:center;justify-content:center}
+.basket-items{flex:1;overflow-y:auto;padding:16px 24px}
+.basket-item{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:.5px solid var(--line);gap:12px}
+.basket-item-name{font-size:14px;color:var(--jade);flex:1}
+.basket-item-qty{font-size:12px;color:var(--muted);margin-top:2px}
+.basket-item-price{font-size:14px;font-weight:500;color:var(--bronze);white-space:nowrap}
+.basket-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 4px;line-height:1;transition:color .2s}
+.basket-item-remove:hover{color:var(--jade)}
+.basket-empty{text-align:center;padding:48px 24px;color:var(--muted);font-size:14px}
+.basket-footer{padding:20px 24px;border-top:1px solid var(--line)}
+.basket-total-line{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.basket-total{display:flex;justify-content:space-between;font-size:16px;font-weight:500;color:var(--jade);margin-bottom:6px}
+.basket-tax{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:20px}
+.basket-name-wrap{margin-bottom:16px}
+.basket-name-wrap label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);font-family:"DM Sans",sans-serif;display:block;margin-bottom:6px}
+.basket-name-wrap input{width:100%;border:1px solid var(--line);background:transparent;padding:10px 14px;font-size:14px;color:var(--ink);font-family:"DM Sans",sans-serif;transition:border-color .25s}
+.basket-name-wrap input:focus{border-color:var(--bronze);outline:none}
+.wa-btn{width:100%;background:#25D366;border:none;color:#fff;padding:14px;font-family:"DM Sans",sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:opacity .25s}
+.wa-btn:hover{opacity:.9}
+.wa-btn:disabled{opacity:.4;cursor:not-allowed}
+.wa-icon{width:20px;height:20px;fill:#fff}
+
+/* COMING SOON */
+.coming-soon{padding:40px;text-align:center;font-size:14px;color:var(--muted);font-style:italic;border:1px dashed var(--line)}
+
+@media(max-width:600px){
+  .dish-grid{grid-template-columns:1fr}
+  .basket-float{bottom:16px;right:16px}
+  .basket-btn{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="logo">YUNIC</a>
+  <a href="/" class="back">← Back to Yunic</a>
+</nav>
+
+<div class="header">
+  <div class="eyebrow">À La Carte</div>
+  <h1>Yunic flavours, your table.</h1>
+  <p>Browse the selection, build your order and send it directly to us on WhatsApp. We will confirm availability and details personally.</p>
+  <span class="tax-note">All prices before 11% tax and 5% service charge.</span>
+</div>
+
+<div class="cat-tabs">
+  <button class="cat-btn active" onclick="showCat('snacks')">Aperitif & Snacks</button>
+  <button class="cat-btn" onclick="showCat('sambals')">Dippings & Sambals</button>
+  <button class="cat-btn" onclick="showCat('starters')">Starters</button>
+  <button class="cat-btn" onclick="showCat('broths')">Warm Broths</button>
+  <button class="cat-btn" onclick="showCat('mains')">Main Courses</button>
+  <button class="cat-btn" onclick="showCat('desserts')">Desserts</button>
+</div>
+
+<!-- SNACKS -->
+<div class="menu-section active" id="cat-snacks">
+  <span class="section-eyebrow">Before the table</span>
+  <h2 class="section-title">Aperitif & Snacks</h2>
+  <p class="section-intro">Small bites to open the evening. Priced per piece or per portion.</p>
+  <div class="dish-grid" id="grid-snacks"></div>
+</div>
+
+<!-- SAMBALS -->
+<div class="menu-section" id="cat-sambals">
+  <span class="section-eyebrow">Handmade with care</span>
+  <h2 class="section-title">Dippings & Sambals</h2>
+  <p class="section-intro">House-made sauces and condiments to accompany snacks or add to the table.</p>
+  <div class="dish-grid" id="grid-sambals"></div>
+</div>
+
+<!-- STARTERS -->
+<div class="menu-section" id="cat-starters">
+  <span class="section-eyebrow">Opening the journey</span>
+  <h2 class="section-title">Individual Starters</h2>
+  <p class="section-intro">Plated individual portions. Priced per person.</p>
+  <div class="dish-grid" id="grid-starters"></div>
+</div>
+
+<!-- BROTHS -->
+<div class="menu-section" id="cat-broths">
+  <span class="section-eyebrow">A comforting pause</span>
+  <h2 class="section-title">Warm Broths</h2>
+  <p class="section-intro">Light aromatic broths, around 70–100 ml, served to refresh the palate between courses. Priced per person.</p>
+  <div class="dish-grid" id="grid-broths"></div>
+</div>
+
+<!-- MAINS -->
+<div class="menu-section" id="cat-mains">
+  <span class="section-eyebrow">The heart of the islands</span>
+  <h2 class="section-title">Main Courses</h2>
+  <p class="section-intro">Sharing or individual. All priced per person.</p>
+  <div class="dish-grid" id="grid-mains"></div>
+</div>
+
+<!-- DESSERTS -->
+<div class="menu-section" id="cat-desserts">
+  <span class="section-eyebrow">Sweet farewells</span>
+  <h2 class="section-title">Desserts</h2>
+  <div class="coming-soon">Our dessert selection is coming soon.<br>Ask us about current sweet offerings when you get in touch.</div>
+</div>
+
+<!-- BASKET FLOAT -->
+<div class="basket-float" id="basketFloat">
+  <button class="basket-btn" onclick="openBasket()">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    View order
+    <span class="basket-count" id="basketCount">0</span>
+  </button>
+</div>
+
+<!-- BASKET PANEL -->
+<div class="basket-overlay" id="basketOverlay" onclick="handleOverlayClick(event)">
+  <div class="basket-panel" id="basketPanel">
+    <div class="basket-head">
+      <h2>Your order</h2>
+      <button class="basket-close" onclick="closeBasket()">×</button>
+    </div>
+    <div class="basket-items" id="basketItems">
+      <p class="basket-empty">Your basket is empty.</p>
+    </div>
+    <div class="basket-footer">
+      <div class="basket-total-line"><span>Subtotal</span><span id="subtotalAmt">IDR 0</span></div>
+      <div class="basket-total"><span>Total</span><span id="totalAmt">IDR 0</span></div>
+      <p class="basket-tax">+ 11% tax & 5% service charge will be added</p>
+      <div class="basket-name-wrap">
+        <label for="guestName">Your name</label>
+        <input type="text" id="guestName" placeholder="e.g. Sarah — villa Canggu">
+      </div>
+      <button class="wa-btn" id="sendWaBtn" onclick="sendToWhatsApp()" disabled>
+        <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>
+        Send order to WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const MENU = {
+  snacks: [
+    {name:'Beef Tongue Skewer', nick:'"Nic's Favourite"', region:'North Sumatra-inspired', desc:'Slow-cooked beef tongue skewer glazed with kecap manis, rawit chili, lime and andaliman. Rich, tender and deeply aromatic.', price:65000, unit:'per piece'},
+    {name:'Otak-Otak', region:'Sumatra / Java', desc:'Grilled fish cake wrapped in banana leaf with coconut milk, lemongrass and turmeric. Smoky, soft and fragrant.', price:45000, unit:'per piece'},
+    {name:'Mini Pempek', nick:'"Aunty Yuli Style"', region:'Palembang, South Sumatra', desc:'Classic fish-tapioca canapé served with cuko, the sweet-sour-spicy vinegar sauce that defines pempek.', price:45000, unit:'per piece'},
+    {name:'Cassava Chip with Tuna Gohu', region:'Ternate, North Maluku', desc:'Crispy cassava chip topped with Indonesian-style tuna ceviche — fresh, citrusy, spicy and aromatic with kenari nut.', price:50000, unit:'per piece'},
+    {name:'Fish Gulai Croquette', region:'Sumatra-inspired', desc:'Refined fried bite using gulai spices, turmeric, coconut and fish, finished with sambal emulsion.', price:45000, unit:'per piece'},
+    {name:'Karedok Roll', region:'Sunda, West Java', desc:'Raw vegetables with peanut-kencur dressing, neatly rolled in spinach for a fresh, crunchy hand-held bite.', price:38000, unit:'per piece'},
+    {name:'Botok Tempe', region:'Java', desc:'Steamed banana-leaf parcel of tempeh, grated coconut, herbs and spices. Humble, village-style flavour.', price:35000, unit:'per piece'},
+    {name:'Gudeg Jackfruit Croquette', region:'Yogyakarta, Java', desc:'Young jackfruit slow-cooked in coconut and palm sugar, turned into a small crispy croquette.', price:38000, unit:'per piece'},
+    {name:'Betel Leaf Tempura', region:'Indonesian tradition', desc:'Crisp daun sirih in light tempura batter, served with sambal matah. Elegant, aromatic and culturally rooted.', price:35000, unit:'per piece'},
+    {name:'Smoked Beef Tartare Se'i Sapi', region:'Nusa Tenggara Timur', desc:'Cold-smoked beef tartare inspired by NTT tradition, served on a rice cracker with sambal lu'at.', price:75000, unit:'per piece'},
+    {name:'Cakalang Fufu Tartlet', region:'North Sulawesi', desc:'Smoked skipjack tuna in a tartlet with rica-rica flavours — smoke, chili, citrus and fresh kemangi.', price:55000, unit:'per piece'},
+    {name:'Sago & Rice Crackers', region:'Eastern Indonesia', desc:'Crispy table snacks representing Eastern Indonesia's sago culture and the archipelago's rice heritage.', price:35000, unit:'per portion'},
+    {name:'Sago Tuile with Yellow Fish Dipping', region:'Maluku / Papua', desc:'Sago crisp inspired by papeda, served with turmeric-fish dip — bright, coastal and unexpected.', price:50000, unit:'per portion'},
+    {name:'Grilled Fish Colo-Colo', region:'Maluku', desc:'Grilled fish bite topped with sambal colo-colo — fresh tomato, chili, shallot and lime. Smoky and bright.', price:65000, unit:'per portion'},
+    {name:'Rempeyek Kacang', region:'Indonesia-wide', desc:'Traditional crispy peanut crackers in spiced rice flour batter. The perfect nibble with drinks.', price:30000, unit:'per portion'},
+  ],
+  sambals: [
+    {name:'Cuko Palembang', region:'Palembang, South Sumatra', desc:'Essential sauce for pempek: sweet, sour, spicy, garlicky and slightly smoky from palm sugar.', price:25000, unit:'per portion'},
+    {name:'Sambal Kecap Rawit', region:'Indonesia-wide', desc:'Sweet kecap balancing rawit chili, shallot and lime. Perfect for grilled skewers and fried snacks.', price:25000, unit:'per portion'},
+    {name:'Peanut Kencur Sauce', region:'Sunda, West Java', desc:'The soul of karedok: roasted peanut sauce with the aromatic sharpness of kencur. Fresh, nutty and very Sundanese.', price:30000, unit:'per portion'},
+    {name:'Sambal Lu'at', region:'Nusa Tenggara Timur', desc:'Spicy fresh sambal from NTT with chili, lime, shallot and kemangi. Made to accompany smoked meats.', price:30000, unit:'per portion'},
+    {name:'Kenari Kemangi Dressing', region:'Maluku / North Maluku', desc:'Rich, fragrant dressing of kenari nut, kemangi, lime, chili and coconut oil from the eastern islands.', price:35000, unit:'per portion'},
+    {name:'Melinjo / Emping', region:'Indonesia-wide', desc:'Bitter, nutty crackers made from melinjo seed. A very Indonesian accompaniment to spicy or sweet sauces.', price:30000, unit:'per portion'},
+    {name:'Keripik Tempe', region:'Java', desc:'Thin crispy tempeh chips — a classic Indonesian snack and strong vegetarian crunch element.', price:30000, unit:'per portion'},
+  ],
+  starters: [
+    {name:'Tuna Gohu', region:'Maluku / Ternate', desc:'Raw or lightly cured tuna with calamansi, shallot, chili, kemangi and kenari nut. Indonesia's answer to ceviche — fresh, acidic and aromatic. Served on a sago cracker.', price:135000, unit:'per person'},
+    {name:'Mini Gado-Gado', region:'Java / Betawi', desc:'Blanched long beans, cabbage, bean sprouts, cucumber, crispy tempeh and quail egg with peanut-kencur dressing and fried shallot.', price:95000, unit:'per person'},
+    {name:'Beef Carpaccio with Sambal Ijo', region:'West Sumatra / Minangkabau', desc:'Thin-sliced seared beef tenderloin with green chili sambal, crispy shallot, toasted coconut and a coconut-lime dressing. Rich, spiced and refined.', price:165000, unit:'per person'},
+    {name:'Karedok Lettuce Cup', region:'West Java / Sunda', desc:'Baby gem lettuce cup filled with cucumber, long bean, bean sprout, cabbage and kemangi, dressed in kencur-peanut sauce. Raw, crisp and served cold.', price:85000, unit:'per person'},
+    {name:'Smoked Fish Rica-Rica', region:'North Sulawesi / Manado', desc:'Smoked skipjack or tuna with bold rica-rica paste of red chili, ginger, lemongrass, lime leaf and kemangi. Smoky, spicy and deeply aromatic.', price:125000, unit:'per person'},
+  ],
+  broths: [
+    {name:'Soto Ayam Consommé', region:'Java', desc:'Clear chicken broth infused with turmeric, lemongrass, galangal and kaffir lime leaf. Shredded chicken, glass noodle and quail egg. Warm and fragrant.', price:95000, unit:'per person'},
+    {name:'Ikan Kuah Kuning', region:'Maluku / Papua', desc:'Bright yellow fish broth with turmeric, citrus leaves, kemangi and fresh snapper. Coastal, fresh and aromatic.', price:125000, unit:'per person'},
+    {name:'Pindang Ikan Broth', region:'South Sumatra / Palembang', desc:'Sour, aromatic broth with tamarind, pineapple, tomato and poached fish. Fruity and fresh — one of the best palate cleansers in an Indonesian menu.', price:115000, unit:'per person'},
+    {name:'Sayur Asem Consommé', region:'Sunda / West Java', desc:'Clean vegetarian broth of tamarind, young corn, long beans, melinjo and chayote. Bright, sour and gently sweet.', price:85000, unit:'per person'},
+    {name:'Light Sayur Lodeh Broth', region:'Java', desc:'Delicate coconut vegetable bouillon with galangal, turmeric, baby vegetables and a kemangi finish. Soft and comforting.', price:90000, unit:'per person'},
+    {name:'Keluwak Mushroom Broth', region:'East Java / Rawon-inspired', desc:'Dark, earthy vegetarian broth of roasted mushroom stock and keluwak, inspired by rawon. Mysterious, deep and refined.', price:105000, unit:'per person'},
+    {name:'Moringa & Sweet Corn Broth', region:'East Indonesia / Nusa Tenggara', desc:'Gentle green vegetable broth of moringa leaves, sweet corn, ginger and coconut oil. Clean, healthy and slightly sweet.', price:85000, unit:'per person'},
+  ],
+  mains: [
+    {name:'Rendang Sapi', region:'West Sumatra / Minangkabau', desc:'The anchor of the table. Beef cheek or short rib slowly braised in coconut milk and spice paste until dark, glossy and intensely caramelised. A family recipe.', price:285000, unit:'per person'},
+    {name:'Ayam Betutu', region:'Bali', desc:'Chicken leg rubbed generously with base genep spices, wrapped and steam-braised until tender. Fragrant, earthy and distinctly Balinese.', price:225000, unit:'per person'},
+    {name:'Mushroom Rendang', region:'Sumatra-inspired vegetarian', desc:'King oyster and shiitake mushrooms seared, then folded into a deep coconut-spice rendang sauce. Rich umami with the same patience as the original.', price:195000, unit:'per person'},
+    {name:'Fish Woku', region:'North Sulawesi / Manado', desc:'White fish in a vibrant sauce of turmeric, tomato, lemongrass, kemangi and calamansi. Bright, herbal and spicy.', price:245000, unit:'per person'},
+    {name:'Ayam Opor', region:'Central Java', desc:'Chicken gently simmered in pale coconut sauce with candlenut, coriander and aromatics. Elegant, aromatic and comfortingly soft.', price:215000, unit:'per person'},
+    {name:'Gulai Ikan', region:'Sumatra / Malay-influenced', desc:'Fragrant fish curry in turmeric-coconut sauce with tamarind and warm spices. Rich but clean enough for seafood.', price:245000, unit:'per person'},
+    {name:'Fish Sambal Matah', region:'Bali', desc:'Simply grilled or steamed fish topped with fresh Balinese sambal matah — raw shallot, lemongrass, chili, lime and coconut oil. Light and vivid.', price:245000, unit:'per person'},
+    {name:'Semur', region:'Java / Dutch-Indonesian heritage', desc:'Beef, chicken or egg braised in kecap manis with nutmeg, clove and cinnamon. A sweet-spiced braise where two culinary worlds meet.', price:240000, unit:'per person'},
+    {name:'Duck Leg Confit, Indonesian Spices', region:'French-Indonesian', desc:'Duck leg confited in Indonesian aromatics — galangal, lemongrass, star anise — then crisped and glazed with tamarind-kecap.', price:295000, unit:'per person'},
+    {name:'Ikan Arsik', region:'North Sumatra / Batak', desc:'Distinctive Batak fish dish with andaliman pepper, torch ginger and turmeric. Full of citrus and spice.', price:245000, unit:'per person'},
+    {name:'Bebek Madura Hitam', region:'Madura / East Java', desc:'Duck leg in dark Madurese spice paste — intense, slightly sweet and bold. Slow-cooked then glazed until caramelised and rich.', price:295000, unit:'per person'},
+    {name:'Udang Balado', region:'West Sumatra / Minang', desc:'Grilled prawns tossed through a punchy balado of red chili, tomato, shallot and lime. Heat, colour and clean seafood spice.', price:275000, unit:'per person'},
+    {name:'Nangka Muda Kalio', region:'Sumatra / vegetarian', desc:'Young jackfruit simmered in a lighter rendang-style coconut sauce until meaty and satisfying. Richness and depth without meat.', price:175000, unit:'per person'},
+    {name:'Iga Bakar Kecap Kemangi', region:'Java / Sulawesi-inspired', desc:'Beef short rib braised until tender, glazed with kecap-tamarind reduction, grilled for char and finished with fresh kemangi.', price:325000, unit:'per person'},
+  ]
+};
+
+let cart = {};
+
+function fmt(n){return'IDR '+n.toLocaleString('id-ID')}
+
+function renderMenus(){
+  Object.entries(MENU).forEach(([cat, items])=>{
+    const grid = document.getElementById('grid-'+cat);
+    if(!grid) return;
+    items.forEach((item,i)=>{
+      const id = cat+'_'+i;
+      const card = document.createElement('div');
+      card.className = 'dish-card';
+      card.innerHTML = `
+        <div class="dish-header">
+          <div>
+            <div class="dish-name">${item.name}${item.nick?` <span class="dish-nickname">${item.nick}</span>`:''}</div>
+            <div class="dish-price">${fmt(item.price)} <span style="color:var(--muted);font-weight:400">${item.unit}</span></div>
+          </div>
+        </div>
+        <div class="dish-region">${item.region}</div>
+        <div class="dish-desc">${item.desc}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+          <div class="counter" id="counter-${id}" style="display:none">
+            <button class="counter-btn" onclick="changeQty('${id}','${cat}',${i},-1)">−</button>
+            <span class="counter-num" id="num-${id}">0</span>
+            <button class="counter-btn" onclick="changeQty('${id}','${cat}',${i},1)">+</button>
+          </div>
+          <button class="add-btn" id="addbtn-${id}" onclick="addItem('${id}','${cat}',${i})">+ Add</button>
+        </div>`;
+      grid.appendChild(card);
+    });
+  });
+}
+
+function addItem(id, cat, i){
+  if(!cart[id]) cart[id]={...MENU[cat][i], qty:0};
+  cart[id].qty++;
+  document.getElementById('counter-'+id).style.display='flex';
+  document.getElementById('num-'+id).textContent=cart[id].qty;
+  document.getElementById('addbtn-'+id).className='add-btn in-cart';
+  document.getElementById('addbtn-'+id).textContent='Added ✓';
+  updateBasket();
+}
+
+function changeQty(id, cat, i, delta){
+  if(!cart[id]) return;
+  cart[id].qty = Math.max(0, cart[id].qty + delta);
+  document.getElementById('num-'+id).textContent=cart[id].qty;
+  if(cart[id].qty===0){
+    delete cart[id];
+    document.getElementById('counter-'+id).style.display='none';
+    document.getElementById('addbtn-'+id).className='add-btn';
+    document.getElementById('addbtn-'+id).textContent='+ Add';
+  }
+  updateBasket();
+}
+
+function updateBasket(){
+  const keys = Object.keys(cart);
+  const total = keys.reduce((s,k)=>s+cart[k].price*cart[k].qty,0);
+  const count = keys.reduce((s,k)=>s+cart[k].qty,0);
+  document.getElementById('basketCount').textContent=count;
+  document.getElementById('basketFloat').className='basket-float'+(count>0?' visible':'');
+  document.getElementById('subtotalAmt').textContent=fmt(total);
+  document.getElementById('totalAmt').textContent=fmt(total);
+  document.getElementById('sendWaBtn').disabled=count===0;
+
+  const container = document.getElementById('basketItems');
+  if(keys.length===0){
+    container.innerHTML='<p class="basket-empty">Your basket is empty.</p>';
+    return;
+  }
+  container.innerHTML = keys.map(k=>`
+    <div class="basket-item">
+      <div>
+        <div class="basket-item-name">${cart[k].name}</div>
+        <div class="basket-item-qty">${cart[k].qty} × ${fmt(cart[k].price)}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="basket-item-price">${fmt(cart[k].price*cart[k].qty)}</span>
+        <button class="basket-item-remove" onclick="removeItem('${k}')">×</button>
+      </div>
+    </div>`).join('');
+}
+
+function removeItem(id){
+  const el = document.getElementById('counter-'+id);
+  const btn = document.getElementById('addbtn-'+id);
+  if(el) el.style.display='none';
+  if(btn){btn.className='add-btn';btn.textContent='+ Add';}
+  delete cart[id];
+  updateBasket();
+}
+
+function openBasket(){
+  const ov = document.getElementById('basketOverlay');
+  ov.classList.add('open');
+  setTimeout(()=>ov.style.opacity='1',10);
+}
+function closeBasket(){
+  const ov = document.getElementById('basketOverlay');
+  ov.style.opacity='0';
+  setTimeout(()=>ov.classList.remove('open'),300);
+}
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('basketOverlay')) closeBasket();
+}
+
+function sendToWhatsApp(){
+  const keys = Object.keys(cart);
+  if(!keys.length) return;
+  const name = document.getElementById('guestName').value.trim();
+  const total = keys.reduce((s,k)=>s+cart[k].price*cart[k].qty,0);
+  let msg = 'Hello Yunic Dining 🌿\n\n';
+  if(name) msg += `Name: ${name}\n\n`;
+  msg += 'À La Carte Order:\n';
+  msg += '─────────────────\n';
+  keys.forEach(k=>{
+    msg += `• ${cart[k].name} × ${cart[k].qty} = ${fmt(cart[k].price*cart[k].qty)}\n`;
+  });
+  msg += '─────────────────\n';
+  msg += `Subtotal: ${fmt(total)}\n`;
+  msg += '(+ 11% tax & 5% service charge)\n\n';
+  msg += 'Please confirm availability and details. Thank you!';
+  window.open('https://wa.me/6281994807407?text='+encodeURIComponent(msg),'_blank');
+}
+
+function showCat(cat){
+  document.querySelectorAll('.menu-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('cat-'+cat).classList.add('active');
+  event.target.classList.add('active');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeBasket()});
+renderMenus();
+</script>
+</body>
+</html>
