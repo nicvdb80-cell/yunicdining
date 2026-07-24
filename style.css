@@ -393,3 +393,71 @@ a.journal-item:hover{padding-left:.8rem}
   .contact-row{grid-template-columns:90px 1fr auto}
   .frame-img{min-height:240px}
 }
+
+/* ============ SOUND GATE ============ */
+.sound-gate{
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background-color:var(--paper);
+  background-image:url("images/marble-white.jpg");
+  background-repeat:no-repeat; background-position:top center; background-size:cover;
+  transition:opacity .9s var(--ease), visibility .9s var(--ease);
+}
+.sound-gate::before{
+  content:""; position:absolute; inset:0;
+  background:rgba(247,247,244,.72);
+}
+.sound-gate.gate-hidden{opacity:0; visibility:hidden; pointer-events:none}
+.sound-gate-inner{
+  position:relative; z-index:1;
+  text-align:center; max-width:440px; padding:2.5rem 2rem;
+  display:flex; flex-direction:column; align-items:center;
+}
+.sound-gate-mark{width:64px; height:64px; object-fit:contain; margin-bottom:1.4rem}
+.sound-gate-eyebrow{
+  font-family:var(--sans); font-size:.72rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold-deep); margin-bottom:.9rem;
+}
+.sound-gate-title{
+  font-family:var(--serif-it); font-style:italic; font-weight:500;
+  font-size:clamp(1.9rem,4vw,2.6rem); color:var(--ink); line-height:1.15; margin-bottom:.9rem;
+}
+.sound-gate-sub{
+  font-family:var(--sans); font-size:.95rem; color:var(--body); line-height:1.6; margin-bottom:2.2rem;
+}
+.sound-gate-actions{display:flex; gap:.9rem; flex-wrap:wrap; justify-content:center}
+.sg-btn{
+  display:inline-flex; align-items:center; gap:.55rem;
+  font-family:var(--sans); font-size:.85rem; letter-spacing:.03em;
+  padding:.85rem 1.5rem; border-radius:2px; cursor:pointer;
+  transition:background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.sg-btn-sound{
+  background:var(--ink); color:var(--paper); border:1px solid var(--ink);
+}
+.sg-btn-sound:hover{background:var(--gold-deep); border-color:var(--gold-deep)}
+.sg-btn-mute{
+  background:transparent; color:var(--ink); border:1px solid var(--line);
+}
+.sg-btn-mute:hover{border-color:var(--gold-deep); color:var(--gold-deep)}
+
+/* Floating music toggle, shown once the gate is dismissed */
+.sound-toggle{
+  position:fixed; right:1.4rem; bottom:1.4rem; z-index:400;
+  width:42px; height:42px; border-radius:50%;
+  background:var(--paper); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold-deep); cursor:pointer; opacity:0; visibility:hidden;
+  box-shadow:0 4px 18px rgba(37,36,32,.12);
+  transition:opacity .5s var(--ease), visibility .5s var(--ease), transform .25s var(--ease), border-color .25s var(--ease);
+}
+.sound-toggle.visible{opacity:1; visibility:visible}
+.sound-toggle:hover{transform:translateY(-2px); border-color:var(--gold-deep)}
+.sound-toggle .icon-off{display:none}
+.sound-toggle[aria-pressed="false"] .icon-on{display:none}
+.sound-toggle[aria-pressed="false"] .icon-off{display:block}
+@media(max-width:640px){
+  .sound-gate-inner{padding:2rem 1.4rem}
+  .sound-gate-actions{flex-direction:column; width:100%}
+  .sg-btn{justify-content:center; width:100%}
+}

@@ -101,4 +101,57 @@
   /* footer year */
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
+
+  /* sound gate — "enter with sound" / "enter without" */
+  var gate = document.getElementById('soundGate');
+  var music = document.getElementById('bgMusic');
+  var soundToggle = document.getElementById('soundToggle');
+  if (gate && music && soundToggle) {
+    var KEY = 'yunicSound';
+    music.volume = 0.35;
+
+    function showToggle() {
+      soundToggle.classList.add('visible');
+    }
+    function setPressed(on) {
+      soundToggle.setAttribute('aria-pressed', String(on));
+    }
+    function playMusic() {
+      music.play().catch(function () { /* autoplay blocked — toggle stays available */ });
+      setPressed(true);
+    }
+    function pauseMusic() {
+      music.pause();
+      setPressed(false);
+    }
+    function dismissGate() {
+      gate.classList.add('gate-hidden');
+      document.body.style.overflow = '';
+      showToggle();
+    }
+    function enter(withSound) {
+      sessionStorage.setItem(KEY, withSound ? 'on' : 'off');
+      dismissGate();
+      if (withSound) playMusic(); else pauseMusic();
+    }
+
+    var choice = sessionStorage.getItem(KEY);
+    if (choice === 'on' || choice === 'off') {
+      /* already chosen this session — skip the gate, keep preference */
+      dismissGate();
+      if (choice === 'on') playMusic();
+    } else {
+      document.body.style.overflow = 'hidden';
+      var btnOn = document.getElementById('sgWithSound');
+      var btnOff = document.getElementById('sgWithoutSound');
+      if (btnOn) btnOn.addEventListener('click', function () { enter(true); });
+      if (btnOff) btnOff.addEventListener('click', function () { enter(false); });
+    }
+
+    soundToggle.addEventListener('click', function () {
+      var on = soundToggle.getAttribute('aria-pressed') === 'true';
+      if (on) { pauseMusic(); sessionStorage.setItem(KEY, 'off'); }
+      else { playMusic(); sessionStorage.setItem(KEY, 'on'); }
+    });
+  }
 })();
