@@ -1,7 +1,7 @@
 /* ============================================================
    YUNIC DINING — shared design system
    Aligned with yunichospitality.com (live system, 2026)
-   Fonts: Cormorant SC (display) · Cormorant italic (accents) · DM Sans (body)
+   Fonts: Cormorant SC (display), weights 300/400/500 · DM Sans (body), weights 300/400/500
    Palette: paper/cream/sand · ink · gold/gold-deep · clay
    ============================================================ */
 
@@ -17,7 +17,6 @@
   --line:rgba(41,39,31,.16);
   --line-soft:rgba(41,39,31,.09);
   --serif:'Cormorant SC',serif;
-  --serif-it:'Cormorant',serif;
   --sans:'DM Sans',sans-serif;
   --pad:clamp(72px,10vw,140px);
   --ease:cubic-bezier(.19,1,.22,1);
