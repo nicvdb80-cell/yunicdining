@@ -1,7 +1,0 @@
-{
-  "routes": [
-    { "src": "/images/marble-white.jpg", "dest": "/images/marble-white.jpg" },
-    { "src": "/images/yunic-logo-gold.png", "dest": "/images/yunic-logo-gold.png" },
-    { "src": "/(.*)", "dest": "/maintenance.html" }
-  ]
-}
