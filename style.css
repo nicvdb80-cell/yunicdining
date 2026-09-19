@@ -26,7 +26,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background-color:var(--paper);
+  background:var(--paper) url("images/marble-white.jpg") center/cover no-repeat fixed;
   background-image:url("images/marble-white.jpg");
   background-repeat:no-repeat;
   background-position:top center;
@@ -52,8 +52,8 @@ button,input,textarea,select{font:inherit}
 
 .container{width:min(1240px,92vw);margin-inline:auto}
 .section{padding-block:var(--pad);position:relative}
-.section--tint{background:rgba(239,239,234,.82)}
-.section--sand{background:rgba(227,225,219,.85)}
+.section--tint{background:transparent}
+.section--sand{background:transparent}
 .section--line{border-top:1px solid var(--line-soft)}
 
 /* ============ TYPOGRAPHY ============ */
@@ -70,7 +70,7 @@ button,input,textarea,select{font:inherit}
 }
 h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .display em,.band-title em,.footer-title em,.cta-band h2 em{
-  font-family:var(--serif-it);font-style:italic;color:var(--gold-deep);
+  font-family:var(--serif);font-style:normal;color:var(--gold-deep);
 }
 .lede{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.7;color:var(--ink);max-width:56ch}
 .lede strong{font-weight:500;color:var(--gold-deep)}
@@ -89,7 +89,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .brand{display:flex;align-items:center;gap:.8rem}
 .brand-mark{width:34px;height:34px;object-fit:contain}
 .brand-word{font:400 1.3rem/1 var(--serif);color:var(--ink);letter-spacing:.06em}
-.brand-word em{font-family:var(--serif-it);font-style:italic;color:var(--gold-deep)}
+.brand-word em{font-family:var(--serif);font-style:normal;color:var(--gold-deep)}
 .nav-links{display:flex;gap:clamp(1.2rem,2.6vw,2.6rem)}
 .nav-links a{
   font:500 .68rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;
@@ -211,7 +211,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .about-body p+p{margin-top:1.4rem}
 .founder-note{
   margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line-soft);
-  font-family:var(--serif-it);font-style:italic;font-size:1.25rem;color:var(--gold-deep);
+  font-family:var(--serif);font-style:normal;font-size:1.25rem;color:var(--gold-deep);
 }
 .duo{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
 .duo-media{position:relative}
@@ -358,7 +358,7 @@ a.journal-item:hover{padding-left:.8rem}
 }
 .footer-base img{width:44px;height:44px;object-fit:contain;opacity:.9}
 .footer-base p{font-size:.85rem}
-.footer-motto{font-family:var(--serif-it);font-style:italic;color:var(--gold);font-size:1rem}
+.footer-motto{font-family:var(--serif);font-style:normal;color:var(--gold);font-size:1rem}
 
 /* ============ REVEAL ANIMATIONS ============ */
 .rv{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -421,7 +421,7 @@ a.journal-item:hover{padding-left:.8rem}
   color:var(--gold-deep); margin-bottom:.9rem;
 }
 .sound-gate-title{
-  font-family:var(--serif-it); font-style:italic; font-weight:500;
+  font-family:var(--serif); font-style:normal; font-weight:500;
   font-size:clamp(1.9rem,4vw,2.6rem); color:var(--ink); line-height:1.15; margin-bottom:.9rem;
 }
 .sound-gate-sub{
