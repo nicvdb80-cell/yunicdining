@@ -169,7 +169,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .hero-actions{display:flex;align-items:center;gap:1.8rem;margin-top:2.6rem;flex-wrap:wrap}
 .hero-visual{position:relative}
 .hero-meta{
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:flex-end;align-items:center;
   margin-top:clamp(2.5rem,6vh,4.5rem);
   font:500 .66rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--body);
 }
