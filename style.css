@@ -69,7 +69,7 @@ button,input,textarea,select{font:inherit}
 }
 h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .display em,.band-title em,.footer-title em,.cta-band h2 em{
-  font-family:var(--serif);font-style:normal;color:var(--gold-deep);
+  font-family:var(--serif);font-style:normal;color:inherit;font-weight:inherit;
 }
 .lede{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.7;color:var(--ink);max-width:56ch}
 .lede strong{font-weight:500;color:var(--gold-deep)}
@@ -164,6 +164,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .hero-title{
   font:400 clamp(2.9rem,6vw,5.4rem)/1.04 var(--serif);color:var(--ink);
 }
+.hero-title em{font-style:normal;color:inherit}
 .hero-sub{margin-top:1.8rem;font-size:1.05rem;color:var(--body);max-width:44ch}
 .hero-actions{display:flex;align-items:center;gap:1.8rem;margin-top:2.6rem;flex-wrap:wrap}
 .hero-visual{position:relative}
@@ -228,7 +229,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
   font:400 clamp(2rem,4.4vw,3.8rem)/1.12 var(--serif);color:var(--paper);
   max-width:20ch;margin:1.4rem 0 1.6rem;
 }
-.band-title em{color:var(--gold)}
+.band-title em{color:inherit}
 .band p{max-width:46ch;color:rgba(247,247,244,.85)}
 .band .tlink{color:var(--paper);margin-top:1rem}
 .band .tlink:hover{color:var(--gold)}
@@ -333,7 +334,7 @@ a.journal-item:hover{padding-left:.8rem}
 /* ============ FOOTER ============ */
 .site-footer{background:var(--ink);color:rgba(247,247,244,.75);padding:clamp(3rem,6vw,5rem) 0 2.4rem}
 .footer-title{font:400 clamp(2rem,4vw,3.4rem)/1.1 var(--serif);color:var(--paper);margin:1.4rem 0 2.4rem}
-.footer-title em{color:var(--gold)}
+.footer-title em{color:inherit}
 .site-footer .eyebrow{color:var(--gold)}
 .site-footer .eyebrow::before{background:var(--gold)}
 .footer-cta .contact-rows{border-top-color:rgba(247,247,244,.2)}
