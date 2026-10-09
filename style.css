@@ -63,6 +63,7 @@ button,input,textarea,select{font:inherit}
 }
 .eyebrow::before{content:"";width:2.6rem;height:1px;background:var(--gold)}
 .eyebrow--plain::before{display:none}
+.eyebrow-lg{font-size:1.05rem;letter-spacing:.16em}
 .display{
   font:400 clamp(2.5rem,5.2vw,4.6rem)/1.08 var(--serif);
   color:var(--ink);letter-spacing:.01em;
