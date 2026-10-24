@@ -253,7 +253,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .sec-note{max-width:34ch;margin-left:auto;align-self:end}
 
 /* ============ MENU FLIP CARDS ============ */
-.flip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem;perspective:1400px}
+.flip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:3rem;perspective:1400px;max-width:920px;margin-inline:auto}
 .flip{position:relative;transform-style:preserve-3d;transition:transform .8s var(--ease);cursor:pointer}
 .flip:hover,.flip.flipped{transform:rotateY(180deg)}
 .face{
