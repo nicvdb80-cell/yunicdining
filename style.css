@@ -276,6 +276,10 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .course-list .menu-no{color:var(--gold);margin-bottom:.2rem}
 .story-text{display:flex;flex-direction:column;gap:.75rem}
 .story-text p{color:var(--paper);font-size:.82rem;line-height:1.65;margin:0;opacity:.92}
+.story-offer{border-top:1px solid rgba(247,247,244,.22);padding-top:.7rem}
+.story-offer h4{font:500 .68rem/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--paper);margin:0 0 .35rem;display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.story-offer h4 span{color:var(--gold);letter-spacing:.06em}
+.story-offer p{font-size:.76rem;line-height:1.55}
 .course{border-bottom:1px solid rgba(247,247,244,.16);padding-bottom:.8rem}
 .course:last-child{border-bottom:none;padding-bottom:0}
 .course span{font:500 .6rem/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
