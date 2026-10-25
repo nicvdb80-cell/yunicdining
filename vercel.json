@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://www.yunichospitality.com/dining",
+      "permanent": true
+    },
+    {
       "source": "/faq.html",
       "destination": "https://www.yunichospitality.com/dining/faq",
       "permanent": true
