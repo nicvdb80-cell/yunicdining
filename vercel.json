@@ -1,0 +1,89 @@
+{
+  "redirects": [
+    {
+      "source": "/faq.html",
+      "destination": "https://www.yunichospitality.com/dining/faq",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "https://www.yunichospitality.com/dining/faq",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-ubud.html",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-ubud",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-ubud",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-ubud",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-canggu.html",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-canggu",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-canggu",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-canggu",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-seminyak.html",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-seminyak",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-seminyak",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-seminyak",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-uluwatu.html",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-uluwatu",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-uluwatu",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-uluwatu",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-nusa-dua.html",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-nusa-dua",
+      "permanent": true
+    },
+    {
+      "source": "/private-chef-nusa-dua",
+      "destination": "https://www.yunichospitality.com/dining/private-chef-nusa-dua",
+      "permanent": true
+    },
+    {
+      "source": "/private-villa-dining-bali.html",
+      "destination": "https://www.yunichospitality.com/dining/private-villa-dining-bali",
+      "permanent": true
+    },
+    {
+      "source": "/private-villa-dining-bali",
+      "destination": "https://www.yunichospitality.com/dining/private-villa-dining-bali",
+      "permanent": true
+    },
+    {
+      "source": "/indonesian-private-dining-bali.html",
+      "destination": "https://www.yunichospitality.com/dining/indonesian-private-dining-bali",
+      "permanent": true
+    },
+    {
+      "source": "/indonesian-private-dining-bali",
+      "destination": "https://www.yunichospitality.com/dining/indonesian-private-dining-bali",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://www.yunichospitality.com/dining",
+      "permanent": true
+    }
+  ]
+}
