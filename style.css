@@ -476,5 +476,5 @@ a.journal-item:hover{padding-left:.8rem}
 .story-text .tlink:hover{color:var(--gold)}
 .sec-head p+p{margin-top:1rem}
 
-/* lighter marble wash for easier reading */
-body,.menu-overlay,.sound-gate{background-image:linear-gradient(rgba(250,250,247,.62),rgba(250,250,247,.62)),url("images/marble-white.jpg")}
+/* lighter marble: white, light grey, a touch of bronze */
+body,.menu-overlay,.sound-gate{background-image:url("images/marble-light.jpg")}
