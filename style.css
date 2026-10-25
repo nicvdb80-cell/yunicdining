@@ -502,3 +502,25 @@ h1,h2{text-wrap:balance;overflow-wrap:break-word}
 .guest-quotes{grid-template-columns:repeat(2,minmax(0,1fr))}
 .guest-quotes figure{margin:0}.guest-quotes blockquote{font:400 1.35rem/1.5 var(--serif);margin:0 0 1rem}.guest-quotes figcaption{font-size:.8rem;line-height:1.6}
 @media(max-width:700px){.sample-grid{grid-template-columns:1fr}.flip-grid{perspective:none}}
+
+/* Light marble footer, matching the Yunic page background. */
+.site-footer{
+  background:#fff url("images/marble-light.jpg") center/cover no-repeat;
+  color:#181818;
+}
+.site-footer .footer-title,
+.site-footer .eyebrow,
+.site-footer .cr-label,
+.site-footer .cr-value,
+.site-footer .cr-arrow,
+.site-footer .footer-family span,
+.site-footer .footer-family a,
+.site-footer .footer-family .here,
+.site-footer .footer-motto,
+.site-footer .footer-base p{color:#181818}
+.site-footer .eyebrow::before{background:#181818}
+.site-footer .contact-rows{border-top-color:rgba(0,0,0,.2)}
+.site-footer .contact-row,
+.site-footer .footer-family{border-bottom-color:rgba(0,0,0,.14);border-top-color:rgba(0,0,0,.14)}
+.site-footer .footer-family a:hover,
+.site-footer .contact-row:hover .cr-value{text-decoration:underline;text-underline-offset:4px}
