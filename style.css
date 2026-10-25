@@ -65,10 +65,10 @@ button,input,textarea,select{font:inherit}
 .eyebrow--plain::before{display:none}
 .eyebrow-lg{font-size:1.05rem;letter-spacing:.16em}
 .display{
-  font:400 clamp(2.5rem,5.2vw,4.6rem)/1.08 var(--serif);
+  font:400 clamp(1.8rem,3.2vw,2.75rem)/1.18 var(--serif);
   color:var(--ink);letter-spacing:.01em;
 }
-h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
+h2.display{font-size:clamp(1.8rem,3.2vw,2.75rem)}
 .display em,.band-title em,.footer-title em,.cta-band h2 em{
   font-family:var(--serif);font-style:normal;color:inherit;font-weight:inherit;
 }
@@ -208,7 +208,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .founder-caption{margin-top:1.6rem}
 .founder-caption h3{font:400 1.4rem/1.2 var(--serif);color:var(--ink)}
 .founder-caption p{font:500 .68rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);margin-top:.5rem}
-.about-body .display{margin:1.4rem 0 2rem;font-size:clamp(1.9rem,3.4vw,3rem)}
+.about-body .display{margin:1.4rem 0 2rem;font-size:clamp(1.8rem,3vw,2.6rem)}
 .about-body p+p{margin-top:1.4rem}
 .founder-note{
   margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line-soft);
@@ -227,8 +227,8 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 .band .eyebrow{color:rgba(247,247,244,.85)}
 .band .eyebrow::before{background:var(--gold)}
 .band-title{
-  font:400 clamp(2rem,4.4vw,3.8rem)/1.12 var(--serif);color:var(--paper);
-  max-width:20ch;margin:1.4rem 0 1.6rem;
+  font:400 clamp(1.8rem,3.2vw,2.75rem)/1.18 var(--serif);color:var(--paper);
+  max-width:30ch;margin:1.4rem 0 1.6rem;
 }
 .band-title em{color:inherit}
 .band p{max-width:46ch;color:rgba(247,247,244,.85)}
@@ -287,7 +287,7 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 
 /* ============ IMAGE SPLIT (beverages / à la carte / journal) ============ */
 .image-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
-.image-split .display{font-size:clamp(1.9rem,3.4vw,3rem);margin:1.4rem 0 1.6rem}
+.image-split .display{font-size:clamp(1.8rem,3vw,2.6rem);margin:1.4rem 0 1.6rem}
 .frame-img{
   width:100%;height:100%;min-height:320px;max-height:460px;object-fit:cover;display:block;
   border:1px solid var(--gold);padding:0;
@@ -338,7 +338,7 @@ a.journal-item:hover{padding-left:.8rem}
 
 /* ============ FOOTER ============ */
 .site-footer{background:var(--ink);color:rgba(247,247,244,.75);padding:clamp(3rem,6vw,5rem) 0 2.4rem}
-.footer-title{font:400 clamp(2rem,4vw,3.4rem)/1.1 var(--serif);color:var(--paper);margin:1.4rem 0 2.4rem}
+.footer-title{font:400 clamp(1.8rem,3.2vw,2.75rem)/1.18 var(--serif);color:var(--paper);margin:1.4rem 0 2.4rem}
 .footer-title em{color:inherit}
 .site-footer .eyebrow{color:var(--gold)}
 .site-footer .eyebrow::before{background:var(--gold)}
@@ -482,3 +482,7 @@ body,.menu-overlay,.sound-gate{background-image:url("images/marble-light.jpg")}
 /* keep card images on the same level within each row */
 .face-front-head{min-height:12.5rem}
 @media(max-width:900px){.face-front-head{min-height:0}}
+
+/* Long headings stay readable without dominating the page. */
+h1,h2{text-wrap:balance;overflow-wrap:break-word}
+.sec-head .display,.footer-title{max-width:30ch}
