@@ -163,10 +163,10 @@ h2.display{font-size:clamp(2rem,3.8vw,3.4rem)}
 }
 .hero-eyebrow{margin-bottom:2rem}
 .hero-title{
-  font:400 clamp(2.9rem,6vw,5.4rem)/1.04 var(--serif);color:var(--ink);
+  font:500 clamp(1.9rem,3.2vw,2.8rem)/1.12 'Cormorant',serif;color:var(--ink);letter-spacing:.005em;
 }
 .hero-title em{font-style:normal;color:inherit}
-.hero-sub{margin-top:1.8rem;font-size:1.05rem;color:var(--body);max-width:44ch}
+.hero-sub{margin-top:1.8rem;font-size:1.05rem;color:#3B3A35;max-width:44ch}
 .hero-actions{display:flex;align-items:center;gap:1.8rem;margin-top:2.6rem;flex-wrap:wrap}
 .hero-visual{position:relative}
 .hero-meta{
