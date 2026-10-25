@@ -478,3 +478,7 @@ a.journal-item:hover{padding-left:.8rem}
 
 /* lighter marble: white, light grey, a touch of bronze */
 body,.menu-overlay,.sound-gate{background-image:url("images/marble-light.jpg")}
+
+/* keep card images on the same level within each row */
+.face-front-head{min-height:12.5rem}
+@media(max-width:900px){.face-front-head{min-height:0}}
