@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <script type="text/javascript">
@@ -8,23 +9,22 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xrj02jj0r1");
 </script>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Yunic Dining — Private Dinners, Rijsttafel &amp; Canapé Events</title>
-<meta name="description" content="Private chef dinners and Indonesian rijsttafel for up to 12 guests, canapé parties and corporate and brand events. Based in Bali; travel by arrangement.">
-<link rel="canonical" href="https://yunicdining.com/">
-<meta name="theme-color" content="#F7F7F4">
-<meta property="og:title" content="Yunic Dining — Your occasion. Your place. Yunic.">
-<meta property="og:description" content="Private chef dinners and Indonesian rijsttafel for up to 12 guests, canapé parties and corporate and brand events. Based in Bali; travel by arrangement.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://yunicdining.com/">
-<meta property="og:image" content="https://yunicdining.com/images/yunic-long-table.jpg">
-<link rel="icon" type="image/png" href="images/yunic-logo-gold.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500&family=Cormorant:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261025-headings">
+<meta content="Private chef dinners and Indonesian rijsttafel for up to 12 guests, canapé parties and corporate and brand events. Based in Bali; travel by arrangement." name="description"/>
+<link href="https://yunicdining.com/" rel="canonical"/>
+<meta content="#F7F7F4" name="theme-color"/>
+<meta content="Yunic Dining — Your occasion. Your place. Yunic." property="og:title"/>
+<meta content="Private chef dinners and Indonesian rijsttafel for up to 12 guests, canapé parties and corporate and brand events. Based in Bali; travel by arrangement." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://yunicdining.com/" property="og:url"/>
+<meta content="https://yunicdining.com/images/yunic-long-table.jpg" property="og:image"/>
+<link href="images/yunic-logo-gold.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500&amp;family=Cormorant:wght@400;500&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=20261025-clarity" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,372 +62,315 @@
 </script>
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
-
+<div aria-hidden="true" class="grain"></div>
 <!-- ============ SOUND GATE ============ -->
-<div class="sound-gate" id="soundGate" role="dialog" aria-modal="true" aria-label="Sound preference">
-  <div class="sound-gate-inner">
-    <img src="images/yunic-logo-gold.png" alt="Yunic Dining" class="sound-gate-mark">
-    <p class="sound-gate-eyebrow">Yunic Dining</p>
-    <h1 class="sound-gate-title">A quiet table, set for you</h1>
-    <p class="sound-gate-sub">Enter with sound, for the fuller feel of it — or without.</p>
-    <div class="sound-gate-actions">
-      <button class="sg-btn sg-btn-sound" id="sgWithSound" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M19 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Enter with sound
-      </button>
-      <button class="sg-btn sg-btn-mute" id="sgWithoutSound" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Enter without
-      </button>
-    </div>
-  </div>
-</div>
-
-<audio id="bgMusic" src="audio/perfect-beauty.mp3" loop preload="none"></audio>
-<button class="sound-toggle" id="soundToggle" type="button" aria-label="Toggle background music" aria-pressed="false">
-  <svg class="icon-on" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-  <svg class="icon-off" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+<audio id="bgMusic" loop="" preload="none" src="audio/perfect-beauty.mp3"></audio>
+<button aria-label="Toggle background music" aria-pressed="false" class="sound-toggle" id="soundToggle" type="button">
+<svg aria-hidden="true" class="icon-on" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M4 9v6h4l5 5V4L8 9H4z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"></path><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>
+<svg aria-hidden="true" class="icon-off" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M4 9v6h4l5 5V4L8 9H4z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"></path><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>
 </button>
-
 <!-- ============ NAV ============ -->
 <header class="site-nav" id="siteNav">
-  <a class="brand" href="#hero" aria-label="Yunic Dining — home">
-    <img src="images/yunic-logo-gold.png" alt="Yunic Dining logo" class="brand-mark">
-    <span class="brand-word">Yunic <em>Dining</em></span>
-  </a>
-  <nav class="nav-links" aria-label="Primary">
-    <a href="#story">Our Story</a>
-    <a href="#menus">Experiences</a>
-    <a href="#journal">Journal</a>
-    <a href="faq.html">FAQ</a>
-  </nav>
-  <a class="nav-cta" href="#contact">Plan Your Experience ↗</a>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+<a aria-label="Yunic Dining — home" class="brand" href="#hero">
+<img alt="Yunic Dining logo" class="brand-mark" src="images/yunic-logo-gold.png"/>
+<span class="brand-word">Yunic <em>Dining</em></span>
+</a>
+<nav aria-label="Primary" class="nav-links">
+<a href="#story">Our Story</a>
+<a href="#menus">Experiences</a>
+<a href="#journal">Journal</a>
+<a href="faq.html">FAQ</a>
+</nav>
+<a class="nav-cta" href="#contact">Plan Your Dinner ↗</a>
+<button aria-expanded="false" aria-label="Open menu" class="nav-toggle"><span></span><span></span></button>
 </header>
-
-<div class="menu-overlay" aria-hidden="true">
-  <a href="#story">Our Story <i>01</i></a>
-  <a href="#offer">What We Offer <i>02</i></a>
-  <a href="#menus">Experiences <i>03</i></a>
-  <a href="faq.html">FAQ <i>04</i></a>
-  <a href="#contact">Plan Your Experience <i>↗</i></a>
-  <div class="menu-foot"><span>Bali · Indonesia</span><span>Part of Yunic Hospitality</span></div>
+<div aria-hidden="true" class="menu-overlay">
+<a href="#story">Our Story <i>01</i></a>
+<a href="#offer">What We Offer <i>02</i></a>
+<a href="#menus">Experiences <i>03</i></a>
+<a href="faq.html">FAQ <i>04</i></a>
+<a href="#contact">Plan Your Experience <i>↗</i></a>
+<div class="menu-foot"><span>Bali · Indonesia</span><span>Part of Yunic Hospitality</span></div>
 </div>
-
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
-  <p class="side-note" aria-hidden="true">PRIVATE YUNIC DINING EXPERIENCES</p>
-  <div class="container hero-grid">
-    <div>
-      <p class="eyebrow hero-eyebrow rv">Private Dining · Bali</p>
-      <h1 class="hero-title rv rv-d1">Your occasion.<br>Your place. Yunic.</h1>
-      <p class="hero-sub rv rv-d2">Private dinners, Indonesian rijsttafel, canapé receptions and culinary collaborations with boutique dive resorts and liveaboards. Each experience is shaped around your occasion, the setting and what you love to eat.</p>
-      <p class="hero-sub rv rv-d2" style="margin-top:1rem">Our cooking can follow Indonesian flavours, take an eclectic direction or celebrate a favourite seasonal ingredient. The principle stays the same: less is more. We let the produce and flavours shine.</p>
-      <p class="hero-sub rv rv-d2" style="margin-top:1rem">Tell us your idea. Together, we explore what’s possible and where Yunic can bring its best.</p>
-      <p class="hero-sub hero-sub--2 rv rv-d2">Based in Bali. Available across Indonesia and beyond.</p>
-      <div class="hero-actions rv rv-d3">
-        <a class="btn" href="#contact">Plan Your Experience <span>&nearr;</span></a>
-        <a class="tlink" href="#menus">Explore Our Menus <span>&darr;</span></a>
-      </div>
-    </div>
-    <div class="hero-visual rv rv-d2">
-      <div class="arch">
-        <img src="images/yunic-long-table.jpg" alt="A long table set for a private dinner by the ocean at sunset" fetchpriority="high">
-      </div>
-      <span class="arch-frame" aria-hidden="true"></span>
-      <div class="stamp" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <defs><path id="circPath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
-          <text><textPath href="#circPath">Yunic Dining · Bali · At Your Table ·</textPath></text>
-        </svg>
-        <img src="images/yunic-logo-gold.png" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="container hero-meta">
-    <span class="scroll-hint">Scroll <i>↓</i></span>
-  </div>
-</section>
+<p aria-hidden="true" class="side-note">PRIVATE YUNIC DINING EXPERIENCES</p>
+<div class="container hero-grid">
+<div>
+<p class="eyebrow hero-eyebrow rv">Private Dining · Bali</p>
+<h1 class="hero-title rv rv-d1">Your occasion.<br/>Your place. Yunic.</h1>
+<p class="hero-sub rv rv-d2">Private dinners, Indonesian rijsttafel and canapé celebrations, cooked and served at your home, villa or event. Intimate seated dining for up to 12 guests; larger gatherings enjoyed on your feet.</p>
 
+
+<p class="hero-sub rv rv-d2">The dining and event experiences of <a href="https://www.yunichospitality.com/">Yunic Hospitality</a>.</p><p class="hero-sub hero-sub--2 rv rv-d2">Based in Bali. Available across Indonesia and beyond.</p>
+<div class="hero-actions rv rv-d3">
+<a class="btn" href="#contact">Plan Your Experience <span>↗</span></a>
+<a class="tlink" href="#menus">Explore the Experiences ↓</a>
+</div>
+</div>
+<div class="hero-visual rv rv-d2">
+<div class="arch">
+<img alt="A long table set for a private dinner by the ocean at sunset" fetchpriority="high" src="images/yunic-long-table.jpg"/>
+</div>
+<span aria-hidden="true" class="arch-frame"></span>
+<div aria-hidden="true" class="stamp">
+<svg viewbox="0 0 200 200">
+<defs><path d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" id="circPath"></path></defs>
+<text><textpath href="#circPath">Yunic Dining · Bali · At Your Table ·</textpath></text>
+</svg>
+<img alt="" src="images/yunic-logo-gold.png"/>
+</div>
+</div>
+</div>
+<div class="container hero-meta">
+<span class="scroll-hint">Scroll <i>↓</i></span>
+</div>
+</section><section class="section section--sand" id="offer">
+<div class="container">
+<div class="sec-head">
+<p class="eyebrow rv">What We Offer</p>
+<h2 class="display rv rv-d1">Tell us how you want to gather.</h2>
+<p class="rv rv-d2">A quiet dinner at your villa. Indonesian dishes shared with friends. A birthday party where nobody wants to sit down. An opening that deserves food people will remember.</p>
+<p class="rv rv-d3">We help you choose the format, then build the menu around it.</p>
+</div>
+<div class="flip-grid" id="menus">
+<article class="experience-card rv">
+
+<div class="face-front-head">
+<span class="menu-no">I</span>
+<h3>Private Chef Dining</h3>
+<p class="menu-desc">A restaurant experience at your own table.</p>
+<span class="menu-price">For up to 12 guests · Minimum booking fee applies</span>
+</div>
+<div class="menu-img"><img alt="Chef Nic, wearing the Yunic apron, finishing a plate with careful precision" loading="lazy" src="images/journey-tabledhote3.jpg"/></div>
+
+
+
+<div class="experience-details">
+<p>A menu cooked and served in the privacy of your home or villa, with time to enjoy your guests.</p>
+<p>Choose a seasonal menu or tell us what you love to eat. A favourite ingredient, a particular cuisine or a special bottle can become the starting point.</p>
+<p>Chef Nic and the team take care of the cooking and service, from the first bite to the kitchen clean-up.</p>
+<a class="tlink" href="#contact">Plan a Private Dinner <span>↗</span></a>
+</div></article>
+<article class="experience-card rv">
+
+<div class="face-front-head">
+<span class="menu-no">II</span>
+<h3>Rijsttafel</h3>
+<p class="menu-desc">Put your feet under the table. Share the rest.</p>
+<span class="menu-price">For up to 12 guests · Minimum booking fee applies</span>
+</div>
+<div class="menu-img"><img alt="A rijsttafel spread of many small Indonesian dishes shared at the table" loading="lazy" src="images/journey-rijsttafel.jpg"/></div>
+
+
+
+<div class="experience-details">
+<p>A generous spread of Indonesian dishes, served together for everyone to explore.</p>
+<p>Different flavours, textures, sambals and accompaniments fill the table. Take a little, pass a dish, go back for more. Our rijsttafel brings together Yuli’s Indonesian roots and Nic’s interpretation of the flavours he has come to know through years of living and cooking here.</p>
+<p>Made for friends, family and the pleasure of sharing a meal.</p>
+<a class="tlink" href="#contact">Bring Rijsttafel to Your Table <span>↗</span></a>
+</div></article>
+<article class="experience-card rv">
+
+<div class="face-front-head">
+<span class="menu-no">III</span>
+<h3>Canapé Parties</h3>
+<p class="menu-desc">Good food. Keep the party moving.</p>
+<span class="menu-price">For larger gatherings · Planned around your event</span>
+</div>
+<div class="menu-img"><img alt="Guests enjoying refined canapés at a villa party" loading="lazy" src="images/journey-party.jpg"/></div>
+
+
+
+<div class="experience-details">
+<p>For evenings spent mingling, talking, dancing and moving around.</p>
+<p>Our canapés bring the care of a plated dish into a few bites. We plan the selection, quantities and serving rhythm around your gathering, whether it is a villa party, birthday, cocktail reception or celebration with friends.</p>
+<p>A few bites alongside drinks, or a more substantial menu across the evening—we’ll help you find the right balance.</p>
+<a class="tlink" href="#contact">Plan a Canapé Party <span>↗</span></a>
+</div></article>
+<article class="experience-card rv">
+
+<div class="face-front-head">
+<span class="menu-no">IV</span>
+<h3>Corporate &amp; Brand Events</h3>
+<p class="menu-desc">Give your guests something to talk about.</p>
+<span class="menu-price">Menus and scope proposed individually</span>
+</div>
+<div class="menu-img"><img alt="Guests at a corporate brand reception with Yunic staff serving canapés" loading="lazy" src="images/corporate-brand-event.jpg"/></div>
+
+
+
+<div class="experience-details">
+<p>Shop, showroom, office and factory openings. Product launches, company celebrations, anniversaries and client evenings.</p>
+<p>Yunic creates canapé menus and culinary concepts that suit your brand, your guests and the way the event will unfold.</p>
+<p>For larger seated events, Yunic Hospitality can develop the menu and guide the culinary execution in collaboration with your venue and its team.</p>
+<a class="tlink" href="#contact">Discuss Your Event <span>↗</span></a>
+</div></article>
+</div>
+</div>
+</section><section class="section section--line" id="sample-menus"><div class="container"><div class="sec-head"><p class="eyebrow">A taste of Yunic</p><h2 class="display">A few possibilities for your table.</h2><p>Sample selections to give you a feel for the cooking. Your menu is agreed personally, with seasonality, dietary needs and availability in mind.</p></div><div class="sample-grid"><article><h3>A dinner in courses</h3><p>Tuna tataki<br/>Scallop · fermented pumpkin · opor<br/>Snapper · sambal matah<br/>Bali chocolate semifreddo</p></article><article><h3>An Indonesian sharing table</h3><p>Fish woku · chicken opor · lamb gulai<br/>Yellow rice · urap · sambals</p></article><article><h3>Canapés through the evening</h3><p>Beef tongue skewer · andaliman<br/>Mini pempek · cuko<br/>Cakalang fufu tartlet<br/>Karedok roll · peanut · kencur</p></article></div><p>Proposals reflect the menu, guest count, team, location and any travel or additional services. We confirm the full scope and minimum booking fee before you book.</p><a class="tlink" href="#contact">Discuss Your Menu ↗</a></div></section>
 <!-- ============ OUR STORY ============ -->
 <section class="section section--tint" id="story"><div class="container about-grid"><div class="founder rv">
-      <div class="arch">
-        <img src="images/nic-yuli-sunset.jpg" alt="Nic and Yuli together at sunset">
-      </div>
-      <span class="arch-frame" aria-hidden="true"></span>
-      <div class="founder-caption">
-        <h3>Yuli &mdash; Founder &amp; Owner</h3>
-        <h3>Nic &mdash; Culinary Director</h3>
-      </div>
-    </div><div class="about-body"><p class="eyebrow rv">Our Story</p><h2 class="display rv">Yuli, Nic and the idea behind Yunic.</h2><p class="rv">Yunic grew from Yuli and Nic’s shared life in Bali and a wish to create something of their own. It brings together her Indonesian warmth, his Belgian roots and the pleasure they both find in gathering people around good food.</p>
+<div class="arch">
+<img alt="Nic and Yuli together at sunset" src="images/nic-yuli-sunset.jpg"/>
+</div>
+<span aria-hidden="true" class="arch-frame"></span>
+<div class="founder-caption">
+<h3>Yuli — Founder &amp; Owner</h3>
+<h3>Nic — Culinary Director</h3>
+</div>
+</div><div class="about-body"><p class="eyebrow rv">Our Story</p><h2 class="display rv">Yuli, Nic and the idea behind Yunic.</h2><p class="rv">Yunic grew from Yuli and Nic’s shared life in Bali and a wish to create something of their own. It brings together her Indonesian warmth, his Belgian roots and the pleasure they both find in gathering people around good food.</p>
 <p class="rv">Yuli, founder and owner, looks after the hosting, organisation and details that make guests feel welcome. Nic leads the culinary direction. His Indonesian journey began at CasCades in 2013, before helping bring Apéritif Ubud to life, shaping the culinary concept and identity that became central to the restaurant.</p>
 <p class="rv">With Yunic, they have room to explore together, inspired by their travels, their love of the ocean and the people they meet along the way.</p><p class="rv"><strong>Something of their world, brought into yours.</strong></p></div></div></section>
 <section class="section section--line" id="approach">
- <div class="container split">
- <div><p class="eyebrow rv">The Yunic Approach</p><h2 class="display rv" style="margin-top:1.4rem">Your occasion, our inspiration.</h2></div>
- <div class="split-body"><p class="rv rv-d3">An intimate dinner, an Indonesian rijsttafel, a canapé reception or a culinary collaboration at a boutique dive resort. You might have a celebration in mind, a favourite ingredient in season, or simply a wish to bring people together over good food.</p>
-      <p class="rv rv-d3">The menu can be produce-driven, rooted in Indonesian flavours or eclectic and inspired by our travels. Whatever the occasion, our approach stays the same: less is more. Every ingredient has a purpose, allowing the produce and flavours to shine.</p>
-      <p class="rv rv-d4">Tell us what you have in mind. Together, we find the direction that suits your occasion and what Yunic does best.</p></div>
- </div>
+<div class="container split">
+<div><p class="eyebrow rv">The Yunic Approach</p><h2 class="display rv" style="margin-top:1.4rem">Your occasion, our inspiration.</h2></div>
+<div class="split-body"><p class="rv rv-d3">An intimate dinner, an Indonesian rijsttafel, a canapé reception or a culinary collaboration at a boutique dive resort. You might have a celebration in mind, a favourite ingredient in season, or simply a wish to bring people together over good food.</p>
+<p class="rv rv-d3">The menu can be produce-driven, rooted in Indonesian flavours or eclectic and inspired by our travels. Whatever the occasion, our approach stays the same: less is more. Every ingredient has a purpose, allowing the produce and flavours to shine.</p>
+<p class="rv rv-d4">Tell us what you have in mind. Together, we find the direction that suits your occasion and what Yunic does best.</p></div>
+</div>
 </section>
-
 <!-- ============ WHAT WE OFFER ============ -->
-<section class="section section--sand" id="offer">
-  <div class="container">
-    <div class="sec-head">
-      <p class="eyebrow rv">What We Offer</p>
-      <h2 class="display rv rv-d1">Tell us how you want to gather.</h2>
-      <p class="rv rv-d2">A quiet dinner at your villa. Indonesian dishes shared with friends. A birthday party where nobody wants to sit down. An opening that deserves food people will remember.</p>
-      <p class="rv rv-d3">We help you choose the format, then build the menu around it.</p>
-    </div>
-    <div class="flip-grid" id="menus">
-
-      <article class="flip rv" tabindex="0" aria-label="Private Chef Dining: activate for details">
-        <div class="face">
-          <div class="face-front-head">
-            <span class="menu-no">I</span>
-            <h3>Private Chef Dining</h3>
-            <p class="menu-desc">A restaurant experience at your own table.</p>
-            <span class="menu-price">For up to 12 guests &middot; Minimum booking fee applies</span>
-          </div>
-          <div class="menu-img"><img src="images/journey-tabledhote3.jpg" alt="Chef Nic, wearing the Yunic apron, finishing a plate with careful precision" loading="lazy"></div>
-          <div class="face-front-foot"><span>Hover for details</span></div>
-        </div>
-        <div class="face back">
-          <div class="course-list">
-            <span class="menu-no">I &middot; Private Chef Dining</span>
-            <div class="story-text">
-              <p>A menu cooked and served in the privacy of your home or villa, with time to enjoy your guests.</p>
-              <p>Choose a seasonal menu or tell us what you love to eat. A favourite ingredient, a particular cuisine or a special bottle can become the starting point.</p>
-              <p>Chef Nic and the team take care of the cooking and service, from the first bite to the kitchen clean-up.</p>
-              <a class="tlink" href="#contact">Plan a Private Dinner <span>&nearr;</span></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="flip rv rv-d1" tabindex="0" aria-label="Rijsttafel: activate for details">
-        <div class="face">
-          <div class="face-front-head">
-            <span class="menu-no">II</span>
-            <h3>Rijsttafel</h3>
-            <p class="menu-desc">Put your feet under the table. Share the rest.</p>
-            <span class="menu-price">For up to 12 guests &middot; Minimum booking fee applies</span>
-          </div>
-          <div class="menu-img"><img src="images/journey-rijsttafel.jpg" alt="A rijsttafel spread of many small Indonesian dishes shared at the table" loading="lazy"></div>
-          <div class="face-front-foot"><span>Hover for details</span></div>
-        </div>
-        <div class="face back">
-          <div class="course-list">
-            <span class="menu-no">II &middot; Rijsttafel</span>
-            <div class="story-text">
-              <p>A generous spread of Indonesian dishes, served together for everyone to explore.</p>
-              <p>Different flavours, textures, sambals and accompaniments fill the table. Take a little, pass a dish, go back for more. Our rijsttafel brings together Yuli&rsquo;s Indonesian roots and Nic&rsquo;s interpretation of the flavours he has come to know through years of living and cooking here.</p>
-              <p>Made for friends, family and the pleasure of sharing a meal.</p>
-              <a class="tlink" href="#contact">Bring Rijsttafel to Your Table <span>&nearr;</span></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="flip rv rv-d2" tabindex="0" aria-label="Canap&eacute; Parties: activate for details">
-        <div class="face">
-          <div class="face-front-head">
-            <span class="menu-no">III</span>
-            <h3>Canap&eacute; Parties</h3>
-            <p class="menu-desc">Good food. Keep the party moving.</p>
-            <span class="menu-price">For larger gatherings &middot; Planned around your event</span>
-          </div>
-          <div class="menu-img"><img src="images/journey-party.jpg" alt="Guests enjoying refined canapés at a villa party" loading="lazy"></div>
-          <div class="face-front-foot"><span>Hover for details</span></div>
-        </div>
-        <div class="face back">
-          <div class="course-list">
-            <span class="menu-no">III &middot; Canap&eacute; Parties</span>
-            <div class="story-text">
-              <p>For evenings spent mingling, talking, dancing and moving around.</p>
-              <p>Our canap&eacute;s bring the care of a plated dish into a few bites. We plan the selection, quantities and serving rhythm around your gathering, whether it is a villa party, birthday, cocktail reception or celebration with friends.</p>
-              <p>A few bites alongside drinks, or a more substantial menu across the evening&mdash;we&rsquo;ll help you find the right balance.</p>
-              <a class="tlink" href="#contact">Plan a Canap&eacute; Party <span>&nearr;</span></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="flip rv rv-d3" tabindex="0" aria-label="Corporate &amp; Brand Events: activate for details">
-        <div class="face">
-          <div class="face-front-head">
-            <span class="menu-no">IV</span>
-            <h3>Corporate &amp; Brand Events</h3>
-            <p class="menu-desc">Give your guests something to talk about.</p>
-            <span class="menu-price">Menus and scope proposed individually</span>
-          </div>
-          <div class="menu-img"><img src="images/corporate-brand-event.jpg" alt="Guests at a corporate brand reception with Yunic staff serving canapés" loading="lazy"></div>
-          <div class="face-front-foot"><span>Hover for details</span></div>
-        </div>
-        <div class="face back">
-          <div class="course-list">
-            <span class="menu-no">IV &middot; Corporate &amp; Brand Events</span>
-            <div class="story-text">
-              <p>Shop, showroom, office and factory openings. Product launches, company celebrations, anniversaries and client evenings.</p>
-              <p>Yunic creates canap&eacute; menus and culinary concepts that suit your brand, your guests and the way the event will unfold.</p>
-              <p>For larger seated events, Yunic Hospitality can develop the menu and guide the culinary execution in collaboration with your venue and its team.</p>
-              <a class="tlink" href="#contact">Discuss Your Event <span>&nearr;</span></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
 
 <!-- ============ KITCHEN BAND ============ -->
 <section class="band">
-  <img src="images/team-at-the-grill.jpg" alt="The Yunic culinary team cooking over open fire and smoke" data-parallax>
-  <div class="container band-inner">
-    <p class="eyebrow rv">The Yunic Kitchen</p>
-    <h2 class="band-title rv rv-d1">It starts with what we want to cook&mdash;and what you love to eat.</h2>
-    <p class="rv rv-d2">Good produce gives us the starting point. Experience helps us decide what to do with it.</p>
-    <p class="rv rv-d3">Our menus draw on European techniques, Indonesian flavours and ideas gathered along the way. Some dishes are familiar, others take a different direction. Each needs to earn its place on the menu.</p>
-    <p class="rv rv-d3">Have a favourite ingredient? Tell us. It might be where your Yunic experience begins.</p>
-  </div>
+<img alt="The Yunic culinary team cooking over open fire and smoke" data-parallax="" src="images/team-at-the-grill.jpg"/>
+<div class="container band-inner">
+<p class="eyebrow rv">The Yunic Kitchen</p>
+<h2 class="band-title rv rv-d1">It starts with what we want to cook—and what you love to eat.</h2>
+<p class="rv rv-d2">Good produce gives us the starting point. Experience helps us decide what to do with it.</p>
+<p class="rv rv-d3">Our menus draw on European techniques, Indonesian flavours and ideas gathered along the way. Some dishes are familiar, others take a different direction. Each needs to earn its place on the menu.</p>
+<p class="rv rv-d3">Have a favourite ingredient? Tell us. It might be where your Yunic experience begins.</p>
+</div>
 </section>
-
 <!-- ============ BEVERAGES ============ -->
 <section class="section" id="beverages">
-  <div class="container image-split">
-    <div>
-      <p class="eyebrow rv">Drinks</p>
-      <h2 class="display rv rv-d1">Something good in your glass.</h2>
-      <p class="rv rv-d2">We can help coordinate wines and cocktails through trusted partners, with selections to suit your menu and occasion.</p>
-      <p class="rv rv-d3">Whether you would like a few bottles for dinner or a mixologist for your party, tell us what you have in mind. Beverage services are arranged and quoted separately.</p>
-    </div>
-    <img class="frame-img rv rv-d1" src="images/drinks-wine-cocktail.jpg" alt="Wine and a cocktail served at the table" loading="lazy">
-  </div>
+<div class="container image-split">
+<div>
+<p class="eyebrow rv">Drinks</p>
+<h2 class="display rv rv-d1">Something good in your glass.</h2>
+<p class="rv rv-d2">We can help coordinate wines and cocktails through trusted partners, with selections to suit your menu and occasion.</p>
+<p class="rv rv-d3">Whether you would like a few bottles for dinner or a mixologist for your party, tell us what you have in mind. Beverage services are arranged and quoted separately.</p>
+</div>
+<img alt="Wine and a cocktail served at the table" class="frame-img rv rv-d1" loading="lazy" src="images/drinks-wine-cocktail.jpg"/>
+</div>
 </section>
-
 <!-- ============ DIVE & DINE ============ -->
 <section class="section section--sand" id="diveanddine">
-  <div class="container">
-    <div class="sec-head">
-      <p class="eyebrow rv">Dive &amp; Dine</p>
-      <h2 class="display rv rv-d1">An idea born between the ocean and the table.</h2>
-      <p class="rv rv-d2">Diving and cooking have taken Nic to some remarkable places. Yunic Dive &amp; Dine brings those two passions together.</p>
-      <p class="rv rv-d3">For boutique dive resorts, liveaboards and yachts, we develop sharing menus, à la carte menus, set menus and romantic dinners for two. Pop-ups, collaborations and kitchen training help bring the idea to life at your destination.</p>
-      <p class="rv rv-d4" style="margin-top:1.8rem"><a class="tlink" href="#contact">Explore a Collaboration <span>&nearr;</span></a></p>
-    </div>
-  </div>
+<div class="container">
+<div class="sec-head">
+<p class="eyebrow rv">Dive &amp; Dine</p>
+<h2 class="display rv rv-d1">An idea born between the ocean and the table.</h2>
+<p class="rv rv-d2">Diving and cooking have taken Nic to some remarkable places. Yunic Dive &amp; Dine brings those two passions together.</p>
+<p class="rv rv-d3">For boutique dive resorts, liveaboards and yachts, we develop sharing menus, à la carte menus, set menus and romantic dinners for two. Pop-ups, collaborations and kitchen training help bring the idea to life at your destination.</p>
+<p class="rv rv-d4" style="margin-top:1.8rem"><a class="tlink" href="#contact">Explore a Collaboration <span>↗</span></a></p>
+</div>
+</div>
 </section>
-
 <!-- ============ JOURNAL ============ -->
 <section class="section" id="journal">
-  <div class="container">
-    <div class="image-split" style="margin-bottom:1rem">
-      <img class="frame-img frame-img--tall rv" src="images/nic-yuli-cooking.jpg" alt="Nic and Yuli cooking together in the kitchen" loading="lazy">
-      <div>
-        <p class="eyebrow rv rv-d1">Journal</p>
-        <h2 class="display rv rv-d2">Field notes from the road.</h2>
-        <p class="rv rv-d3">Stories from markets, kitchens, travels and the people along the way — from Bali to Europe and beyond, all shaping how we cook.</p>
-        <p class="rv rv-d4" style="margin-top:1.8rem"><a class="tlink" href="media.html">View all media <span>→</span></a></p>
-      </div>
-    </div>
-    <div class="journal-list rv">
-      <a class="journal-item" href="journal-rendang-story.html">
-        <time>Field Note</time>
-        <div><h3>The dish that changed along the way</h3><p>How memories, ingredients and technique continue to shape the way we cook.</p></div>
-        <span class="arrow">→</span>
-      </a>
-      <a class="journal-item" href="journal-balinese-markets.html">
-        <time>Travel</time>
-        <div><h3>What we bring home</h3><p>Markets, restaurants, dive trips and unexpected meals &mdash; ideas gathered from places we have been.</p></div>
-        <span class="arrow">→</span>
-      </a>
-      <a class="journal-item" href="journal-why-villa-dining.html">
-        <time>People</time>
-        <div><h3>The people behind what we do</h3><p>Chefs, farmers, fishermen, producers, friends and people we have met along the way.</p></div>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
+<div class="container">
+<div class="image-split" style="margin-bottom:1rem">
+<img alt="Nic and Yuli cooking together in the kitchen" class="frame-img frame-img--tall rv" loading="lazy" src="images/nic-yuli-cooking.jpg"/>
+<div>
+<p class="eyebrow rv rv-d1">Journal</p>
+<h2 class="display rv rv-d2">Field notes from the road.</h2>
+<p class="rv rv-d3">Stories from markets, kitchens, travels and the people along the way — from Bali to Europe and beyond, all shaping how we cook.</p>
+<p class="rv rv-d4" style="margin-top:1.8rem"><a class="tlink" href="media.html">View all media <span>→</span></a></p>
+</div>
+</div>
+<div class="journal-list rv">
+<a class="journal-item" href="journal-rendang-story.html">
+<time>Field Note</time>
+<div><h3>The dish that changed along the way</h3><p>How memories, ingredients and technique continue to shape the way we cook.</p></div>
+<span class="arrow">→</span>
+</a>
+<a class="journal-item" href="journal-balinese-markets.html">
+<time>Travel</time>
+<div><h3>What we bring home</h3><p>Markets, restaurants, dive trips and unexpected meals — ideas gathered from places we have been.</p></div>
+<span class="arrow">→</span>
+</a>
+<a class="journal-item" href="journal-why-villa-dining.html">
+<time>People</time>
+<div><h3>The people behind what we do</h3><p>Chefs, farmers, fishermen, producers, friends and people we have met along the way.</p></div>
+<span class="arrow">→</span>
+</a>
+</div>
+</div>
 </section>
-
 <!-- ============ CONTACT ============ -->
-<section class="section" id="contact">
-  <div class="container contact-grid">
-    <div>
-      <p class="eyebrow rv">Contact</p>
-      <h2 class="display rv rv-d1" style="font-size:clamp(1.8rem,3.2vw,2.75rem);margin:1.4rem 0 1.6rem">What do you have in mind?</h2>
-      <p class="rv rv-d2">Tell us the occasion, your preferred date, location and number of guests. Add anything you love to eat&mdash;or would rather leave off the menu.</p>
-      <p class="rv rv-d2">Yuli and Nic will get back to you personally to discuss what could work.</p>
-      <div class="contact-rows rv rv-d3">
-        <a class="contact-row" href="https://wa.me/6281994807407" target="_blank" rel="noopener">
-          <span class="cr-label">WhatsApp</span>
-          <span class="cr-value">+62 819 9480 7407</span>
-          <span class="cr-arrow">↗</span>
-        </a>
-        <a class="contact-row" href="mailto:yunicdining@gmail.com">
-          <span class="cr-label">Email</span>
-          <span class="cr-value">yunicdining@gmail.com</span>
-          <span class="cr-arrow">↗</span>
-        </a>
-        <a class="contact-row" href="https://www.yunichospitality.com/" target="_blank" rel="noopener">
-          <span class="cr-label">Parent Brand</span>
-          <span class="cr-value">Yunic Hospitality</span>
-          <span class="cr-arrow">↗</span>
-        </a>
-      </div>
-    </div>
-    <form class="form rv rv-d2" id="requestForm">
-      <label for="f-name">Name</label>
-      <input id="f-name" required>
-      <label for="f-contact">Email or WhatsApp</label>
-      <input id="f-contact" required>
-      <label for="f-date">Preferred date</label>
-      <input id="f-date" type="date">
-      <label for="f-loc">Location</label>
-      <input id="f-loc">
-      <label for="f-guests">Number of guests</label>
-      <input id="f-guests">
-      <label for="f-msg">What are you planning?</label>
-      <textarea id="f-msg"></textarea>
-      <button class="btn" type="submit">Let&rsquo;s Plan Something</button>
-    </form>
-  </div>
+<section class="section section--tint"><div class="container"><p class="eyebrow">At their table</p><h2 class="display">What our guests say.</h2><div class="sample-grid guest-quotes"><figure><blockquote>Yuli and the team didn't just cater our evening, they became part of it. From the first course to the last, everything felt personal, effortless and exactly right.</blockquote><figcaption>— <b>Toby Skard</b> · Founder, Futurola USA — Los Angeles</figcaption></figure><figure><blockquote>The Yunic team contributed to a wonderful event, catching the essence of what the event was about: Belgian-Indonesian cooperation. This was clearly shown in the exquisite dishes that were presented throughout the night.</blockquote><figcaption>— <b>Bas Tolhuizen</b> · International Sales Manager, E-Crane Worldwide</figcaption></figure></div></div></section><section class="section" id="contact">
+<div class="container contact-grid">
+<div>
+<p class="eyebrow rv">Contact</p>
+<h2 class="display rv rv-d1" style="font-size:clamp(1.8rem,3.2vw,2.75rem);margin:1.4rem 0 1.6rem">What do you have in mind?</h2>
+<p class="rv rv-d2">Tell us the occasion, your preferred date, location and number of guests. Add anything you love to eat—or would rather leave off the menu.</p>
+<p class="rv rv-d2">Yuli and Nic will get back to you personally to discuss what could work.</p>
+<div class="contact-rows rv rv-d3">
+<a class="contact-row" href="https://wa.me/6281994807407" rel="noopener" target="_blank">
+<span class="cr-label">WhatsApp</span>
+<span class="cr-value">+62 819 9480 7407</span>
+<span class="cr-arrow">↗</span>
+</a>
+<a class="contact-row" href="mailto:yunicdining@gmail.com">
+<span class="cr-label">Email</span>
+<span class="cr-value">yunicdining@gmail.com</span>
+<span class="cr-arrow">↗</span>
+</a>
+<a class="contact-row" href="https://www.yunichospitality.com/" rel="noopener" target="_blank">
+<span class="cr-label">Parent Brand</span>
+<span class="cr-value">Yunic Hospitality</span>
+<span class="cr-arrow">↗</span>
+</a>
+</div>
+</div>
+<form action="https://wa.me/6281994807407" class="form rv rv-d2" id="requestForm" method="get">
+<label for="f-name">Name</label>
+<input id="f-name" name="name" required=""/>
+<label for="f-contact">Email or WhatsApp</label>
+<input id="f-contact" name="contact" required=""/>
+<label for="f-date">Preferred date</label>
+<input id="f-date" name="date" type="date"/>
+<label for="f-loc">Location</label>
+<input id="f-loc" name="loc"/>
+<label for="f-guests">Number of guests</label>
+<input id="f-guests" min="1" name="guests" type="number"/>
+<label for="f-msg">What are you planning?</label>
+<textarea id="f-msg" name="msg"></textarea>
+<button class="btn" type="submit">Continue in WhatsApp ↗</button>
+<p>Your details open in WhatsApp for you to review and send. Prefer email? Write to yunicdining@gmail.com.</p></form>
+</div>
 </section>
-
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
-  <div class="container footer-cta">
-    <p class="eyebrow rv">Private dinners &middot; Rijsttafel &middot; Canap&eacute; parties &middot; Corporate &amp; brand events</p>
-    <h2 class="footer-title rv rv-d1">Yunic Dining. Not for everyone. Maybe for you.</h2>
-    <div class="contact-rows rv rv-d2">
-      <a class="contact-row" href="https://wa.me/6281994807407" target="_blank" rel="noopener">
-        <span class="cr-label">WhatsApp</span>
-        <span class="cr-value">+62 819 9480 7407</span>
-        <span class="cr-arrow">↗</span>
-      </a>
-      <a class="contact-row" href="mailto:yunicdining@gmail.com">
-        <span class="cr-label">Email</span>
-        <span class="cr-value">yunicdining@gmail.com</span>
-        <span class="cr-arrow">↗</span>
-      </a>
-    </div>
-  </div>
-  <div class="footer-family">
-    <span>Part of the Yunic family</span>
-    <a href="https://www.yunichospitality.com/" target="_blank" rel="noopener">Yunic Hospitality ↗</a>
-    <span class="here">Yunic Dining</span>
-    <a href="https://yunicshop.com/" target="_blank" rel="noopener">Yunic Shop ↗</a>
-  </div>
-  <div class="container footer-base">
-    <img src="images/yunic-logo-gold.png" alt="Yunic mark">
-    <p>Yunic Dining · Bali · Part of Yunic Hospitality · © <span id="year">2026</span></p>
-    <p class="footer-motto">We only do what we can do at our best.</p>
-  </div>
+<div class="container footer-cta">
+<p class="eyebrow rv">Private dinners · Rijsttafel · Canapé parties · Corporate &amp; brand events</p>
+<h2 class="footer-title rv rv-d1">Yunic Dining. Not for everyone. Maybe for you.</h2>
+<div class="contact-rows rv rv-d2">
+<a class="contact-row" href="https://wa.me/6281994807407" rel="noopener" target="_blank">
+<span class="cr-label">WhatsApp</span>
+<span class="cr-value">+62 819 9480 7407</span>
+<span class="cr-arrow">↗</span>
+</a>
+<a class="contact-row" href="mailto:yunicdining@gmail.com">
+<span class="cr-label">Email</span>
+<span class="cr-value">yunicdining@gmail.com</span>
+<span class="cr-arrow">↗</span>
+</a>
+</div>
+</div>
+<div class="footer-family">
+<span>Part of the Yunic family</span>
+<a href="https://www.yunichospitality.com/" rel="noopener" target="_blank">Yunic Hospitality ↗</a>
+<span class="here">Yunic Dining</span>
+<a href="https://yunicshop.com/" rel="noopener" target="_blank">Yunic Shop ↗</a>
+</div>
+<div class="container footer-base">
+<img alt="Yunic mark" src="images/yunic-logo-gold.png"/>
+<p>Yunic Dining · Bali · Part of Yunic Hospitality · © <span id="year">2026</span></p>
+<p class="footer-motto">We only do what we can do at our best.</p>
+</div>
 </footer>
-
-<script src="main.js?v=1.0"></script>
+<script src="main.js?v=20261025-clarity"></script>
 </body>
 </html>

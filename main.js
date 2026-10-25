@@ -65,15 +65,6 @@
   setTimeout(revealVisible, 2600);
   revealVisible();
 
-  /* flip cards — tap/click + keyboard for touch devices */
-  document.querySelectorAll('.flip').forEach(function (card) {
-    function flip() { card.classList.toggle('flipped'); }
-    card.addEventListener('click', flip);
-    card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
-    });
-  });
-
   /* gentle parallax on photo bands */
   var bands = document.querySelectorAll('[data-parallax]');
   if (bands.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -89,12 +80,18 @@
     parallax();
   }
 
-  /* contact form — friendly inline confirmation (no backend, as on current site) */
+  /* Open an enquiry in WhatsApp; the visitor reviews and sends it there. */
   var form = document.getElementById('requestForm');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      form.innerHTML = '<p style="padding:2rem 0;font-family:var(--serif);font-size:1.2rem;color:var(--gold-deep)">Thank you, we will be in touch within 24 hours. For a faster reply, WhatsApp us directly.</p>';
+      var fields = [['f-name', 'Name'], ['f-contact', 'Contact'], ['f-date', 'Date'], ['f-loc', 'Location'], ['f-guests', 'Guests'], ['f-msg', 'Occasion']];
+      var lines = ['Hello Yunic Dining, I would like to discuss an experience.', ''];
+      fields.forEach(function (field) {
+        var value = document.getElementById(field[0]).value.trim();
+        if (value) lines.push(field[1] + ': ' + value);
+      });
+      window.location.href = 'https://wa.me/6281994807407?text=' + encodeURIComponent(lines.join('\n'));
     });
   }
 
@@ -102,56 +99,23 @@
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  /* sound gate — "enter with sound" / "enter without" */
-  var gate = document.getElementById('soundGate');
+  /* Optional music; the page opens immediately and silently. */
   var music = document.getElementById('bgMusic');
   var soundToggle = document.getElementById('soundToggle');
-  if (gate && music && soundToggle) {
-    var KEY = 'yunicSound';
+  if (music && soundToggle) {
     music.volume = 0.35;
-
-    function showToggle() {
-      soundToggle.classList.add('visible');
+    soundToggle.classList.add('visible');
+    function reflectMusic() {
+      var playing = !music.paused;
+      soundToggle.setAttribute('aria-pressed', String(playing));
+      soundToggle.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
     }
-    function setPressed(on) {
-      soundToggle.setAttribute('aria-pressed', String(on));
-    }
-    function playMusic() {
-      music.play().catch(function () { /* autoplay blocked — toggle stays available */ });
-      setPressed(true);
-    }
-    function pauseMusic() {
-      music.pause();
-      setPressed(false);
-    }
-    function dismissGate() {
-      gate.classList.add('gate-hidden');
-      document.body.style.overflow = '';
-      showToggle();
-    }
-    function enter(withSound) {
-      sessionStorage.setItem(KEY, withSound ? 'on' : 'off');
-      dismissGate();
-      if (withSound) playMusic(); else pauseMusic();
-    }
-
-    var choice = sessionStorage.getItem(KEY);
-    if (choice === 'on' || choice === 'off') {
-      /* already chosen this session — skip the gate, keep preference */
-      dismissGate();
-      if (choice === 'on') playMusic();
-    } else {
-      document.body.style.overflow = 'hidden';
-      var btnOn = document.getElementById('sgWithSound');
-      var btnOff = document.getElementById('sgWithoutSound');
-      if (btnOn) btnOn.addEventListener('click', function () { enter(true); });
-      if (btnOff) btnOff.addEventListener('click', function () { enter(false); });
-    }
-
+    music.addEventListener('play', reflectMusic);
+    music.addEventListener('pause', reflectMusic);
     soundToggle.addEventListener('click', function () {
-      var on = soundToggle.getAttribute('aria-pressed') === 'true';
-      if (on) { pauseMusic(); sessionStorage.setItem(KEY, 'off'); }
-      else { playMusic(); sessionStorage.setItem(KEY, 'on'); }
+      if (music.paused) music.play().catch(reflectMusic);
+      else music.pause();
     });
+    reflectMusic();
   }
 })();

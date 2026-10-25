@@ -486,3 +486,19 @@ body,.menu-overlay,.sound-gate{background-image:url("images/marble-light.jpg")}
 /* Long headings stay readable without dominating the page. */
 h1,h2{text-wrap:balance;overflow-wrap:break-word}
 .sec-head .display,.footer-title{max-width:30ch}
+
+
+/* Visible experience cards: details and enquiry links stay accessible. */
+.experience-card{border:1px solid var(--line);background:var(--paper);overflow:hidden;display:flex;flex-direction:column}
+.experience-card h3{font:400 1.55rem/1.2 var(--serif);margin:.7rem 0}
+.experience-card .menu-img{height:210px;overflow:hidden}
+.experience-card .menu-img img{width:100%;height:100%;object-fit:cover}
+.experience-details{padding:1.5rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
+.experience-details p{font-size:.92rem;line-height:1.65;margin:0}
+.experience-details .tlink{margin-top:auto;padding-top:.8rem}
+.sample-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin:2rem 0}
+.sample-grid h3{font:400 1.5rem/1.2 var(--serif);margin-bottom:1rem}
+.sample-grid p{line-height:1.9}
+.guest-quotes{grid-template-columns:repeat(2,minmax(0,1fr))}
+.guest-quotes figure{margin:0}.guest-quotes blockquote{font:400 1.35rem/1.5 var(--serif);margin:0 0 1rem}.guest-quotes figcaption{font-size:.8rem;line-height:1.6}
+@media(max-width:700px){.sample-grid{grid-template-columns:1fr}.flip-grid{perspective:none}}
