@@ -468,3 +468,10 @@ a.journal-item:hover{padding-left:.8rem}
   .sound-gate-actions{flex-direction:column; width:100%}
   .sg-btn{justify-content:center; width:100%}
 }
+
+/* ============ 2026-10 copy update additions ============ */
+.hero-sub--2{margin-top:1rem;font-size:.95rem}
+.founder-caption h3+h3{margin-top:.35rem}
+.story-text .tlink{color:var(--paper);border-bottom-color:var(--gold);align-self:flex-start;margin-top:.4rem}
+.story-text .tlink:hover{color:var(--gold)}
+.sec-head p+p{margin-top:1rem}

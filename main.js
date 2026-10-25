@@ -94,7 +94,7 @@
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      form.innerHTML = '<p style="padding:2rem 0;font-family:var(--serif-it);font-style:italic;font-size:1.2rem;color:var(--gold-deep)">Thank you — we will be in touch within 24 hours. For a faster reply, WhatsApp us directly.</p>';
+      form.innerHTML = '<p style="padding:2rem 0;font-family:var(--serif);font-size:1.2rem;color:var(--gold-deep)">Thank you, we will be in touch within 24 hours. For a faster reply, WhatsApp us directly.</p>';
     });
   }
 
